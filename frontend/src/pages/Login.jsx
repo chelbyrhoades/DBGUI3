@@ -56,7 +56,7 @@ import {repository} from '../api/repository';
           <div className="alert alert-danger" role="alert">Sample error -- for user doesnt exist or wrong password</div>
           <button className="btn btn-primary btn-block" onClick={this.handleLogin}>Login</button>
           <span>Don't have an account? </span>
-          <Link className="btn btn-link text-link" to="/create">
+          <Link to="/create">
             Create Account
           </Link>
         </div>

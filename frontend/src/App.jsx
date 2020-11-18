@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ROUTES } from './Routes';
 import { CreateAccount } from './pages/CreateAccount';
 import { OrderHistory } from './pages/OrderHistory';
+import { ItemDetails } from './pages/ItemDetails';
 
 class App extends React.Component {
 
@@ -77,6 +78,9 @@ class App extends React.Component {
               </Route>
               <Route path="/orders">
                 <OrderHistory/>
+              </Route>
+              <Route path="/home">
+                <ItemDetails></ItemDetails>
               </Route>
               <Route path="/">
                 <Login onLogin={this.onLogin}/>

@@ -1,0 +1,11 @@
+.card.item-card {
+    width: 18rem;
+}
+
+.row.info {
+    padding: 0rem 3rem;
+}
+
+.tag {
+    margin: 0rem .5rem;
+}
