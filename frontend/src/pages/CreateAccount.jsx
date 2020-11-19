@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 export class CreateAccount extends React.Component {
 
@@ -12,7 +12,8 @@ export class CreateAccount extends React.Component {
         phoneNumber: "",
         name: "",
         country: "",
-        success: false
+        success: false,
+        error: ""
 
     }
 
@@ -22,8 +23,43 @@ export class CreateAccount extends React.Component {
 
     handleCreate = () => {
 
-        //Test if fields are filled correctly, incomplete rn
-        this.setState({success: true});
+        //Test if fields are filled correctly
+        
+        if (this.evalErrors() == "") {
+            this.setState({success: true});
+        }
+    
+        this.setState({error: this.evalErrors()});
+        
+
+    }
+
+    evalErrors = () => {
+
+        //Return a string for error codes during creation
+        if (this.state.email == "") {
+            return "You must fill in your email address"
+        }
+        if (this.state.password == "") {
+            return "You must create a password"
+        }
+        if (this.state.confirmPassword == "") {
+            return "You must confirm your password"
+        }
+        if (this.state.accountType == "") {
+            return "You must choose an account type"
+        }
+        if (this.state.name == "") {
+            return "You must fill out a name"
+        }
+        if (this.state.country == "") {
+            return "You must choose a country"
+        }
+        if (this.state.password != this.state.confirmPassword) {
+            return "Passwords do not match"
+        }
+
+        return "";
 
     }
 
@@ -342,12 +378,12 @@ export class CreateAccount extends React.Component {
                         
                     </select>
 
-                    <div className="alert alert-danger" role="alert">Sample error -- for username already taken or mismatching passwords</div>
+                    {this.state.error != "" && <div className="alert alert-danger" role="alert">{`Error: ${this.state.error}`}</div>}
                     <button className="btn btn-primary btn-block" onClick={this.handleCreate}>Create Account</button>
                 </div>}
                 {this.state.success && <div className="alert alert-success">
                     Account created successfully. Back to 
-                    <Link className="btn btn-link text-link" to="/"> login</Link>
+                    <Link to="/"> login</Link>
                 </div>}
             </div>
 

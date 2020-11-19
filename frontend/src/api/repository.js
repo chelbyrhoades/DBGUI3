@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export class repository {
-    url = "ec2-34-213-29-182.us-west-2.compute.amazonaws.com:3000";   //put ec2 instance here
+    url = "http://ec2-34-213-29-182.us-west-2.compute.amazonaws.com:8000";   //put ec2 instance here
 
     config = {
         headers: {
@@ -28,26 +28,26 @@ export class repository {
     //logging in 
     login(email, password){
         return new Promise((resolve, reject) => {
-            axios.post(`${this.url}/login`, {email: email, password: password})
+            axios.post(`${this.url}/login`, {email: email, password: password}).then(response => {
+                resolve(response);
+            })
+            .catch(e => {
+                console.log(e);
+            });
         })
-        .then(response => {
-            console.log(response);
-        })
-        .catch(e => {
-            console.log(e);
-        });
     }
 
     getAccount(id) {
         return new Promise((resolve, reject) => {
-            axios.get(`${this.url}/login/${id}`)
+            axios.get(`${this.url}/account/${id}`)
+            .then(response => {
+                resolve(response);
+            })
+            .catch(e => {
+                alert(e);
+                reject();
+            });
         })
-        .then(response => {
-            console.log(response);
-        })
-        .catch(e => {
-            console.log(e);
-        });
     }
 
     //deleting account - app.delete
