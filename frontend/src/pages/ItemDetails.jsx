@@ -29,7 +29,31 @@ export class ItemDetails extends React.Component{
 
     render() {
         return (
-        <div className="card item-card">
+        <div class="card">
+            <div class="card-header">
+              {this.props.item.distributorName}
+            </div>
+            <div class="card-body">
+              <div className="row">
+                <div className="col-8">
+                    <h5 class="card-title">{this.props.item.name}</h5>
+                    <span class="card-text tag badge badge-pill badge-primary">{`$${this.props.item.price}`}</span>
+                    <p class="card-text">{`In stock: ${this.props.item.quantity}`}</p>
+                    <p class="card-text">{`Location: ${this.props.item.location}`}</p>
+                    <Link to="/orders" className="card-link">Order</Link>
+                </div>
+                <div className="col-3">
+                  <img src={this.props.item.imgurl} className="prod-img"/>
+                </div>
+              </div>
+            </div>
+        </div>
+        
+    );
+    }
+
+
+        /*<div className="card item-card">
             <img src={this.props.item.imgurl} className="card-img-top"/>
             <div className="card-body">
                 <h5 className="card-title">{this.props.item.name}</h5>
@@ -37,7 +61,6 @@ export class ItemDetails extends React.Component{
                     <div className="tag col badge badge-pill badge-primary"></div>
                     <div className="tag col badge badge-pill badge-primary"></div>
                 </div>
-                <span className="badge badge-pill badge-primary"></span>
             </div>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">{`$${this.props.item.price}`}</li>
@@ -47,8 +70,5 @@ export class ItemDetails extends React.Component{
             <div className="card-body">
                 <Link to="/orders" className="card-link">Order</Link>
             </div>
-        </div>
-    );
-    }
-
+        </div>*/
 }

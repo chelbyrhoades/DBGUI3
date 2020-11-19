@@ -8,6 +8,7 @@ import { ROUTES } from './Routes';
 import { CreateAccount } from './pages/CreateAccount';
 import { OrderHistory } from './pages/OrderHistory';
 import { ItemDetails } from './pages/ItemDetails';
+import {Home} from "./pages/Home";
 
 class App extends React.Component {
 
@@ -80,7 +81,7 @@ class App extends React.Component {
                 <OrderHistory/>
               </Route>
               <Route path="/home">
-                <ItemDetails></ItemDetails>
+                <Home/>
               </Route>
               <Route path="/">
                 <Login onLogin={this.onLogin}/>
