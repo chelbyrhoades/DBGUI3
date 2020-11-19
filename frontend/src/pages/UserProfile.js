@@ -1,5 +1,4 @@
 import React from 'react';
-import { Orders } from '../models/Orders';
 
 export class UserProfile extends React.Component{
 
