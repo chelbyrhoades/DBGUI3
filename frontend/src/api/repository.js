@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export class repository {
-    url = "ec2-34-213-29-182.us-west-2.compute.amazonaws.com:3000";   //put ec2 instance here
+    url = "http://ec2-34-213-29-182.us-west-2.compute.amazonaws.com:8000";   //put ec2 instance here
 
     config = {
         headers: {

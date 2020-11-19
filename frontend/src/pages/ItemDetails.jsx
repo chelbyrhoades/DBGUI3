@@ -29,17 +29,17 @@ export class ItemDetails extends React.Component{
 
     render() {
         return (
-        <div class="card">
-            <div class="card-header">
+        <div className="card">
+            <div className="card-header">
               {this.props.item.distributorName}
             </div>
-            <div class="card-body">
+            <div className="card-body">
               <div className="row">
                 <div className="col-8">
-                    <h5 class="card-title">{this.props.item.name}</h5>
-                    <span class="card-text tag badge badge-pill badge-primary">{`$${this.props.item.price}`}</span>
-                    <p class="card-text">{`In stock: ${this.props.item.quantity}`}</p>
-                    <p class="card-text">{`Location: ${this.props.item.location}`}</p>
+                    <h5 className="card-title">{this.props.item.name}</h5>
+                    <span className="card-text tag badge badge-pill badge-primary">{`$${this.props.item.price}`}</span>
+                    <p className="card-text">{`In stock: ${this.props.item.quantity}`}</p>
+                    <p className="card-text">{`Location: ${this.props.item.location}`}</p>
                     <Link to="/orders" className="card-link">Order</Link>
                 </div>
                 <div className="col-3">
