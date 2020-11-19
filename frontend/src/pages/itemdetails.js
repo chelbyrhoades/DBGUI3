@@ -3,6 +3,7 @@ import { Item } from '../models/Item';
 import "./Home.css";
 import {  Link } from 'react-router-dom';
 import axios from 'axios';
+import SearchPage from './SearchPage';
 
 
 

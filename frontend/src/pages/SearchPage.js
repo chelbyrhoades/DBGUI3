@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import CountryList from './CountryList';
+import {Itemdetails} from "./itemdetails.js";
 
 const SearchPage = (props) => {
   const [input, setInput] = useState('');
@@ -9,7 +10,7 @@ const SearchPage = (props) => {
 
   //CHANGE THIS TO THE DATA WE GET FROM THE API
   const fetchData = async () => {
-    return await fetch('https://restcountries.eu/rest/v2/all')
+    return await fetch('https://restcountries.eu/rest/v2/all') //''
       .then(response => response.json())
       .then(data => {
          setCountryList(data) 
@@ -28,14 +29,18 @@ const SearchPage = (props) => {
 	
   return (
     <>
-      <h1>Country List</h1>
+      <h1>Distributors</h1>
       <SearchBar 
        input={input} 
        onChange={updateInput}
       />
-      <CountryList countryList={countryList}/>
+      <CountryList countryList = {countryList}/>
+      
     </>
    );
+   //<Itemdetails countryList = {Itemdetails}/>
+   // 
+   //<CountryList countryList = {CountryList}/>
 }
 
 export default SearchPage

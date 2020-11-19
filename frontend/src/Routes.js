@@ -1,4 +1,5 @@
 import {CreateAccount} from "./pages/CreateAccount";
+import { DistributorListing } from "./pages/DistributorListings";
 import showHome from "./pages/Home";
 import { Itemdetails } from "./pages/itemdetails";
 import {Login} from "./pages/Login";
@@ -8,6 +9,7 @@ import { UserProfile } from "./pages/UserProfile";
 
 export const ROUTES = [
     { path:'/search', component: SearchPage},
+    { path: '/distDetails', component: DistributorListing},
     { path: '/create', component: CreateAccount },
     { path: '/orders', component: OrderHistory},
     { path: '/userP', component: UserProfile},
