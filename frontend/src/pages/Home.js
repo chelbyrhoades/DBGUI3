@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 import {Itemdetails} from "./itemdetails.js";
-
+import {SearchPage} from './SearchPage';
 
 
 
