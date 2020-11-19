@@ -34,11 +34,13 @@ const SearchPage = (props) => {
        input={input} 
        onChange={updateInput}
       />
-      <CountryList countryList = {countryList}/>
+      <Itemdetails countryList = {Itemdetails}/>
+      
       
     </>
    );
    //<Itemdetails countryList = {Itemdetails}/>
+   //
    // 
    //<CountryList countryList = {CountryList}/>
 }

@@ -4,6 +4,11 @@ import './DistributorListings.css';
 /*
 Shows the product listings when a person clicks a distributor or product's name
 Shows contact info
+
+
+HOW TO UN HARD CODE
+GET THE PRODUCT ID SENT TO HERE -> then find the distributor and all of the product information
+
 */
 
 export class DistributorListing extends React.Component{
@@ -25,11 +30,11 @@ export class DistributorListing extends React.Component{
             <p> Here is where a page about the distributor would be</p>
             <div>
             <h1> {this.state.Distributorname}</h1>
-            <p><img className = "Image" src = {this.imgurl}/></p>
-            <p>{this.name}</p>
-            <p>{this.quantity}</p>
-            <p>{this.location}</p>
-            <p>${this.price}</p>
+            <p><img className = "Image" src = {this.state.imgurl}/></p>
+            <p>{this.state.name}</p>
+            <p>{this.state.quantity}</p>
+            <p>{this.state.location}</p>
+            <p>${this.state.price}</p>
             <br/>
           </div>
             <Link className="btn btn-link home-button" to="/home">

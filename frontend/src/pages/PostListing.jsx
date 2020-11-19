@@ -13,17 +13,32 @@ export class PostListing extends React.Component{
         {
         
         }
-    ]
+    ]   //Distributorname, name, quantity, price, location
     state = {
-        Distributorname: '',
-        name: '',
-        quantity: 0,
-        price: 0,
-        location: '',
-        phoneNumbers: [
-            { number: '214-555-1212', type: 'fax' }
-        ]
-    };
+        item: {
+          Distributorname: '',
+          name: '',
+          quantity: '',
+          imageUrl: '',
+          price: '',
+          location: '',
+        }
+      };
+
+      componentDidMount = () => {   //NEED TO EDIT AND ADD A CALL METHOD TO EDIT ITEMS WITHIN SYSTEM - move to repository API
+        axios.get(`http://localhost:3333/itemById/${this.props.match.params.id}`)
+          .then(res => {
+            this.setState({item: res.data});
+          })
+          .catch(err => console.log(err))
+      }
+      handleChange = e => {
+        e.persist();
+      
+        this.setState(prevState => ({
+          item: { ...prevState.item,  [e.target.name]: e.target.value }
+        }))
+      }
 
     //need method that returns all the products from the selected distributor ID
     //stores them into the items array
@@ -33,6 +48,15 @@ export class PostListing extends React.Component{
             <div>
             <h1>Distributor Name Goes Here</h1>
             <h2>Products </h2>
+            <form onSubmit={this.handleSubmit}>
+
+            <input type="text" name="name"
+                value={this.state.item.name}
+                placeholder="Name"
+                onChange={this.handleChange}
+            />
+            </form>
+
 
         </div>
         
