@@ -9,7 +9,15 @@ export class Header extends React.Component {
 
             <header>
                 <h1 className="page-header">MaskerAid
-                    {this.props.loggedIn && <button type="button" className="btn btn-primary float-right">Logout</button>}
+                    {this.props.loggedIn && <div className="row float-right">
+                        <div className="col btn-col">
+                            <button type="button" className="btn btn-primary">Account</button>
+                        </div>
+                        <div className="col btn-col">
+                            <button type="button" className="btn btn-primary">Logout</button>
+                        </div>
+                    </div>}
+                    
                 </h1>
             </header>
 

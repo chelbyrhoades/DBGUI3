@@ -1,6 +1,6 @@
-export class Item{
-    constructor(Distributorname, name, quantity, price, location, imgurl){
-        this.Distributorname = Distributorname;
+export class Item {
+    constructor(Distributorname, name, quantity, price, location, imgurl) {
+        this.distributorName = Distributorname;
         this.name = name;
         this.quantity = quantity;
         this.price = price;
