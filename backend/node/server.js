@@ -244,7 +244,10 @@ app.post('/account', (req, res) => {
 
 	//Check if the email is unique
 	connection.query(`SELECT * FROM user WHERE email = '${req.body.email}'`, function (err, rows, fields) {
-		if (err) throw err;
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
 		if (rows.length > 0) {
 			res.status(403).send("email_registered");
 			return;
@@ -252,10 +255,16 @@ app.post('/account', (req, res) => {
 			//Add the user
 			connection.query(`INSERT INTO user (email, password, type_typeID) VALUES ('${req.body.email}', '${hash(req.body.password)}', ${Number(req.body.type)})`, 
 			(err, rows, fields) => {
-				if (err) throw err;
+				if (err) {
+					res.status(500).send(err);
+					return;
+				}
 				else {
 					connection.query(`SELECT userID FROM user WHERE email = '${req.body.email}'`, (err, rows, fields) => {
-						if (err) throw err;
+						if (err) {
+							res.status(500).send(err);
+							return;
+						}
 						console.log(rows[0].userID);
 						updateUserAccount(rows[0].userID, req.body, () => res.status(200).send("success"));
 					});
@@ -297,7 +306,10 @@ app.delete('/account', (req, res) => {
 			//Disable the user			
 			connection.query(`UPDATE user SET locked = 1 WHERE cookie = '${req.body.cookie}'`,
 			(err, rows, fields) => {
-				if (err) throw err;
+				if (err) {
+					res.status(500).send(err);
+					return;
+				}
 				res.status(200).send();
 			});
 		}
@@ -307,7 +319,10 @@ app.delete('/account', (req, res) => {
 //GET /account/{accountID}
 app.get('/account/:id', (req, res) => {
 	connection.query(`SELECT email, typeName, name, phone, streetAddress, state, country, zip FROM user LEFT JOIN type ON user.type_typeID = type.typeID LEFT JOIN address ON user.userID = address.user_userID WHERE userID = ${req.params.id} AND locked != 1`, function (err, rows, fields) {
-		if (err) throw err;
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
 		
 		res.status(200).send(JSON.stringify(rows));
 	});
@@ -316,7 +331,10 @@ app.get('/account/:id', (req, res) => {
 //GET /account/{accountID}/inventory
 app.get('/account/:id/inventory', (req, res) => {
 	connection.query(`SELECT * FROM listing WHERE user_userID = ${req.params.id}`, (err, rows, fields) => {
-		if (err) throw err;
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
 		res.status(200).send(JSON.stringify(rows));
 	});
 });
@@ -331,7 +349,10 @@ app.get('/orders', (req, res) => {
 
 		connection.query(`SELECT * FROM orders WHERE user_userID = ${idFromCookie(req.body.cookie)}`, 
 		(err, rows, fields) => {
-			if (err) throw err; 
+			if (err) {
+				res.status(500).send(err);
+				return;
+			}
 			else res.status(200).send(JSON.stringify(rows));
 		});
 	});
@@ -341,7 +362,10 @@ app.get('/orders', (req, res) => {
 app.get('/orders/:id', (req, res) => {
 	connection.query(`SELECT * FROM orders WHERE transID = ${req.params.id}`, 
 	(err, rows, fields) => {
-		if (err) throw err;
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
 		res.status(200).send(JSON.stringify(rows));
 	});
 });
@@ -365,7 +389,10 @@ app.put('/orders/:id', (req, res) => {
 
 		connection.query(`UPDATE orders SET orderStatus = '${req.body.status}' WHERE (transID = ${req.params.id}) AND (buyerID = ${req.params.id} OR sellerID = ${req.params.id})`,
 		(err, rows, fields) => {
-			if (err) throw err; 
+			if (err) {
+				res.status(500).send(err);
+				return;
+			}
 			else res.status(200).send(JSON.stringify(rows));
 		});
 	});
@@ -406,7 +433,10 @@ app.get('/listings', (req, res) => {
 	console.log(query); 
 
 	connection.query(query, (err, rows, fields) => {
-		if (err) throw err;
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
 		else {
 			if (isNum(req.body.rownum) && isNum(req.body.limit)) {
 				res.status(200).send(JSON.stringify(rows.split(req.body.rownum, req.body.rownum + req.body.limit)));
@@ -427,7 +457,10 @@ app.post('/listings', (req, res) => {
 
 		connection.query(`INSERT INTO listing (productID, price, quantity, user_userID) VALUES (${req.body.productID},${req.body.price},${req.body.quantity},${idFromCookie(req.body.cookie)})`,
 		(err, rows, fields) => {
-			if (err) throw err;
+			if (err) {
+				res.status(500).send(err);
+				return;
+			}
 			res.status(200).send("success");
 		});
 	});
@@ -437,7 +470,10 @@ app.post('/listings', (req, res) => {
 app.get('/listings/:id', (req, res) => {
 	connection.query(`SELECT * FROM listing WHERE listingID = ${req.params.id}`, 
 	(err, rows, fields) => {
-		if (err) throw err;
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
 		if (rows.length === 0) res.status(404).send();
 		else res.status(200).send(JSON.stringify(rows[0]));
 	});
@@ -455,12 +491,18 @@ app.post('/listings/:id', (req, res) => {
 
 		connection.query(`SELECT listingID FROM listing WHERE listingID = ${req.params.id} AND ${req.body.quantity} < quantity`,
 		(err, rows, fields) => {
-			if (err) throw err;
+			if (err) {
+				res.status(500).send(err);
+				return;
+			}
 			if (rows.length === 0) res.status(400).send("id or quantity invalid");
 			else {
 				connection.query(`INSERT INTO orders (datetime, country, productID, quantity, buyerID, sellerID, addressID, orderStatus) VALUES (now(), (SELECT country FROM user WHERE userID = ${id} LIMIT 1), (SELECT productID FROM listing WHERE listingID = ${req.params.id} LIMIT 1), ${req.body.quantity}, (SELECT user_userID FROM listing WHERE listingID = ${req.params.id} LIMIT 1), ${id}, (SELECT id FROM address WHERE user_userID = ${id} ORDER BY id DESC LIMIT 1), "Pending")`,
 				(err, rows, fields) => {
-					if (err) throw err;
+					if (err) {
+						res.status(500).send(err);
+						return;
+					}
 					res.status(200).send("success");
 				});
 			};
@@ -481,7 +523,10 @@ app.put('/listings/:id', (req, res) => {
 
 	connection.query(`UPDATE listing SET productID = ${req.body.productID}, price = ${req.body.price}, quantity = ${req.body.quantity} WHERE listingID = ${req.params.id} AND user_userID = ${idFromCookie(req.body.cookie)}`, 
 	(err, rows, fields) => {
-		if (err) throw err;
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
 		else if (rows.length === 0) res.status(400).send("error");
 		else res.status(200).send("success");
 	});
@@ -491,7 +536,10 @@ app.put('/listings/:id', (req, res) => {
 app.delete('/listings/:id', (req, res) => {
 	connection.query(`DELETE FROM listing WHERE listingID = ${req.params.id} AND user_userID = ${idFromCookie(req.body.cookie)}`, 
 	(err, rows, fields) => {
-		if (err) throw err;
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
 		else res.status(200).send("success");
 	});
 });
@@ -499,7 +547,10 @@ app.delete('/listings/:id', (req, res) => {
 //GET /types
 app.get('/types', (req, res) => {
 	connection.query('SELECT * FROM type', (err, rows, fields) => {
-		if (err) throw err;
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
 		res.status(200).send(JSON.stringify(rows));
 	});
 });
@@ -507,23 +558,32 @@ app.get('/types', (req, res) => {
 //GET /stats/listings
 app.get('/stats/listings', (req, res) => {
 	connection.query('SELECT city, state, country, COUNT(listingID) AS numListings FROM user INNER JOIN listing ON listing.user_userID = user.userID INNER JOIN address ON address.user_userID = user.userID GROUP BY city, state, country', (err, rows, fields) => {
-		if (err) throw err;
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
 		res.status(200).send(JSON.stringify(rows));
 	});
 });
 
 //GET /stats/orders
 app.get('/stats/orders', (req, res) => {
-	connection.query('SELECT YEAR(date) AS year, MONTH(date) AS month, country, COUNT(transID) AS num FROM orders GROUP BY year, month, country ORDER BY year, month, country', (err, rows, fields) => {
-		if (err) throw err;
+	connection.query('SELECT YEAR(datetime) AS year, MONTH(datetime) AS month, country, COUNT(transID) AS num FROM orders GROUP BY year, month, country ORDER BY year, month, country', (err, rows, fields) => {
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
 		res.status(200).send(JSON.stringify(rows));
 	});
 });
 
 //GET /stats/distributors
 app.get('/stats/distributors', (req, res) => {
-	connection.query('SELECT email, name, phone, user.country AS country, COUNT(transID) AS numorders FROM user INNER JOIN orders ON user.userID = orders.sellerID GROUP BY userID ORDER BY COUNT(transID) DESC LIMIT 10', (err, rows, fields) => {
-		if (err) throw err;
+	connection.query('SELECT user.email AS email, user.name AS name, user.phone AS phone, user.country AS country, COUNT(transID) AS numorders FROM user INNER JOIN orders ON user.userID = orders.sellerID GROUP BY user.userID ORDER BY COUNT(transID) DESC LIMIT 10', (err, rows, fields) => {
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
 		res.status(200).send(JSON.stringify(rows));
 	});
 });

@@ -1,9 +1,6 @@
 import React from 'react';
-import { User } from '../models/User';
-import { Orders } from '../models/Orders';
-import axios from 'axios';
 import './OrderHistory.css';
-import { useHistory, withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export class OrderHistory extends React.Component{
 //pulls up any orders that the user has made
