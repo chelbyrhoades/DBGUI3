@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import CountryList from './CountryList';
-import {Itemdetails} from "./itemdetails.js";
+import {ItemDetails} from "./ItemDetails.jsx";
 
 const SearchPage = (props) => {
   const [input, setInput] = useState('');
@@ -34,7 +34,7 @@ const SearchPage = (props) => {
        input={input} 
        onChange={updateInput}
       />
-      <Itemdetails countryList = {Itemdetails}/>
+      <ItemDetails countryList = {ItemDetails}/>
       
       
     </>
