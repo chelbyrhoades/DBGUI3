@@ -14,7 +14,6 @@ const CountryList = ({countryList=[]}) => {
           return (
             <div key={data.name}>
               <h1>{data.name}</h1>
-              <p>{data.region}</p>
               <Link className="btn btn-link new-account" to="/distDetails">
               More info
             </Link>

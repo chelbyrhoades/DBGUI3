@@ -87,12 +87,16 @@ export class Itemdetails extends React.Component{
                 <div data-role="page" class="pages" >
                 {this.items.map((item, index) => (
           <div key={index}>
+            <Link className="btn btn-link new-account" to="/distDetails">
             <h1> {item.Distributorname}</h1>
+            </Link>
             <p><img className = "Image" src = {item.imgurl}/></p>
             <p>{item.name}</p>
+            
             <p>{item.quantity}</p>
             <p>{item.location}</p>
             <p>${item.price}</p>
+            
             <br/>
           </div>
         ))}       
