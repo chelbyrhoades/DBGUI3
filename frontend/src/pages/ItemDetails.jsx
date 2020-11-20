@@ -52,23 +52,4 @@ export class ItemDetails extends React.Component{
     );
     }
 
-
-        /*<div className="card item-card">
-            <img src={this.props.item.imgurl} className="card-img-top"/>
-            <div className="card-body">
-                <h5 className="card-title">{this.props.item.name}</h5>
-                <div className="row info">
-                    <div className="tag col badge badge-pill badge-primary"></div>
-                    <div className="tag col badge badge-pill badge-primary"></div>
-                </div>
-            </div>
-            <ul className="list-group list-group-flush">
-                <li className="list-group-item">{`$${this.props.item.price}`}</li>
-                <li className="list-group-item">{`In stock: ${this.props.item.quantity}`}</li>
-                <li className="list-group-item">{`Location: ${this.props.item.location}`}</li>
-            </ul>
-            <div className="card-body">
-                <Link to="/orders" className="card-link">Order</Link>
-            </div>
-        </div>*/
 }
