@@ -5,56 +5,19 @@ import {Login} from './pages/Login'
 import {Header} from './Header'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ROUTES } from './Routes';
+import { CreateAccount } from './pages/CreateAccount';
+import { OrderHistory } from './pages/OrderHistory';
+import { ItemDetails } from './pages/ItemDetails';
+import {Home} from "./pages/Home";
 
 class App extends React.Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      number: "",
-      values: []
-    };
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+  state = {
+    loggedIn: false,
   }
 
-  // handle input field state change
-  handleChange = (e) => {
-    this.setState({number: e.target.value})
-  }
-
-  // handle input form submission to backend via POST request
-  handleSubmit = (e) => {
-    e.preventDefault();
-    let prod = this.state.number * this.state.number;
-    axios.post('http://localhost:8000/multplynumber', {product: prod}).then(res =>{
-      console.log(res);
-      this.fetchVals();
-    });
-    this.setState({number: ""});
-  }
-
-  // handle intialization and setup of database table, can reinitialize to wipe db
-  reset = () => {
-    axios.post('http://localhost:8000/reset').then(res => {
-      console.log(res);
-      this.fetchVals();
-    });
-  }
-
-  // tell app to fetch values from db on first load (if initialized)
-  componentDidMount(){
-    this.fetchVals();
-  }
-
-  // fetches vals of db via GET request
-  fetchVals = () => {
-    axios.get('http://localhost:8000/values').then(
-      res => {
-        const values = res.data;
-        console.log(values.data);
-        this.setState({ values: values.data });
-    });
+  onLogin = () => {
+    this.setState({loggedIn: true});
   }
 
 
@@ -62,10 +25,21 @@ class App extends React.Component {
     
       return (
         <div>
-          <Header/>
+          <Header loggedIn={this.state.loggedIn}/>
           <Router>
             <Switch>
-              {ROUTES.map((route, index) => <Route key={ index } { ...route }></Route>)}
+              <Route path="/create">
+                <CreateAccount/>
+              </Route>
+              <Route path="/orders">
+                <OrderHistory/>
+              </Route>
+              <Route path="/home">
+                <Home/>
+              </Route>
+              <Route path="/">
+                <Login onLogin={this.onLogin}/>
+              </Route>
             </Switch>
           </Router>
         </div>

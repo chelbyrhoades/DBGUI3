@@ -1,0 +1,15 @@
+.prod-img {
+    width: 100%;
+}
+
+.row.info {
+    padding: 0rem 3rem;
+}
+
+.card {
+    margin-bottom: 1em;
+}
+
+.tag {
+    margin-bottom: .3em;
+}
