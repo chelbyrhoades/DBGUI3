@@ -568,7 +568,7 @@ app.get('/stats/listings', (req, res) => {
 
 //GET /stats/orders
 app.get('/stats/orders', (req, res) => {
-	connection.query('SELECT YEAR(date) AS year, MONTH(date) AS month, country, COUNT(transID) AS num FROM orders GROUP BY year, month, country ORDER BY year, month, country', (err, rows, fields) => {
+	connection.query('SELECT YEAR(datetime) AS year, MONTH(datetime) AS month, country, COUNT(transID) AS num FROM orders GROUP BY year, month, country ORDER BY year, month, country', (err, rows, fields) => {
 		if (err) {
 			res.status(500).send(err);
 			return;
@@ -579,7 +579,7 @@ app.get('/stats/orders', (req, res) => {
 
 //GET /stats/distributors
 app.get('/stats/distributors', (req, res) => {
-	connection.query('SELECT email, name, phone, user.country AS country, COUNT(transID) AS numorders FROM user INNER JOIN orders ON user.userID = orders.sellerID GROUP BY userID ORDER BY COUNT(transID) DESC LIMIT 10', (err, rows, fields) => {
+	connection.query('SELECT user.email AS email, user.name AS name, user.phone AS phone, user.country AS country, COUNT(transID) AS numorders FROM user INNER JOIN orders ON user.userID = orders.sellerID GROUP BY user.userID ORDER BY COUNT(transID) DESC LIMIT 10', (err, rows, fields) => {
 		if (err) {
 			res.status(500).send(err);
 			return;
