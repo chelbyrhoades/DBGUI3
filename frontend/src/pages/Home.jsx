@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';
-import {ItemDetails} from "./ItemDetails";
+import ItemDetails from "./ItemDetails";
 import {Item} from "../models/Item"
 
 
