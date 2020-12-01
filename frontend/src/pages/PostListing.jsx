@@ -1,5 +1,8 @@
 import React from 'react';
+import { repository } from '../api/repository';
 import { Item } from '../models/Item';
+import { PPEtypes } from '../models/PPEtypes';
+import { Link} from 'react-router-dom';
 /*
 So that the distributors can post/delete listings
 */
@@ -7,8 +10,13 @@ So that the distributors can post/delete listings
 //(Distributorname, name, quantity, price, location, imgurl)
 
 export class PostListing extends React.Component{
+  repository = new repository;
     //grabs the info via a form and pushes them into the api for the selected distributor
-    
+    types = [
+      new PPEtypes(1, "Masks"),
+      new PPEtypes(2, "Gloves"),
+      new PPEtypes(3, "Face Shields")
+  ];
     items = [
         {
         
@@ -24,20 +32,21 @@ export class PostListing extends React.Component{
           location: '',
         }
       };
+    
+      //function that calls on axios to push a new listing
+      onSave(product){
+        this.repository.addListing(this.state)
+                .then(() => {
+                    alert('Listing added!');
+                    this.setState({ redirect: '/home' });
+                });
+        }
+      
+
+
 
       componentDidMount = () => {   //NEED TO EDIT AND ADD A CALL METHOD TO EDIT ITEMS WITHIN SYSTEM - move to repository API
-        axios.get(`http://localhost:3333/itemById/${this.props.match.params.id}`)
-          .then(res => {
-            this.setState({item: res.data});
-          })
-          .catch(err => console.log(err))
-      }
-      handleChange = e => {
-        e.persist();
-      
-        this.setState(prevState => ({
-          item: { ...prevState.item,  [e.target.name]: e.target.value }
-        }))
+        //put axios call here
       }
 
     //need method that returns all the products from the selected distributor ID
@@ -46,18 +55,81 @@ export class PostListing extends React.Component{
     render() {
         return (
             <div>
-            <h1>Distributor Name Goes Here</h1>
-            <h2>Products </h2>
-            <form onSubmit={this.handleSubmit}>
+            <h1>Create a Product Listing</h1>
+            <div className="form-group">
+                <label htmlFor="name">Product Name</label>
+                <br/>
+                <input type="text"
+                    id="name"
+                    size="50"
+                    name="name"
+                    value={this.state.name}
+                    onChange={event => this.setState({ name: event.target.value })} />
+            </div>
 
-            <input type="text" name="name"
-                value={this.state.item.name}
-                placeholder="Name"
-                onChange={this.handleChange}
-            />
-            </form>
+            <div className="form-group">
+                <label htmlFor="quantity">Quantity</label>
+                <br/>
+                <input type="text"
+                    id="quantity"
+                    name="quantity"
+                    size="50"
+                    value={this.state.quantity}
+                    onChange={event => this.setState({ quantity: event.target.value })} />
+            </div>
 
+            <div >
+                <label htmlFor="typeId">Type</label>
+                <br/>
+                <select id="typeId"
+                    name="typeId"
+                    size="1"
+                    value={this.state.typeId}
+                    onChange={event => this.setState({ typeId: event.target.value })}>
+                    <option></option>
+                    {
+                        this.types.map(x => <option key={x.id} value={x.id}>{x.name}</option>)
+                    }
+                </select>
+            </div>
+``
+            <div className="form-group">
+                <label htmlFor="price">Price</label>
+                <br/>
+                <input type="text"
+                    id="price"
+                    name="price"
+                    size="50"
+                    value={this.state.price}
+                    onChange={event => this.setState({price : event.target.value })} />
+            </div>
+            <div className="form-group">
+                <label htmlFor="location">Location</label>
+                <br/>
+                <input type="text"
+                    id="location"
+                    name="location"
+                    size="50"
+                    value={this.state.location}
+                    onChange={event => this.setState({location : event.target.value })} />
+            </div>
 
+            <h3>Confirm with your Distributor Name:</h3>
+            <input type="text"
+                    id="distName"
+                    name="distName"
+                    size="50"
+                    value={this.state.Distributorname}
+                    onChange={event => this.setState({Distributorname: event.target.value })} />
+            <button type="button"
+                    className="btn btn-success"
+                    onClick={() => this.onSave()}>
+                    Save
+                </button>
+                <button type="button"
+                    className="btn btn-info">
+                    Return Home
+                </button>
         </div>
         
         )}

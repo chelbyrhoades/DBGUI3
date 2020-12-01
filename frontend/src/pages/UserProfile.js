@@ -1,53 +1,87 @@
 import React from 'react';
+import axios from 'axios';
+import {repository} from '../api/repository';
+import { Link } from 'react-router-dom';
+import { EditProfile } from './EditProfile';
 
 export class UserProfile extends React.Component{
-
+    //need get user info call
+    repo = new repository();
+/*sample:
+[{"email":"mallory99@example.net","typeName":"user","name":"Lisandro
+Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"country":"Mali","zip":null}]
+*/
     state = {
-        name: '',
-        email: '',
-        country: '',
-        address: '',
-        isDistributor: false,
-        phoneNumbers: [
-            { number: '214-555-1212', type: 'fax' }
-        ]
-    };
 
+        
+        data: {
+            name: "",
+        email: "",
+        typeName: "",
+        phone: "",
+        country: "",
+        streetAddress: ""
+        }
+    };
+    handleNameChange(e){
+        this.setState({name:e.target.value})
+      }
+      handlePasswordChange(e){
+        this.setState({password:e.target.value})
+      }
+      //.then(data => console.log({data})
+    componentDidMount(){
+        this.repo.getAccountInfo(198)
+        .then(userData => this.setState({data: userData[0]})
+        
+        );
+        console.log("user profile mounted");
+        
+    }
+  
     render() {
         return <form className="container">
             <h1>User Profile</h1>
-            <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input type="text"
-                    id="name"
-                    name="name"
-                    className="form-control"
-                    value={this.state.name}
-                    onChange={ event => this.setState({ name: event.target.value }) } />
-            </div>
-
-            <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input type="text"
-                    id="email"
-                    name="email"
-                    className="form-control"
-                    value={this.state.email}
-                    onChange={ event => this.setState({ email: event.target.value }) } />
-            </div>
-
-            <div className="form-group">
-                <label htmlFor="Country">Country</label>
-                
-            </div>
-
+            <div className="info">
+          <div>Name: {this.state.data.name}</div>
+          <div>Email: {this.state.data.email}</div>
+          <div>Address: {this.state.data.address}</div>
+          <div>Phone Number: {this.state.data.phone}</div>
+          <div>Country: {this.state.data.country}</div>
+        </div>
+        <button> Edit Profile</button>
+        
+        
             
-            
-        </form>;
+</form>;
     }//end render
 }//end userProfile class
 
 /*
-<PhoneList phoneNumbers={ this.state.phoneNumbers } />
-            <PhoneEditor onPhoneAdded={ phone => this.addPhone(phone) } />
-*/
+
+
+        <table className="table table-condensed table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+        {
+            this.accounts.map(account =>
+            <tr key={account.name}>
+                <td>
+                    {account.name}
+                </td>
+                <td>{account.email}</td>
+                <td>
+                </td>
+            </tr>)
+    }
+    </tbody>
+
+</table>
+
+
+            */

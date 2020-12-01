@@ -5,7 +5,8 @@ import { ItemDetails } from "./pages/ItemDetails";
 import {Login} from "./pages/Login";
 import { OrderHistory } from "./pages/OrderHistory";
 import SearchPage from "./pages/SearchPage";
-import { UserProfile } from "./pages/UserProfile";
+import { UserProfile} from "./pages/UserProfile";
+import { EditProfile } from './pages/EditProfile';
 
 export const ROUTES = [
     { path:'/search', component: SearchPage},
@@ -14,5 +15,6 @@ export const ROUTES = [
     { path: '/orders', component: OrderHistory},
     { path: '/userP', component: UserProfile},
     { path: '/home', component: Home},
+    { path: '/edit', component: EditProfile},
     { path: '/', component: Login}
 ]

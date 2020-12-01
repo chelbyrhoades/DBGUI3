@@ -3,7 +3,7 @@ import axios from 'axios';
 export class repository {
     url = "http://ec2-34-213-29-182.us-west-2.compute.amazonaws.com:8000";   //put ec2 instance here
 
-    config = {
+    config = {//
         headers: {
             Authorization: '*'
         }
@@ -54,6 +54,44 @@ export class repository {
     deleteAccount(){
         return new Promise((resolve, rejecct) =>
         axios.delete(`${this.url}/account`))
+    }
+
+
+    //adding a listings NEED TO CHANGE ACCURATELY
+    addListing(params) {
+        return new Promise((resolve, reject) =>
+        axios.post(`${this.url}/account/:listing`))
+    }
+
+    //get all products
+    //    /listings
+    getListings(params){
+        return new Promise((resolve, reject) => {
+            if(params){
+                let config = this.config;
+                config.params = params;
+            }//axios.get(`${this.url}/listing`))
+            axios.get(`${this.url}/listing`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        });   
+    }
+
+
+
+    getAccountInfo(id) {
+        return new Promise((resolve, reject) => {
+            //axios.get(`${this.url}/account/${id}`)
+            axios.get(`${this.url}/account/${id}`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        })
     }
 
 }//end repository
