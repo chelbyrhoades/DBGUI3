@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import CountryList from './CountryList';
-import {ItemDetails} from "./ItemDetails.jsx";
+import ItemDetails from "./ItemDetails";
 
 const SearchPage = (props) => {
   const [input, setInput] = useState('');
@@ -39,7 +39,7 @@ const SearchPage = (props) => {
       
     </>
    );
-   //<Itemdetails countryList = {Itemdetails}/>
+   //<ItemDetails countryList = {ItemDetails}/>
    //
    // 
    //<CountryList countryList = {CountryList}/>
