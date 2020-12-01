@@ -26,7 +26,7 @@ function App() {
           <Route path="/create">
             <CreateAccount/>
           </Route>
-          <Route path="/orders">
+          <Route path="/orders/:orderId">
             <OrderHistory/>
           </Route>
           <Route path="/home">

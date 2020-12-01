@@ -69,7 +69,7 @@ export class ListingEditor extends React.Component {
     
     componentDidMount() {
         const id = this.props.match.params.id;
-        //get
+        
     }
 
 
