@@ -48,7 +48,7 @@ const SearchPage = (props) => {
       
     </>
    );
-   //<Itemdetails countryList = {Itemdetails}/>
+   //<ItemDetails countryList = {ItemDetails}/>
    //
    // 
    //<CountryList countryList = {CountryList}/>

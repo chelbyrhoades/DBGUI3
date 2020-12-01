@@ -1,17 +1,8 @@
 # DBGUI3
 
-<<<<<<< HEAD
-TEAM MASKERAID
-
-Database Setup and related cloud database setup
-=======
-
-## Connecting to mySQL cloud database
-To connect your mySQL to the database:
-1. Go to mySQL, click on (+) to add a connection
-2. Create a name for the database (local)
-3. Set "HOSTNAME" to : *Will be given in next lab by mitch*
-4. Set "PORT" to : 3306
-5. Set username to : *figuring out IAM roles right now*
-6. Set password to : *same thing*
->>>>>>> 0b0b9cbad48e47fea6deca64dbd0846f911b8efb
+This project is a marketplace for PPE. How to use the website:
+Navigate to : http://ec2-34-213-29-182.us-west-2.compute.amazonaws.com:3000
+1. Create an account and set type of account as user, distributor, or government official
+2. Browse Listings based on item
+3. Purchase items from distributors
+4. View account purchases in profile

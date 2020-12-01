@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 export class repository {
+
     url = "http://ec2-34-213-29-182.us-west-2.compute.amazonaws.com:8000";   //put ec2 instance here
 
     config = {//
         headers: {
-            Authorization: '*'
+            Authorization: ''
         }
     }
 
@@ -28,7 +29,7 @@ export class repository {
     //logging in 
     login(email, password){
         return new Promise((resolve, reject) => {
-            axios.post(`${this.url}/login`, {email: email, password: password}).then(response => {
+            axios.post(`${this.url}/login`, {email: email, password: password}, this.config).then(response => {
                 resolve(response);
             })
             .catch(e => {
@@ -56,22 +57,9 @@ export class repository {
         axios.delete(`${this.url}/account`))
     }
 
-
-    //adding a listings NEED TO CHANGE ACCURATELY
-    addListing(params) {
-        return new Promise((resolve, reject) =>
-        axios.post(`${this.url}/account/:listing`))
-    }
-
-    //get all products
-    //    /listings
-    getListings(params){
+    editListing(id, listing) {
         return new Promise((resolve, reject) => {
-            if(params){
-                let config = this.config;
-                config.params = params;
-            }//axios.get(`${this.url}/listing`))
-            axios.get(`${this.url}/listing`, this.config)
+            axios.put(`${this.url}/listings/${id}`, listing, this.config)
             .then(x => resolve(x.data))
             .catch(e => {
                 alert(e);
