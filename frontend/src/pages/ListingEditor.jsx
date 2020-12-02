@@ -1,10 +1,10 @@
 import React from "react"
-import { repository } from "../api/repository";
+import { Repository } from "../api/repository";
 import { Item } from "../models/Item";
 
 export class ListingEditor extends React.Component {
 
-    repository = new repository();
+    repo = new Repository;
 
     state = {
         
@@ -72,7 +72,7 @@ export class ListingEditor extends React.Component {
     
     componentDidMount() {
         const id = this.props.match.params.id;
-        this.repository.getListing(id)
+        this.repo.getListing(id)
         .then(listingData => {
             this.setState({
                 imgurl: listingData.imageURL,

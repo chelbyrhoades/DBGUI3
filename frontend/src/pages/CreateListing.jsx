@@ -1,10 +1,10 @@
 import React from "react"
-import { repository } from "../api/repository";
+import { Repository } from "../api/repository";
 import { Item } from "../models/Item";
 
 export class CreateListing extends React.Component {
 
-    repository = new repository();
+    repo = new Repository;
 
     state = {
         
@@ -19,7 +19,7 @@ export class CreateListing extends React.Component {
     }
 
     handleEdit = () => {
-        this.repository.editListing(this.props.match.params.id, this.state);
+        this.repo.editListing(this.props.match.params.id, this.state);
     }
 
     render() {

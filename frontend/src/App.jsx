@@ -18,31 +18,27 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState(new User);
 
-  const onLogin = () => {
+  function onLogin() {
     setUser(new User(0,"email@email.com","User","111-111-1111","password","USA"));
     setLoggedIn(true);
   }
-    
+
+  function getUser() {
+    return user.id;
+  }
+  
   return (
     <div>
       <Router>
         <Header loggedIn={loggedIn} user={user}/>
         <Switch>
-          <Route path="/create">
-            <CreateAccount/>
-          </Route>
-          <Route path="/orders/:orderId">
-            <OrderHistory/>
-          </Route>
-          <Route path="/home">
-            <Home/>
-          </Route>
-          <Route path="/listing/:id" component={ListingEditor}/>
-          <Route path="/createListing" component={CreateListing}/>
-          <Route path="/user/:id" component={UserProfile}/>
-          <Route path="/">
-            <Login onLogin={onLogin}/>
-          </Route>
+            <Route path="/create" component={CreateAccount}/>
+            <Route path="/orders/:orderId" component={OrderHistory}/>
+            <Route path="/home" component={Home}/>
+            <Route path="/listing/:id" component={ListingEditor}/>
+            <Route path="/createListing" component={CreateListing}/>
+            <Route path="/user/:id" component={UserProfile}/>
+            <Route path="/" render={() => <Login onLogin={onLogin}/>}/>
         </Switch>
       </Router>
     </div>
@@ -50,5 +46,7 @@ function App() {
   );
 
 }
+
+/**/
 
 export default App;

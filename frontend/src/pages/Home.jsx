@@ -2,11 +2,14 @@ import React from 'react';
 import './Home.css';
 import ItemDetails from "./ItemDetails";
 import {Item} from "../models/Item"
+import { Repository } from '../api/repository';
 
 
 
 
 export class Home extends React.Component {
+
+    repo = new Repository();
 
     state = {
         items: [
@@ -47,7 +50,9 @@ export class Home extends React.Component {
     }
 
 
-
+    componentDidMount() {
+        this.repo.getListings();
+    }
 
 
 
