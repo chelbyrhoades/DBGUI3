@@ -31,7 +31,8 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
       }
       //.then(data => console.log({data})
     componentDidMount(){
-        this.repo.getAccountInfo(198)
+        const id = this.props.match.params.id;
+        this.repo.getAccountInfo(id)
         .then(userData => this.setState({data: userData[0]})
         
         );
@@ -55,4 +56,5 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
             </Link>     
 </form>;
     }//end render
+    
 }//end userProfile class

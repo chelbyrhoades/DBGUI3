@@ -80,5 +80,8 @@ export class EditProfile extends React.Component{
             
         </form>;
     }
-
+    componentDidMount() {
+        const id = this.props.match.params.id;
+        
+    }
 }
