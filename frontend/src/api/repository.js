@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-export class repository {
+export class Repository {
 
     url = "http://ec2-34-213-29-182.us-west-2.compute.amazonaws.com:8000";   //put ec2 instance here
 
     config = {//
         headers: {
-            Authorization: ''
+            Authorization: '*'
         }
     }
 
@@ -88,5 +88,18 @@ export class repository {
             });
         })
     }
+
+    getListings() {
+        return new Promise((resolve, reject) => {
+            axios.get(`${this.url}/listings/`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        });
+    }
+
+    
 
 }//end repository

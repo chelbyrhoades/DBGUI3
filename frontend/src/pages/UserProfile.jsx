@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import {repository} from '../api/repository';
+import {Repository} from '../api/repository';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 import { EditProfile } from './EditProfile';
 
 class UserProfile extends React.Component{
     //need get user info call
-    repo = new repository();
+    repo = new Repository();
 /*sample:
 [{"email":"mallory99@example.net","typeName":"user","name":"Lisandro
 Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"country":"Mali","zip":null}]

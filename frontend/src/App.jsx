@@ -11,36 +11,36 @@ import {Home} from "./pages/Home";
 import { ListingEditor } from './pages/ListingEditor';
 import { PostListing } from './pages/PostListing';
 import  EditProfile  from './pages/EditProfile.jsx';
-import  UserProfile  from './pages/UserProfile.js';
+import  UserProfile  from './pages/UserProfile.jsx';
+import { User } from "./models/User";
+import {CreateListing} from "./pages/CreateListing";
 
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState(new User);
 
-  const onLogin = () => {
+  function onLogin() {
+    setUser(new User(0,"email@email.com","User","111-111-1111","password","USA"));
     setLoggedIn(true);
   }
-    
+
+  function getUser() {
+    return user.id;
+  }
+  
   return (
     <div>
-      <Header loggedIn={loggedIn}/>
       <Router>
+        <Header loggedIn={loggedIn} user={user}/>
         <Switch>
-          <Route path="/create">
-            <CreateAccount/>
-          </Route>
-          <Route path="/orders">
-            <OrderHistory/>
-          </Route>
-          <Route path="/editProfile/:id" component={EditProfile} exact/>
-          <Route path="/userProfile/:id" component={UserProfile} exact/>
-          <Route path="/home">
-            <Home/>
-          </Route>
-          <Route path="/listing/:id" component={ListingEditor}/>
-          <Route path="/">
-            <Login onLogin={onLogin}/>
-          </Route>
+            <Route path="/create" component={CreateAccount}/>
+            <Route path="/orders/:orderId" component={OrderHistory}/>
+            <Route path="/home" component={Home}/>
+            <Route path="/listing/:id" component={ListingEditor}/>
+            <Route path="/createListing" component={CreateListing}/>
+            <Route path="/user/:id" component={UserProfile}/>
+            <Route path="/" render={() => <Login onLogin={onLogin}/>}/>
         </Switch>
       </Router>
     </div>
@@ -48,5 +48,7 @@ function App() {
   );
 
 }
+
+
 
 export default App;

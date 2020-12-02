@@ -1,5 +1,5 @@
 import React from 'react';
-import { repository } from '../api/repository';
+import { Repository } from '../api/repository';
 import { Item } from '../models/Item';
 import { PPEtypes } from '../models/PPEtypes';
 import { Link} from 'react-router-dom';
@@ -10,7 +10,7 @@ So that the distributors can post/delete listings
 //(Distributorname, name, quantity, price, location, imgurl)
 
 export class PostListing extends React.Component{
-  repository = new repository;
+  repository = new Repository;
     //grabs the info via a form and pushes them into the api for the selected distributor
     types = [
       new PPEtypes(1, "Masks"),

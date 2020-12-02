@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import {repository} from '../api/repository';
+import {Repository} from '../api/repository';
 import {Link, Redirect, withRouter} from 'react-router-dom';
 
 
 class EditProfile extends React.Component{
-    repo = new repository();
+    repo = new Repository();
     state = {
 
         

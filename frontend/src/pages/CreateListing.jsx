@@ -2,28 +2,30 @@ import React from "react"
 import { Repository } from "../api/repository";
 import { Item } from "../models/Item";
 
-export class ListingEditor extends React.Component {
+export class CreateListing extends React.Component {
 
     repo = new Repository;
 
     state = {
         
-        name: "",
-        quantity: 0,
-        price: 0,
-        location: "",
-        imgurl: "",
+        item: {
+            name: "",
+            quantity: 0,
+            price: 0,
+            location: 0,
+            imgurl: "",
+        }
 
     }
 
     handleEdit = () => {
-        this.repository.editListing(this.props.match.params.id, this.state);
+        this.repo.editListing(this.props.match.params.id, this.state);
     }
 
     render() {
         return (
             <div className="container">
-                <h3>Edit Listing</h3>
+                <h3>Create Listing</h3>
                 <label htmlFor="prod-name">Product Name</label>
                 <input className="form-control"
                     type="text" 
@@ -64,24 +66,10 @@ export class ListingEditor extends React.Component {
                     value={this.state.imgurl}
                     onChange={e => this.setState({imgurl: e.target.value})}
                 />
-                <button type="button" className="btn btn-block btn-success" onClick={this.handleEdit}>Confirm Edit</button>
+                <button type="button" className="btn btn-block btn-success" onClick={this.handleEdit}>Confirm</button>
             </div>
             
         );
-    }
-    
-    componentDidMount() {
-        const id = this.props.match.params.id;
-        this.repo.getListing(id)
-        .then(listingData => {
-            this.setState({
-                imgurl: listingData.imageURL,
-                name: listingData.productName,
-                price: listingData.price,
-                quantity: listingData.quantity,
-                location: listingData.location
-            })
-        })
     }
 
 
