@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
   host: 'lab-db.ca2edemxewbg.us-east-1.rds.amazonaws.com',
   port: '3306',
   user: 'new_master_chris',
-  password: '', //Wouldn't you like to know!
+  password: 'dontPutThisOnGithub', //Wouldn't you like to know!
   database: 'maskeraid'
 });
 
@@ -439,7 +439,11 @@ app.get('/listings', (req, res) => {
 		}
 		else {
 			if (isNum(req.body.rownum) && isNum(req.body.limit)) {
-				res.status(200).send(JSON.stringify(rows.split(req.body.rownum, req.body.rownum + req.body.limit)));
+				res.status(200).send(rows.slice(Number(req.body.rownum), Number(req.body.limit)));
+			} else if (isNum(req.body.rownum)) {
+				res.status(200).send(rows.slice(Number(req.body.rownum)));
+			} else if (isNum(req.body.limit)) {
+				res.status(200).send(rows.slice(0, Number(req.body.limit)));
 			} else {
 				res.status(200).send(JSON.stringify(rows));
 			};
