@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-export class repository {
+export class Repository {
+
     url = "http://ec2-34-213-29-182.us-west-2.compute.amazonaws.com:8000";   //put ec2 instance here
 
-    config = {
+    config = {//
         headers: {
             Authorization: '*'
         }
@@ -28,7 +29,7 @@ export class repository {
     //logging in 
     login(email, password){
         return new Promise((resolve, reject) => {
-            axios.post(`${this.url}/login`, {email: email, password: password}).then(response => {
+            axios.post(`${this.url}/login`, {email: email, password: password}, this.config).then(response => {
                 resolve(response);
             })
             .catch(e => {
@@ -55,5 +56,50 @@ export class repository {
         return new Promise((resolve, rejecct) =>
         axios.delete(`${this.url}/account`))
     }
+
+    editListing(id, listing) {
+        return new Promise((resolve, reject) => {
+            axios.put(`${this.url}/listings/${id}`, listing, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        });   
+    }
+
+
+    //posting a listing - used in PostListing.jsx
+    postNewListing(id, listing){
+        return new Promise((resolve, reject) => {
+            axios.post(`${this.url}/listings/${id}`, listing, this.config)
+        })
+    }
+
+
+    getAccountInfo(id) {
+        return new Promise((resolve, reject) => {
+            //axios.get(`${this.url}/account/${id}`)
+            axios.get(`${this.url}/account/${id}`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        })
+    }
+
+    getListings() {
+        return new Promise((resolve, reject) => {
+            axios.get(`${this.url}/listings/`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        });
+    }
+
+    
 
 }//end repository

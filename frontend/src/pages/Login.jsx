@@ -3,11 +3,11 @@ import React from 'react';
 import { CreateAccount } from './CreateAccount';
 import {Link, Redirect} from 'react-router-dom';
 import './Login.css';
-import {repository} from '../api/repository';
+import {Repository} from '../api/repository';
 
  export class Login extends React.Component {
 
-    repo = new repository();
+    repo = new Repository();
 
     state = {
 
@@ -21,7 +21,6 @@ import {repository} from '../api/repository';
     handleLogin = () => {
 
       this.repo.login(this.state.email, this.state.password);
-      this.repo.getAccount(1490);
       this.props.onLogin();
       this.setState({success: true});
 

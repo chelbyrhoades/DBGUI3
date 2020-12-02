@@ -1,52 +1,54 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import axios from 'axios';
 import {Login} from './pages/Login'
-import {Header} from './Header'
+import Header from './Header'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ROUTES } from './Routes';
 import { CreateAccount } from './pages/CreateAccount';
 import { OrderHistory } from './pages/OrderHistory';
-import { ItemDetails } from './pages/ItemDetails';
 import {Home} from "./pages/Home";
+import { ListingEditor } from './pages/ListingEditor';
+import { PostListing } from './pages/PostListing';
+import  EditProfile  from './pages/EditProfile.jsx';
+import  UserProfile  from './pages/UserProfile.jsx';
+import { User } from "./models/User";
+import {CreateListing} from "./pages/CreateListing";
 
-class App extends React.Component {
+function App() {
 
-  state = {
-    loggedIn: false,
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState(new User);
+
+  function onLogin() {
+    setUser(new User(0,"email@email.com","User","111-111-1111","password","USA"));
+    setLoggedIn(true);
   }
 
-  onLogin = () => {
-    this.setState({loggedIn: true});
+  function getUser() {
+    return user.id;
   }
-
-
-  render() {
+  
+  return (
+    <div>
+      <Router>
+        <Header loggedIn={loggedIn} user={user}/>
+        <Switch>
+            <Route path="/create" component={CreateAccount}/>
+            <Route path="/orders/:orderId" component={OrderHistory}/>
+            <Route path="/home" component={Home}/>
+            <Route path="/listing/:id" component={ListingEditor}/>
+            <Route path="/createListing" component={CreateListing}/>
+            <Route path="/user/:id" component={UserProfile}/>
+            <Route path="/" render={() => <Login onLogin={onLogin}/>}/>
+        </Switch>
+      </Router>
+    </div>
     
-      return (
-        <div>
-          <Header loggedIn={this.state.loggedIn}/>
-          <Router>
-            <Switch>
-              <Route path="/create">
-                <CreateAccount/>
-              </Route>
-              <Route path="/orders">
-                <OrderHistory/>
-              </Route>
-              <Route path="/home">
-                <Home/>
-              </Route>
-              <Route path="/">
-                <Login onLogin={this.onLogin}/>
-              </Route>
-            </Switch>
-          </Router>
-        </div>
-        
-    );
-  }
+  );
 
 }
+
+
 
 export default App;
