@@ -69,6 +69,13 @@ export class repository {
     }
 
 
+    //posting a listing - used in PostListing.jsx
+    postNewListing(id, listing){
+        return new Promise((resolve, reject) => {
+            axios.post(`${this.url}/listings/${id}`, listing, this.config)
+        })
+    }
+
 
     getAccountInfo(id) {
         return new Promise((resolve, reject) => {

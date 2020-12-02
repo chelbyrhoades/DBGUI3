@@ -35,13 +35,18 @@ export class PostListing extends React.Component{
     
       //function that calls on axios to push a new listing
       onSave(product){
-        this.repository.addListing(this.state)
+        this.repository.postNewListing(this.state)
                 .then(() => {
                     alert('Listing added!');
                     this.setState({ redirect: '/home' });
-                });
+                
+                })
+                .catch(err => alert(err));
+                
         }
-      
+      goHome(){
+
+      }
 
 
 
@@ -113,23 +118,24 @@ export class PostListing extends React.Component{
                     value={this.state.location}
                     onChange={event => this.setState({location : event.target.value })} />
             </div>
-
-            <h3>Confirm with your Distributor Name:</h3>
+            <div className="form-group">
+            <label>Confirm with your Distributor Name</label>
+            <br/>
             <input type="text"
                     id="distName"
                     name="distName"
                     size="50"
                     value={this.state.Distributorname}
                     onChange={event => this.setState({Distributorname: event.target.value })} />
+            </div>
             <button type="button"
                     className="btn btn-success"
                     onClick={() => this.onSave()}>
                     Save
                 </button>
-                <button type="button"
-                    className="btn btn-info">
-                    Return Home
-                </button>
+                <Link className="btn btn-link back-button" to="/home">
+                Return Home
+                </Link>
         </div>
         
         )}

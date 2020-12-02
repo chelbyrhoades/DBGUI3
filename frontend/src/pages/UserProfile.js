@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {repository} from '../api/repository';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { EditProfile } from './EditProfile';
 
 export class UserProfile extends React.Component{
@@ -49,39 +49,10 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
           <div>Phone Number: {this.state.data.phone}</div>
           <div>Country: {this.state.data.country}</div>
         </div>
-        <button> Edit Profile</button>
-        
-        
-            
+        <Link to="/EditProfile"><button>
+              Edit Profile
+            </button>
+            </Link>     
 </form>;
     }//end render
 }//end userProfile class
-
-/*
-
-
-        <table className="table table-condensed table-striped">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-        {
-            this.accounts.map(account =>
-            <tr key={account.name}>
-                <td>
-                    {account.name}
-                </td>
-                <td>{account.email}</td>
-                <td>
-                </td>
-            </tr>)
-    }
-    </tbody>
-
-</table>
-
-
-            */
