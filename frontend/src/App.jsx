@@ -9,6 +9,9 @@ import { CreateAccount } from './pages/CreateAccount';
 import { OrderHistory } from './pages/OrderHistory';
 import {Home} from "./pages/Home";
 import { ListingEditor } from './pages/ListingEditor';
+import { PostListing } from './pages/PostListing';
+import { EditProfile } from './pages/EditProfile';
+import { UserProfile } from './pages/UserProfile';
 
 function App() {
 
@@ -26,8 +29,14 @@ function App() {
           <Route path="/create">
             <CreateAccount/>
           </Route>
-          <Route path="/orders/:orderId">
+          <Route path="/orders">
             <OrderHistory/>
+          </Route>
+          <Route path="/editProfile">
+            <EditProfile/>
+          </Route>
+          <Route path="/userProfile/:id">
+            <User Profile/>
           </Route>
           <Route path="/home">
             <Home/>
