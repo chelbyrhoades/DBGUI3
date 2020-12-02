@@ -10,8 +10,8 @@ import { OrderHistory } from './pages/OrderHistory';
 import {Home} from "./pages/Home";
 import { ListingEditor } from './pages/ListingEditor';
 import { PostListing } from './pages/PostListing';
-import { EditProfile } from './pages/EditProfile';
-import { UserProfile } from './pages/UserProfile';
+import  EditProfile  from './pages/EditProfile.jsx';
+import  UserProfile  from './pages/UserProfile.js';
 
 function App() {
 
@@ -32,12 +32,8 @@ function App() {
           <Route path="/orders">
             <OrderHistory/>
           </Route>
-          <Route path="/editProfile">
-            <EditProfile/>
-          </Route>
-          <Route path="/userProfile/:id">
-            <User Profile/>
-          </Route>
+          <Route path="/editProfile/:id" component={EditProfile} exact/>
+          <Route path="/userProfile/:id" component={UserProfile} exact/>
           <Route path="/home">
             <Home/>
           </Route>

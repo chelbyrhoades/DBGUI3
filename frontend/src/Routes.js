@@ -5,8 +5,8 @@ import { ItemDetails } from "./pages/ItemDetails";
 import {Login} from "./pages/Login";
 import { OrderHistory } from "./pages/OrderHistory";
 import SearchPage from "./pages/SearchPage";
-import { UserProfile} from "./pages/UserProfile";
-import { EditProfile } from './pages/EditProfile';
+import  UserProfile from "./pages/UserProfile.js";
+import  EditProfile  from './pages/EditProfile.jsx';
 
 export const ROUTES = [
     { path:'/search', component: SearchPage},

@@ -1,16 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 import {repository} from '../api/repository';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import { EditProfile } from './EditProfile';
 
-export class UserProfile extends React.Component{
+class UserProfile extends React.Component{
     //need get user info call
     repo = new repository();
 /*sample:
 [{"email":"mallory99@example.net","typeName":"user","name":"Lisandro
 Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"country":"Mali","zip":null}]
 */
+//https://stackoverflow.com/questions/54780789/reactjs-how-to-pass-particular-item-id-from-one-component-to-another-component
     state = {
 
         
@@ -32,7 +33,7 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
       //.then(data => console.log({data})
     componentDidMount(){
         const id = this.props.match.params.id;
-        this.repo.getAccountInfo(id)
+        this.repo.getAccountInfo(198)
         .then(userData => this.setState({data: userData[0]})
         
         );
@@ -58,3 +59,4 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
     }//end render
     
 }//end userProfile class
+export default withRouter(UserProfile);

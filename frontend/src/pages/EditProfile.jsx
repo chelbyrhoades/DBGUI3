@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import {repository} from '../api/repository';
-import {Link, Redirect} from 'react-router-dom';
+import {Link, Redirect, withRouter} from 'react-router-dom';
 
 
-export class EditProfile extends React.Component{
+class EditProfile extends React.Component{
     repo = new repository();
     state = {
 
@@ -90,3 +90,4 @@ export class EditProfile extends React.Component{
     }
     
 }
+export default withRouter(EditProfile);
