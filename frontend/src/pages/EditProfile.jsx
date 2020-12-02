@@ -10,12 +10,12 @@ export class EditProfile extends React.Component{
 
         
         data: {
-            name: "Jill",
-        email: "j@hotmail.com",
-        typeName: "user",
-        phone: "293-929-1123",
-        country: "US",
-        streetAddress: "320 Hills Dr"
+            name: "",
+            email: "",
+            typeName: "",
+            phone: "",
+            country: "",
+            streetAddress: ""
         }
     };
     //edit profile - updates current info and sends to POST
@@ -24,9 +24,17 @@ export class EditProfile extends React.Component{
             this.repo.updateAccount(this.state.id, this.state)
                 .then(() => {
                     alert('Account updated!');
-                    this.setState({ redirect: '/home' });
+                    this.setState({ Redirect: '/home'});
                 });
         }
+    }
+    componentDidMount() {
+        //getting current user details so that they can update them
+        const id = this.props.match.params.id;
+        this.repo.getAccountInfo(id)
+        .then(userData => this.setState({data: userData[0]})
+        
+        );
     }
     render() {
         return <form className="container">
@@ -80,8 +88,5 @@ export class EditProfile extends React.Component{
             
         </form>;
     }
-    componentDidMount() {
-        const id = this.props.match.params.id;
-        
-    }
+    
 }
