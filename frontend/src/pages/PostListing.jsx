@@ -132,7 +132,7 @@ export class PostListing extends React.Component{
                     className="btn btn-success"
                     onClick={() => this.onSave()}>
                     Save
-                </button>
+            </button>
                 <Link className="btn btn-link back-button" to="/home">
                 Return Home
                 </Link>
