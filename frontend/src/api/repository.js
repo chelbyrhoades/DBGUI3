@@ -6,7 +6,7 @@ export class repository {
 
     config = {
         headers: {
-            Authorization: ''
+            Authorization: '*'
         }
     }
 
@@ -70,7 +70,7 @@ export class repository {
 
     getListing(id) {
         return new Promise((resolve, reject) => {
-            axios.put(`${this.url}/listings/${id}`, this.config)
+            axios.get(`${this.url}/listings/${id}`, this.config)
             .then(x => resolve(x.data))
             .catch(e => {
                 alert(e);
@@ -78,5 +78,7 @@ export class repository {
             });
         });
     }
+
+    
 
 }//end repository

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, Redirect } from 'react-router-dom';
 import './Header.css'
 
 function Header(props) {
@@ -9,7 +10,7 @@ function Header(props) {
             <h1 className="page-header">MaskerAid
                 {props.loggedIn && <div className="row float-right">
                     <div className="col btn-col">
-                        <button type="button" className="btn btn-primary">Account</button>
+                        <Link type="button" className="btn btn-primary" to={`/user/${props.user.userId}`}>Account</Link>
                     </div>
                     <div className="col btn-col">
                         <button type="button" className="btn btn-primary">Logout</button>

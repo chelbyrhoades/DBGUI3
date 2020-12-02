@@ -5,14 +5,14 @@ import { ItemDetails } from "./pages/ItemDetails";
 import {Login} from "./pages/Login";
 import { OrderHistory } from "./pages/OrderHistory";
 import SearchPage from "./pages/SearchPage";
-import { UserProfile } from "./pages/UserProfile";
+import { UserProfile } from "./pages/UserProfile.jsx";
 
 export const ROUTES = [
-    { path:'/search', component: SearchPage},
+    { path: '/search', component: SearchPage},
     { path: '/distDetails', component: DistributorListing},
     { path: '/create', component: CreateAccount },
     { path: '/orders', component: OrderHistory},
-    { path: '/userP', component: UserProfile},
+    { path: '/user/:id', component: UserProfile},
     { path: '/home', component: Home},
     { path: '/', component: Login}
 ]

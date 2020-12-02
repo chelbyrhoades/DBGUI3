@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class UserProfile extends React.Component{
+export class UserProfile extends React.Component {
 
     state = {
         name: '',
@@ -38,7 +38,6 @@ export class UserProfile extends React.Component{
 
             <div className="form-group">
                 <label htmlFor="Country">Country</label>
-                
             </div>
 
             
