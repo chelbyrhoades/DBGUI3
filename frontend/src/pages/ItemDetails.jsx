@@ -5,23 +5,26 @@ import {  Link } from 'react-router-dom';
 import "./ItemDetails.css";
 
 function ItemDetails(props) {
+    //product id for product name - needs to update based on what productID returns
 
+    //<img src={props.item.imgurl} className="prod-img"/>
+    //{props.item.distributorName} - distributor name needs 
     return (
     <div className="card">
         <div className="card-header">
-            {props.item.distributorName}
+            <p>Distributor Name</p>
         </div>
         <div className="card-body">
             <div className="row">
             <div className="col-8">
-                <h5 className="card-title">{props.item.name}</h5>
+                <h5 className="card-title">{props.item.productID}</h5>  
                 <span className="card-text tag badge badge-pill badge-primary">{`$${props.item.price}`}</span>
                 <p className="card-text">{`In stock: ${props.item.quantity}`}</p>
-                <p className="card-text">{`Location: ${props.item.location}`}</p>
+                <p className="card-text">{`Email: ${props.item.email}`}</p>
                 <Link to="/orders" className="card-link">Order</Link>
             </div>
             <div className="col-3">
-                <img src={props.item.imgurl} className="prod-img"/>
+                <p>IMAGE GOES HERE </p>
             </div>
             </div>
         </div>

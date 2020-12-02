@@ -29,10 +29,13 @@ export class repository {
     //logging in 
     login(email, password){
         return new Promise((resolve, reject) => {
-            axios.post(`${this.url}/login`, {email: email, password: password}, this.config).then(response => {
+            axios.post(`${this.url}/login`, {email: email, password: password}, this.config)
+            .then(response => {
                 resolve(response);
+                
             })
             .catch(e => {
+                console.log("error");
                 console.log(e);
             });
         })
@@ -86,6 +89,38 @@ export class repository {
                 alert(e);
                 reject();
             });
+        })
+    }
+
+    getProducts(params) {
+        return new Promise((resolve, reject) => {
+            if (params) {
+                let config = this.config;
+                config.params = params;
+            }
+            axios.get(`${this.url}/listings`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        });
+    }
+    //gets all products 
+    /*
+    getProducts(){
+        return new Promise((resolve, reject) => {
+            axios.get(`${this.url}/listings`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        })
+    }*/
+    //get ~only~ distributor's products
+    getDistProducts(id){
+        return new Promise((resolve, reject) => {
         })
     }
 

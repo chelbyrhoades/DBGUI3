@@ -4,12 +4,10 @@ import { Home } from "./pages/Home.jsx";
 import { ItemDetails } from "./pages/ItemDetails";
 import {Login} from "./pages/Login";
 import { OrderHistory } from "./pages/OrderHistory";
-import SearchPage from "./pages/SearchPage";
 import  UserProfile from "./pages/UserProfile.js";
 import  EditProfile  from './pages/EditProfile.jsx';
 
 export const ROUTES = [
-    { path:'/search', component: SearchPage},
     { path: '/distDetails', component: DistributorListing},
     { path: '/create', component: CreateAccount },
     { path: '/orders', component: OrderHistory},
