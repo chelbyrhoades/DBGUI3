@@ -5,11 +5,10 @@ import { ItemDetails } from "./pages/ItemDetails";
 import {Login} from "./pages/Login";
 import { OrderHistory } from "./pages/OrderHistory";
 import SearchPage from "./pages/SearchPage";
-import { UserProfile } from "./pages/UserProfile.jsx";
-import App from "./App";
-import { CreateListing } from "./pages/CreateListing";
+import  UserProfile from "./pages/UserProfile.jsx";
+import  EditProfile  from './pages/EditProfile.jsx';
 import { ListingEditor } from "./pages/ListingEditor";
-import React from "react"
+import { CreateListing } from "./pages/CreateListing";
 
 export const ROUTES = [
     { path: '/search', component: SearchPage},
@@ -20,5 +19,6 @@ export const ROUTES = [
     { path: '/orders', component: OrderHistory},
     { path: '/user/:id', component: UserProfile},
     { path: '/home', component: Home},
-    { path: '/', render: () => <Login onLogin={App().onLogin()}/> }
+    { path: '/edit', component: EditProfile},
+    { path: '/', component: Login}
 ]

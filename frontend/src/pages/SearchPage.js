@@ -1,40 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
-import CountryList from './CountryList';
-import ItemDetails from "./ItemDetails";
+import {ItemDetails} from "./ItemDetails.jsx";
 
 const SearchPage = (props) => {
-  const [input, setInput] = useState('');
-  const [countryListDefault, setCountryListDefault] = useState();
-  const [countryList, setCountryList] = useState();
+  const [ name, setName ] = useState([]);
 
   //CHANGE THIS TO THE DATA WE GET FROM THE API
   const fetchData = async () => {
-    return await fetch('https://restcountries.eu/rest/v2/all') //''
-      .then(response => response.json())
-      .then(data => {
-         setCountryList(data) 
-         setCountryListDefault(data)
-       });}
-
-  const updateInput = async (input) => {
-     const filtered = countryListDefault.filter(country => {
-      return country.name.toLowerCase().includes(input.toLowerCase())
-     })
-     setInput(input);
-     setCountryList(filtered);
+    //get product data from API
   }
+
 
   useEffect( () => {fetchData()},[]);
 	
   return (
     <>
-      <h1>Distributors</h1>
-      <SearchBar 
-       input={input} 
-       onChange={updateInput}
-      />
-      <ItemDetails countryList = {ItemDetails}/>
+      <div className="card">
+        <div className="card-body">
+            <h3 className="card-title">
+                Search
+            </h3>
+            <div className="row">
+                <div className="col-6">
+                    <div className="form-group">
+                        <label htmlFor="name">Product</label>
+                        <input type="text"
+                            id="name"
+                            name="name"
+                            className="form-control"
+                            value={name}
+                            onChange={event => setName(event.target.value)} />
+                    </div>
+                </div>
+                <div className="col-6">
+                    
+                </div>
+            </div>
+            <div>
+                <button className="btn btn-block btn-primary"
+                    type="button"
+                    onClick={() => props.onSearch({ name })}>Search</button>
+            </div>
+
+        </div>
+    </div>;
       
       
     </>

@@ -9,9 +9,11 @@ import { CreateAccount } from './pages/CreateAccount';
 import { OrderHistory } from './pages/OrderHistory';
 import {Home} from "./pages/Home";
 import { ListingEditor } from './pages/ListingEditor';
-import { CreateListing } from './pages/CreateListing';
-import {User} from './models/User';
-import { UserProfile } from './pages/UserProfile.jsx';
+import { PostListing } from './pages/PostListing';
+import  EditProfile  from './pages/EditProfile.jsx';
+import  UserProfile  from './pages/UserProfile.jsx';
+import { User } from "./models/User";
+import {CreateListing} from "./pages/CreateListing";
 
 function App() {
 
@@ -47,6 +49,6 @@ function App() {
 
 }
 
-/**/
+
 
 export default App;

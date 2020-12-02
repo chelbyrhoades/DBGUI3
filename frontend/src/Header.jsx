@@ -2,10 +2,10 @@ import React from 'react'
 import { Link, Redirect } from 'react-router-dom';
 import './Header.css'
 
+
 function Header(props) {
-
+//<Link to="/userProfile">    </Link>
     return(
-
         <header>
             <h1 className="page-header">MaskerAid
                 {props.loggedIn && <div className="row float-right">

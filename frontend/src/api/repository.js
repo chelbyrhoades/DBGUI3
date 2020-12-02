@@ -4,7 +4,7 @@ export class Repository {
 
     url = "http://ec2-34-213-29-182.us-west-2.compute.amazonaws.com:8000";   //put ec2 instance here
 
-    config = {
+    config = {//
         headers: {
             Authorization: '*'
         }
@@ -65,18 +65,28 @@ export class Repository {
                 alert(e);
                 reject();
             });
-        });
+        });   
     }
 
-    getListing(id) {
+
+    //posting a listing - used in PostListing.jsx
+    postNewListing(id, listing){
         return new Promise((resolve, reject) => {
-            axios.get(`${this.url}/listings/${id}`, this.config)
+            axios.post(`${this.url}/listings/${id}`, listing, this.config)
+        })
+    }
+
+
+    getAccountInfo(id) {
+        return new Promise((resolve, reject) => {
+            //axios.get(`${this.url}/account/${id}`)
+            axios.get(`${this.url}/account/${id}`, this.config)
             .then(x => resolve(x.data))
             .catch(e => {
                 alert(e);
                 reject();
             });
-        });
+        })
     }
 
     getListings() {

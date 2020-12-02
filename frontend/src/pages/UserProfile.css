@@ -84,3 +84,6 @@ img{
   align-content: right;
   margin-left: 80%;
 }
+input {
+  width: 100%;
+}
