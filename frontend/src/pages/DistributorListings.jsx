@@ -1,19 +1,14 @@
 import React from "react";
+import { Repository } from "../api/repository";
 import Listing from "./Listing";
 
 export class DistributorListings extends React.Component {
 
+    repo = new Repository();
+
     state = {
         listings: [
-            {
-                distributorName: "Johnson & Johnson",
-                imgurl: "https://cdn11.bigcommerce.com/s-ixwpuc55v/images/stencil/1280x1280/products/10410/16660/FaceMask_2__62168.1591128381.jpg?c=1",
-                name: "Masks",
-                price: 5,
-                quantity:1000,
-                location: "Dallas",
-                id: 0,
-            }
+            
         ]
     }
 
@@ -29,6 +24,10 @@ export class DistributorListings extends React.Component {
                 }
         </div>
         );
+    }
+
+    componentDidMount() {
+        this.repo.getListings(this.props.match.params.id);
     }
 
 }

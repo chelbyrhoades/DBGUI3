@@ -89,14 +89,6 @@ export class PostListing extends React.Component{
                         this.types.map(x => <option key={x.id} value={x.id}>{x.name}</option>)
                     }
                 </select>
-                <label htmlFor="prod-price">Product Name</label>
-                <input className="form-control"
-                    type="text" 
-                    name="price" 
-                    id="prod-price"
-                    value={this.state.price}
-                    onChange={e => this.setState({price: e.target.value})}
-                />
                 <label htmlFor="prod-loc">Location</label>
                 <input className="form-control"
                     type="text" 

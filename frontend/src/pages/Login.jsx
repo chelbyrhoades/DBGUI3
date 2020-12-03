@@ -16,7 +16,7 @@ import {Repository} from '../api/repository';
       success: false,
       error: false,
       errorMsg: "",
-      uid: 9999
+      uid: -1
 
     }
 
@@ -26,12 +26,21 @@ import {Repository} from '../api/repository';
       this.checkError();
       if (!this.state.error) {
         this.repo.login(this.state.email, this.state.password).then(data => {
+          if (data == "invalid") {
+            this.setState({error: true, errorMsg: "Invalid username or password"});
+            return;
+          }
           this.setState({uid: data.data.split(":")[0]});
+          window.cookie = data.data;
+          setTimeout(() => {
+            this.props.onLogin(this.state.uid);
+            this.setState({success: true});
+          }, 1000);
         })
-        setTimeout(() => {
-          this.props.onLogin(this.state.uid);
-          this.setState({success: true});
-        }, 1000);
+        .catch( e => {
+          this.setState({error: true, errorMsg: "Invalid username or password"});
+        });
+        
         
       }
     }

@@ -21,7 +21,11 @@ export class MyCart extends React.Component {
             return;
         this.setState({complete: true});
         this.state.cart.items.map(x => {
-            this.repo.postOrder(x);
+            let json = {
+                quantity: x.quantity,
+                cookie: window.cookie
+            }
+            this.repo.postOrder(x.product.listingID, json);
         })
         this.cartService.clearCart();
     }

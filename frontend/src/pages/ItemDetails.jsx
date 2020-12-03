@@ -5,7 +5,6 @@ import {  Link } from 'react-router-dom';
 import "./ItemDetails.css";
 import CartService from '../services/cartService';
 
-
 function checkType(pid) {
     if (pid < 5) {
         var itemType = "Face Masks";
