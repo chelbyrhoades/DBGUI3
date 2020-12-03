@@ -15,17 +15,25 @@ import {Repository} from '../api/repository';
       accountType: "",
       success: false,
       error: false,
-      errorMsg: ""
+      errorMsg: "",
+      uid: 9999
+
     }
+
 
     handleLogin = () => {
 
       this.checkError();
-      if (!this.state.error)
-        this.repo.login(this.state.email, this.state.password);
-        this.props.onLogin();
-        this.setState({success: true});
-
+      if (!this.state.error) {
+        this.repo.login(this.state.email, this.state.password).then(data => {
+          this.setState({uid: data.data.split(":")[0]});
+        })
+        setTimeout(() => {
+          this.props.onLogin(this.state.uid);
+          this.setState({success: true});
+        }, 1000);
+        
+      }
     }
 
     checkError = () => {

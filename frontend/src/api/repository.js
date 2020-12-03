@@ -13,9 +13,9 @@ export class Repository {
 
     //Account stuff    path = /account
     //POST /account on DB side
-    addAccount(email, password){
+    addAccount(state){
         return new Promise((resolve, reject) => {
-            axios.post(`${this.url}/account`, {email: email, password: password}, this.config).then(resp => {
+            axios.post(`${this.url}/account`, state, this.config).then(resp => {
                 if(resp.data == "L")
                 {
                     return alert("Email already in use");
