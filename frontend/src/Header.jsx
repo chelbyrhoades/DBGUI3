@@ -10,10 +10,10 @@ function Header(props) {
             <h1 className="page-header">MaskerAid
                 {props.loggedIn && <div className="row float-right">
                     <div className="col btn-col">
-                        <Link type="button" className="btn btn-primary" to={`/user/${props.user.userId}`}>Account</Link>
+                        <Link type="button" className="btn btn-primary" to={`/user/${props.uid}`}>Account</Link>
                     </div>
                     <div className="col btn-col">
-                        <button type="button" className="btn btn-primary">Logout</button>
+                        <Link to="/" type="button" className="btn btn-primary" onClick={props.onLogout}>Logout</Link>
                     </div>
                 </div>}
             </h1>

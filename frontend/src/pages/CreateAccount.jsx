@@ -1,7 +1,10 @@
 import React from 'react'
 import {Link, Redirect} from 'react-router-dom';
+import { Repository } from '../api/repository';
 
 export class CreateAccount extends React.Component {
+
+    repo = new Repository();
 
     state = {
 
@@ -21,15 +24,35 @@ export class CreateAccount extends React.Component {
     //Username taken
     //Passwords don't match
 
+    typeToInt = (typeStr) => {
+        if (typeStr === "User")
+            return 1;
+        else
+            return 2;
+    }
+
     handleCreate = () => {
 
         //Test if fields are filled correctly
-        
+        this.setState({error: this.evalErrors()});
+
         if (this.evalErrors() == "") {
             this.setState({success: true});
         }
+        else
+            return;
     
-        this.setState({error: this.evalErrors()});
+        let json = {
+            email: this.state.email,
+            password: this.state.password,
+            type: this.typeToInt(this.state.accountType),
+            phone: this.state.phoneNumber,
+            country: this.state.country,
+            address: "",
+            territory: "",
+            postalcode: 0
+        }
+        this.repo.addAccount(json);
         
 
     }
@@ -103,9 +126,7 @@ export class CreateAccount extends React.Component {
 
                         <option></option>
                         <option>Distributor</option>
-                        <option>Government</option>
                         <option>User</option>
-                        <option>etc etc...</option>
                         
                     </select>
 
