@@ -7,6 +7,13 @@ import {Link} from 'react-router-dom';
 
         onChange={e => this.setPPe({ppeType: e.target.value})}
 */
+function handleSort(ascending) {
+    this.setState( {
+        sortValue: ascending 
+                   ? this.state.data.sort((a,b) => (parseFloat(a.price) - parseFloat(b.price)))
+                   : this.state.data.sort((a,b) => (parseFloat(b.price) - parseFloat(a.price)))
+    } )
+ }
 const HomeSearch = props => {
   const [ location, setLocation] = useState([]);
   const [ productID, setPPe] = useState([]);

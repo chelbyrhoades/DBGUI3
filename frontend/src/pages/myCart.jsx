@@ -17,7 +17,7 @@ export class MyCart extends React.Component {
     }
 
     handleOrder = () => {
-        if (this.state.cart.items.legnth === 0)
+        if (this.state.cart.items.length === 0)
             return;
         this.setState({complete: true});
         this.state.cart.items.map(x => {
