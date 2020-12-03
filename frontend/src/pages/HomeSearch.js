@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom';
 /*
     Goals:
-        search by distributor name, city, item type, price hightolow/lowtohigh
+        search by distributor name, city, item type, location, quantity price hightolow/lowtohigh
+
+
+        onChange={e => this.setPPe({ppeType: e.target.value})}
 */
 const HomeSearch = props => {
+  const [ location, setLocation] = useState([]);
+  const [ productID, setPPe] = useState([]);
   const [ itemType, setName ] = useState([]);
-    const [ email, setEmail ] = useState([]);
   const BarStyling = {width:"20rem",background:"#F2F1F9", border:"none", padding:"0.5rem"};
-
+    function searchSpace(event) {
+        let keyword = event.target.value;
+        this.setState({search:keyword});
+    }
     return <div className="card">
         <div className="card-body">
             <h3 className="card-body">
                 Search for a Product
             </h3>
+           
             <div className="row">
                 <div className="col-6">
                     <div className="form-group">
@@ -24,25 +33,40 @@ const HomeSearch = props => {
                             value={itemType}
                             onChange={event => setName(event.target.value)} />
                     </div>
-                </div>
-                <div className="col-6">
+                <label htmlFor="ppe-type">PPE Type</label>
+                    <select className="form-control col-6" id="ppe-type"
+                        value={productID} onChange={e => setPPe({productID: e.target.value})}>
+                        <option></option>
+                        <option>Masks</option>
+                        <option>Gloves</option>
+                    </select>
+                    
+
+                    <div className="col-6">
                     <div className="form-group">
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="name">Location</label>
                         <input type="text"
-                            id="email"
-                            name="email"
+                            id="itemType"
+                            name="itemType"
                             className="form-control"
-                            value={email}
-                            onChange={event => setEmail(event.target.value)} />
+                            value={location}
+                            onChange={event => setLocation(event.target.value)} />
                     </div>
+                    </div>
+                    <button className="btn btn-primary"
+                    type="button"
+                    onClick={() => props.onSearch({ itemType, productID })}>Search</button>
+                    <Link to="/home"><button type="button" class="btn btn-warning">
+                        Cancel
+                    </button>
+                    </Link>
                 </div>
             </div>
             <div>
-                <button className="btn btn-block btn-primary"
-                    type="button"
-                    onClick={() => props.onSearch({ itemType, email })}>Search</button>
             </div>
+            
         </div>
+        
     </div>;
 }
 

@@ -4,24 +4,26 @@ import "./Home.css";
 import {  Link } from 'react-router-dom';
 import "./ItemDetails.css";
 import CartService from '../services/cartService';
-
+import Button from 'react-bootstrap/Button';
 
 function checkType(pid) {
-    if (pid == 1) {
+    if (pid == 0) {
         var itemType = "Box of Masks";
-      }else if(pid == 2){
+      }else if(pid == 1){
           var itemType = "Box of Gloves";
       }else{
           var itemType = "Unknown";
       }
       return itemType;
 }
+
+
 function ItemDetails(props) {
     
     //product id for product name - needs to update based on what productID returns
 
     let cartService = new CartService();
-
+    
     return (
     <div className="card">
         <div className="card-header">
@@ -35,6 +37,7 @@ function ItemDetails(props) {
                 <p className="card-text">{`In stock: ${props.item.quantity}`}</p>
                 <p className="card-text">{`ListingID: ${props.item.listingID}`}</p>
                 <p className="card-text">{`Email: ${props.item.email}`}</p>
+                <Button onClick={ () => this.cartService.addToCart(`${props.item.productID}`) }> Add to cart</Button>
                 <Link to="/orders" className="card-link">Order</Link>
             </div>
             <div className="col-3">
