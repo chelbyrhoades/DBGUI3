@@ -42,20 +42,36 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
     }
   
     render() {
-        return <form className="container">
+        return <div className="container">
             <h1>User Profile</h1>
-            <div className="info">
-          <div>Name: {this.state.data.name}</div>
-          <div>Email: {this.state.data.email}</div>
-          <div>Address: {this.state.data.address}</div>
-          <div>Phone Number: {this.state.data.phone}</div>
-          <div>Country: {this.state.data.country}</div>
+            <div class="pull-right"> 
+                    <div class="btn-group"> 
+                    <Link to="/home"><button class="btn btn-success">
+              Go Back
+            </button>
+                </Link>
+                    </div>
+              </div>
+            <div class="card">
+          <p><strong>Name: {this.state.data.name}</strong></p>
+          <p><strong>Email: {this.state.data.email}</strong></p>
+          <p><strong>Address: {this.state.data.address}</strong></p>
+          <p><strong>Phone Number: {this.state.data.phone}</strong></p>
+          <p><strong>Country: {this.state.data.country}</strong></p>
         </div>
-        <Link to="/EditProfile"><button>
+        <Link to="/EditProfile"><button type="button" class="btn btn-dark">
               Edit Profile
             </button>
-            </Link>     
-</form>;
+            </Link> 
+            <div>
+            <Link to="/orders"> <button type="button" class="btn btn-dark">
+              Order History
+            </button>
+            </Link> 
+            </div>
+            <div class="clearfix"></div> 
+
+</div>;
     }//end render
     
 }//end userProfile class
