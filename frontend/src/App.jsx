@@ -39,6 +39,7 @@ function App() {
             <Route path="/home" component={Home}/>
             <Route path="/listing/:id" component={ListingEditor}/>
             <Route path="/createListing" component={PostListing}/>
+            <Route path="/user/edit/:userId" component={EditProfile}/>
             <Route path="/user/:id" component={UserProfile}/>
             <Route path="/orders/:userId" component={OrderHistory}/>
             <Route path="/cart" component={MyCart}/>

@@ -79,11 +79,19 @@ class EditProfile extends React.Component{
                     value={this.state.data.country}
                     onChange={ event => this.setState({ country: event.target.value }) } />
             </div>
-            <button type="button"
-                    className="btn btn-success"
-                    onClick={() => this.onSave()}>
-                    Save
-            </button>
+            <div className="row">
+                <div className="col">
+                    <Link to={`/user/${this.props.match.params.userId}`}>Return to profile</Link>
+                </div>
+                <div className="col">
+                    <button type="button"
+                        className="btn btn-success float-right"
+                        onClick={() => this.onSave()}>
+                        Save
+                    </button>
+                </div>
+            </div>
+            
             
             
         </form>;
