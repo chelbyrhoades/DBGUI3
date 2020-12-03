@@ -21,7 +21,7 @@ const HomeSearch = props => {
   const [ productID, setPPe] = useState([]);
   const [ itemType, setName ] = useState([]);
   const  [ Distributorname, setDist ] = useState([]);
-  const BarStyling = {width:"20rem",background:"#F2F1F9", border:"none", padding:"0.5rem"};
+  
     function searchSpace(event) {
         let keyword = event.target.value;
         this.setState({search:keyword});
@@ -39,7 +39,7 @@ const HomeSearch = props => {
 
                     <div className="col-6">
                     <div className="form-group">
-                        <label htmlFor="name">Distributor Name</label>
+                        <label htmlFor="name">Item Type</label>
                         <input type="text"
                             id="itemType"
                             name="itemType"

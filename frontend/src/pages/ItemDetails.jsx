@@ -4,15 +4,15 @@ import "./Home.css";
 import {  Link } from 'react-router-dom';
 import "./ItemDetails.css";
 import CartService from '../services/cartService';
-import Button from 'react-bootstrap/Button';
+
 
 function checkType(pid) {
     if (pid < 5) {
-        var itemType = "Disposable Face Masks";
+        var itemType = "Face Masks";
       }else if(pid <10 && pid > 5){
-          var itemType = "Disposable Gloves";
+          var itemType = "Gloves";
       }else{
-          var itemType = "Face Shields";
+          var itemType = "Shields";
       }
       //props.item.productID = itemType;
       return itemType;
