@@ -4,7 +4,6 @@ import axios from 'axios';
 import {Login} from './pages/Login'
 import Header from './Header'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ROUTES } from './Routes';
 import { CreateAccount } from './pages/CreateAccount';
 import { OrderHistory } from './pages/OrderHistory';
 import {Home} from "./pages/Home";
@@ -15,6 +14,7 @@ import  UserProfile  from './pages/UserProfile.jsx';
 import { User } from "./models/User";
 import { MyCart } from './pages/myCart';
 import HomeSearch from './pages/HomeSearch';
+import { DistributorListings } from './pages/DistributorListings';
 
 function App() {
 
@@ -40,11 +40,11 @@ function App() {
             <Route path="/search" component={HomeSearch}/>
             <Route path="/orders/:orderId" component={OrderHistory}/>
             <Route path="/home" component={Home}/>
+            <Route path="/listings/:id" component={DistributorListings}/>
             <Route path="/listing/:id" component={ListingEditor}/>
             <Route path="/createListing" component={PostListing}/>
             <Route path="/user/edit/:userId" component={EditProfile}/>
             <Route path="/user/:id" component={UserProfile}/>
-            <Route path="/editProfile/:id" component={EditProfile}/>
             <Route path="/orders/:userId" component={OrderHistory}/>
             <Route path="/cart" component={MyCart}/>
             <Route path="/" render={() => <Login onLogin={onLogin}/>}/>

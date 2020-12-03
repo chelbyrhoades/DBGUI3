@@ -32,7 +32,7 @@ export class Home extends React.Component {
         
     }
     componentDidMount() {
-        this.repo.getProducts()
+        this.repo.getListings()
         .then(productData => this.setState({items: productData})  //[0]
         );
         console.log("products are mounted");
@@ -63,13 +63,6 @@ export class Home extends React.Component {
         
         );
     }
-
-
-    componentDidMount() {
-        this.repo.getListings();
-    }
-
-
 
 }
 
