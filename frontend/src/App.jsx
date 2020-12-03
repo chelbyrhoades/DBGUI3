@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 import {Login} from './pages/Login'
 import Header from './Header'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { CreateAccount } from './pages/CreateAccount';
 import { OrderHistory } from './pages/OrderHistory';
 import {Home} from "./pages/Home";
@@ -19,22 +19,27 @@ import { DistributorListings } from './pages/DistributorListings';
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState(new User);
+  const [uid, setUid] = useState(-1);
 
-  function onLogin() {
-    setUser(new User(0,"email@email.com","User","111-111-1111","password","USA"));
+  function onLogin(id) {
+    setUid(id);
     setLoggedIn(true);
   }
 
-  function getUser() {
-    return user.id;
+  function onLogout() {
+    setUid(-1);
+    setLoggedIn(false);
+  }
+
+  function getuid() {
+    return uid;
   }
   //<Route path= "/search">
   //<HomeSearch/>
   return (
     <div>
       <Router>
-        <Header loggedIn={loggedIn} user={user}/>
+        <Header loggedIn={loggedIn} uid={uid} onLogout={onLogout}/>
         <Switch>
             <Route path="/create" component={CreateAccount}/>
             <Route path="/search" component={HomeSearch}/>
@@ -44,7 +49,7 @@ function App() {
             <Route path="/listing/:id" component={ListingEditor}/>
             <Route path="/createListing" component={PostListing}/>
             <Route path="/user/edit/:userId" component={EditProfile}/>
-            <Route path="/user/:id" component={UserProfile}/>
+            <Route path="/user/:userId" component={UserProfile}/>
             <Route path="/orders/:userId" component={OrderHistory}/>
             <Route path="/cart" component={MyCart}/>
             <Route path="/" render={() => <Login onLogin={onLogin}/>}/>
