@@ -3,8 +3,9 @@ import './Home.css';
 import ItemDetails from "./ItemDetails";
 import {Item} from "../models/Item"
 import {Repository} from '../api/repository';
-import { Link, BrowserRouter as Router } from 'react-router-dom';
+import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import HomeSearch from './HomeSearch.js';
+import Button from 'react-bootstrap/Button';
 
 
 
@@ -39,15 +40,27 @@ export class Home extends React.Component {
     }
 
     onSearch(params) {
-        this.repo.getProducts(params)
-        .then(productData => this.setState({tiems: productData}));
+        this.repo.getListings(params)
+        .then(productData => this.setState({items: productData}));
     }
     render() {
 
         return (
             <div className="container pt-3">
+                <h1>PPE Home</h1>
+            <div className="clearfix"></div>
             <div className="pb-3">
-                <HomeSearch onSearch={ params => this.onSearch(params) }/>
+                <Router>
+                    <Route path="/home" exact render={ () =>
+                        <Link to="/search">
+                            <Button variant="secondary" size="lg">Filter Products...</Button>
+                            </Link> } />
+                    <Route path="/search" render={ props => 
+                        <HomeSearch onSearch={ params => this.onSearch(params) } { ...props } /> } />
+                </Router>
+            </div>    
+            <div className="col-8">
+                
             </div>
             <div className="container items-grid">
                 {//this.state.data.address}

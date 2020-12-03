@@ -55,10 +55,15 @@ export class Repository {
     }
 
     //deleting account - app.delete
-    deleteAccount(){
-        return new Promise((resolve, rejecct) =>
-        axios.delete(`${this.url}/account`))
-    }
+    deleteAccount(id){
+        return new Promise((resolve, reject) => {
+        axios.delete(`${this.url}/account${id}`)
+        .catch(e => {
+            alert(e);
+            reject();
+        });
+    })
+}
 
     editListing(id, listing) {
         return new Promise((resolve, reject) => {
