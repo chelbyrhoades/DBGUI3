@@ -8,13 +8,12 @@ import SearchPage from "./pages/SearchPage";
 import  UserProfile from "./pages/UserProfile.jsx";
 import  EditProfile  from './pages/EditProfile.jsx';
 import { ListingEditor } from "./pages/ListingEditor";
-import { CreateListing } from "./pages/CreateListing";
 
 export const ROUTES = [
     { path: '/search', component: SearchPage},
     { path: '/distDetails', component: DistributorListing},
     { path: "/listing/:id", component: ListingEditor },
-    { path: "/createListing", component: CreateListing },
+    //{ path: "/createListing", component: CreateListing },
     { path: '/create', component: CreateAccount },
     { path: '/orders', component: OrderHistory},
     { path: '/user/:id', component: UserProfile},

@@ -13,7 +13,7 @@ import { PostListing } from './pages/PostListing';
 import  EditProfile  from './pages/EditProfile.jsx';
 import  UserProfile  from './pages/UserProfile.jsx';
 import { User } from "./models/User";
-import {CreateListing} from "./pages/CreateListing";
+import { MyCart } from './pages/myCart';
 
 function App() {
 
@@ -38,8 +38,10 @@ function App() {
             <Route path="/orders/:orderId" component={OrderHistory}/>
             <Route path="/home" component={Home}/>
             <Route path="/listing/:id" component={ListingEditor}/>
-            <Route path="/createListing" component={CreateListing}/>
+            <Route path="/createListing" component={PostListing}/>
             <Route path="/user/:id" component={UserProfile}/>
+            <Route path="/orders/:userId" component={OrderHistory}/>
+            <Route path="/cart" component={MyCart}/>
             <Route path="/" render={() => <Login onLogin={onLogin}/>}/>
         </Switch>
       </Router>

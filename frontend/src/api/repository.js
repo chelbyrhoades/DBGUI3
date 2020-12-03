@@ -100,6 +100,28 @@ export class Repository {
         });
     }
 
+    getOrders(uid) {
+        return new Promise((resolve, reject) => {
+            axios.get(`${this.url}/orders/${uid}`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        });
+    }
+
+    postOrder(order) {
+        return new Promise((resolve, reject) => {
+            axios.post(`${this.url}/orders`, order, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        })
+    }
+
     
 
 }//end repository
