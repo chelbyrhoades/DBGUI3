@@ -4,7 +4,19 @@ import "./Home.css";
 import {  Link } from 'react-router-dom';
 import "./ItemDetails.css";
 
+
+function checkType(pid) {
+    if (pid == 1) {
+        var itemType = "Box of Masks";
+      }else if(pid == 2){
+          var itemType = "Box of Gloves";
+      }else{
+          var itemType = "Unknown";
+      }
+      return itemType;
+}
 function ItemDetails(props) {
+    
     //product id for product name - needs to update based on what productID returns
 
     //<img src={props.item.imgurl} className="prod-img"/>
@@ -17,9 +29,10 @@ function ItemDetails(props) {
         <div className="card-body">
             <div className="row">
             <div className="col-8">
-                <h5 className="card-title">{props.item.productID}</h5>  
+                <h5 className="card-title">{checkType(`${props.item.productID}`)}</h5>  
                 <span className="card-text tag badge badge-pill badge-primary">{`$${props.item.price}`}</span>
                 <p className="card-text">{`In stock: ${props.item.quantity}`}</p>
+                <p className="card-text">{`ListingID: ${props.item.listingID}`}</p>
                 <p className="card-text">{`Email: ${props.item.email}`}</p>
                 <Link to="/orders" className="card-link">Order</Link>
             </div>

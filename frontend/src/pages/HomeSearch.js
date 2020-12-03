@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
-
-const SearchBar = props => {
-  const [ name, setName ] = useState([]);
+/*
+    Goals:
+        search by distributor name, city, item type, price hightolow/lowtohigh
+*/
+const HomeSearch = props => {
+  const [ itemType, setName ] = useState([]);
     const [ email, setEmail ] = useState([]);
   const BarStyling = {width:"20rem",background:"#F2F1F9", border:"none", padding:"0.5rem"};
 
     return <div className="card">
         <div className="card-body">
-            <h3 className="card-title">
-                Account Search
+            <h3 className="card-body">
+                Search for a Product
             </h3>
             <div className="row">
                 <div className="col-6">
                     <div className="form-group">
-                        <label htmlFor="name">Name</label>
+                        <label htmlFor="name">Item Type</label>
                         <input type="text"
-                            id="name"
-                            name="name"
+                            id="itemType"
+                            name="itemType"
                             className="form-control"
-                            value={name}
+                            value={itemType}
                             onChange={event => setName(event.target.value)} />
                     </div>
                 </div>
@@ -37,10 +40,10 @@ const SearchBar = props => {
             <div>
                 <button className="btn btn-block btn-primary"
                     type="button"
-                    onClick={() => props.onSearch({ name, email })}>Search</button>
+                    onClick={() => props.onSearch({ itemType, email })}>Search</button>
             </div>
         </div>
     </div>;
 }
 
-export default SearchBar
+export default HomeSearch

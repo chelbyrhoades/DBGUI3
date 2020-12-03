@@ -12,6 +12,7 @@ import { ListingEditor } from './pages/ListingEditor';
 import { PostListing } from './pages/PostListing';
 import  EditProfile  from './pages/EditProfile.jsx';
 import  UserProfile  from './pages/UserProfile.js';
+import HomeSearch from './pages/HomeSearch.js';
 
 function App() {
 
@@ -28,6 +29,9 @@ function App() {
         <Switch>
           <Route path="/create">
             <CreateAccount/>
+          </Route>
+          <Route path= "/search">
+            <HomeSearch/>
           </Route>
           <Route path="/orders">
             <OrderHistory/>

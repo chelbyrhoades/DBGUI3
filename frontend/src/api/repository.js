@@ -92,6 +92,8 @@ export class repository {
         })
     }
 
+    //listings/:id
+    //
     getProducts(params) {
         return new Promise((resolve, reject) => {
             if (params) {

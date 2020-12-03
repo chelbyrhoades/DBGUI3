@@ -3,6 +3,8 @@ import './Home.css';
 import ItemDetails from "./ItemDetails";
 import {Item} from "../models/Item"
 import {repository} from '../api/repository';
+import { Link, BrowserRouter as Router } from 'react-router-dom';
+import HomeSearch from './HomeSearch.js';
 
 
 
@@ -38,12 +40,15 @@ export class Home extends React.Component {
 
     onSearch(params) {
         this.repo.getProducts(params)
-        .then(products => this.setState({products}));
+        .then(productData => this.setState({tiems: productData}));
     }
     render() {
 
         return (
-
+            <div className="container pt-3">
+            <div className="pb-3">
+                <HomeSearch onSearch={ params => this.onSearch(params) }/>
+            </div>
             <div className="container items-grid">
                 {//this.state.data.address}
                     this.state.items.map((x, i) => 
@@ -52,6 +57,7 @@ export class Home extends React.Component {
                         </div>)
                     )
                 }
+            </div>
             </div>
 
         
