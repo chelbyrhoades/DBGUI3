@@ -109,6 +109,17 @@ export class Repository {
         });
     }
 
+    getDistListings(id) {
+        return new Promise((resolve, reject) => {
+            axios.get(`${this.url}/listings/${id}`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        });
+    }
+
     getListings() {
         return new Promise((resolve, reject) => {
             axios.get(`${this.url}/listings/`, this.config)
@@ -131,9 +142,9 @@ export class Repository {
         });
     }
 
-    postOrder(order) {
+    postOrder(listingId, json) {
         return new Promise((resolve, reject) => {
-            axios.post(`${this.url}/orders`, order, this.config)
+            axios.post(`${this.url}/listings/${listingId}`, json, this.config)
             .then(x => resolve(x.data))
             .catch(e => {
                 alert(e);

@@ -5,7 +5,6 @@ import {Item} from "../models/Item"
 import {Repository} from '../api/repository';
 import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import HomeSearch from './HomeSearch.js';
-import Button from 'react-bootstrap/Button';
 
 
 
@@ -53,7 +52,7 @@ export class Home extends React.Component {
                 <Router>
                     <Route path="/home" exact render={ () =>
                         <Link to="/search">
-                            <Button variant="secondary" size="lg">Filter Products...</Button>
+                            <button className="btn btn-secondary btn-lg">Filter Products...</button>
                             </Link> } />
                     <Route path="/search" render={ props => 
                         <HomeSearch onSearch={ params => this.onSearch(params) } { ...props } /> } />

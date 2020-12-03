@@ -4,7 +4,6 @@ import "./Home.css";
 import {  Link } from 'react-router-dom';
 import "./ItemDetails.css";
 import CartService from '../services/cartService';
-import Button from 'react-bootstrap/Button';
 
 function checkType(pid) {
     if (pid == 0) {

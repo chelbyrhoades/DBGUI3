@@ -55,18 +55,11 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
                         <li className="list-group-item">{`Country: ${this.state.data.country}`}</li>
                     </ul>
                     <div className="card-body">
-                        <div className="row">
-                            <div className="col">
-                                <Link to="/home">Return to homepage</Link>
-                            </div>
-                            <div className="col">
-                                <Link to={`/user/edit/${this.props.match.params.userId}`} className="btn btn-primary float-right">Edit profile</Link>
-                            </div>
-                        </div>
+                        <Link to="/home">Return to homepage</Link>
                         
                     </div>
                 </div>
-                <Link to={`/listings/${this.props.match.params.userId}`}className="btn btn-primary">Show listings</Link>
+                
             </div>
             
         );

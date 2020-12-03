@@ -11,26 +11,7 @@ export class OrderHistory extends React.Component{
 
     state = {
         orders: [
-            //dummy data until we pull actual data from api
-            //transactionId, name, country, productId, quantity, userId, distributorId
-            {id: 1,
-            name: "Masks",
-            country: "US",
-            productId: "2",
-            quantity: 500,
-            userId: 1,
-            distributorId: 1,
             
-            },
-            {id: 2,
-                name: "Gloves",
-                country: "UK",
-                productId: "3",
-                quantity: 250,
-                userId: 1,
-                distributorId: 1,
-            
-            }
         ]
     }
     
