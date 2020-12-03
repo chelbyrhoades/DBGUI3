@@ -29,10 +29,13 @@ export class Repository {
     //logging in 
     login(email, password){
         return new Promise((resolve, reject) => {
-            axios.post(`${this.url}/login`, {email: email, password: password}, this.config).then(response => {
+            axios.post(`${this.url}/login`, {email: email, password: password}, this.config)
+            .then(response => {
                 resolve(response);
+                
             })
             .catch(e => {
+                console.log("error");
                 console.log(e);
             });
         })
@@ -88,7 +91,7 @@ export class Repository {
             });
         })
     }
-
+    //might need to add params later for searching
     getListings() {
         return new Promise((resolve, reject) => {
             axios.get(`${this.url}/listings/`, this.config)

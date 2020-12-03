@@ -14,6 +14,7 @@ import  EditProfile  from './pages/EditProfile.jsx';
 import  UserProfile  from './pages/UserProfile.jsx';
 import { User } from "./models/User";
 import { MyCart } from './pages/myCart';
+import HomeSearch from './pages/HomeSearch';
 
 function App() {
 
@@ -28,19 +29,22 @@ function App() {
   function getUser() {
     return user.id;
   }
-  
+  //<Route path= "/search">
+  //<HomeSearch/>
   return (
     <div>
       <Router>
         <Header loggedIn={loggedIn} user={user}/>
         <Switch>
             <Route path="/create" component={CreateAccount}/>
+            <Route path="/search" component={HomeSearch}/>
             <Route path="/orders/:orderId" component={OrderHistory}/>
             <Route path="/home" component={Home}/>
             <Route path="/listing/:id" component={ListingEditor}/>
             <Route path="/createListing" component={PostListing}/>
             <Route path="/user/edit/:userId" component={EditProfile}/>
             <Route path="/user/:id" component={UserProfile}/>
+            <Route path="/editProfile/:id" component={EditProfile}/>
             <Route path="/orders/:userId" component={OrderHistory}/>
             <Route path="/cart" component={MyCart}/>
             <Route path="/" render={() => <Login onLogin={onLogin}/>}/>

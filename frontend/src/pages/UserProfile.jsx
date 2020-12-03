@@ -73,18 +73,3 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
     
 }//end userProfile class
 export default withRouter(UserProfile);
-
-/*<form className="container">
-            <h1>User Profile</h1>
-            <div className="info">
-          <div>Name: {this.state.data.name}</div>
-          <div>Email: {this.state.data.email}</div>
-          <div>Address: {this.state.data.address}</div>
-          <div>Phone Number: {this.state.data.phone}</div>
-          <div>Country: {this.state.data.country}</div>
-        </div>
-        <Link to={`/user/edit/${this.props.match.params.userId}`}><button>
-              Edit Profile
-            </button>
-            </Link>     
-</form>;*/
