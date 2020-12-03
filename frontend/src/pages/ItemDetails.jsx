@@ -19,7 +19,7 @@ function checkType(pid) {
       
 }
 function checkDist(di){
-    var dists = ['PPEazy', 'Carolina Glove Co.', 'Internation Plastics Co.']
+    var dists = ['PPEazy', 'Carols', 'DistriPPE']
     var dist = dists[Math.floor(Math.random() * dists.length)];
     if(di == undefined || di == "undefined"){
         return dist;
@@ -70,7 +70,7 @@ function ItemDetails(props) {
                 <p className="card-text">{`Store ID: ${props.item.listingID}`}</p>
                 <p className="card-text">{`Contact: ${props.item.email}`}</p>
                 <h5 className="card-title">{props.item.name}</h5>
-                <p className="card-text">{checkLocation(`${props.item.location}`)}</p>
+                <p className="card-text">Location: {checkLocation(`${props.item.location}`)}</p>
                 
             </div>
             <div className="col-3">

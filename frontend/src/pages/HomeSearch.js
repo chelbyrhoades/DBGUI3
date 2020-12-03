@@ -7,6 +7,8 @@ import {Link} from 'react-router-dom';
 
         onChange={e => this.setPPe({ppeType: e.target.value})}
 */
+
+//for future implementation of sorting
 function handleSort(ascending) {
     this.setState( {
         sortValue: ascending 
@@ -32,15 +34,7 @@ const HomeSearch = props => {
            
             <div className="row">
                 <div className="col-6">
-                    <div className="form-group">
-                        <label htmlFor="name">Product Type</label>
-                        <input type="text"
-                            id="ppeType"
-                            name="ppeType"
-                            className="form-control"
-                            value={productID}
-                            onChange={event => setPPe(event.target.value)} />
-                    </div>
+                    
                 
 
                     <div className="col-6">
@@ -86,3 +80,15 @@ const HomeSearch = props => {
 }
 
 export default HomeSearch
+
+/*
+<div className="form-group">
+                        <label htmlFor="name">Product Type</label>
+                        <input type="text"
+                            id="ppeType"
+                            name="ppeType"
+                            className="form-control"
+                            value={productID}
+                            onChange={event => setPPe(event.target.value)} />
+                    </div>
+*/
