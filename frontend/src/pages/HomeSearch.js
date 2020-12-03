@@ -10,8 +10,8 @@ import {Link} from 'react-router-dom';
 function handleSort(ascending) {
     this.setState( {
         sortValue: ascending 
-                   ? this.state.data.sort((a,b) => (parseFloat(a.price) - parseFloat(b.price)))
-                   : this.state.data.sort((a,b) => (parseFloat(b.price) - parseFloat(a.price)))
+                   ? this.props.price.sort((a,b) => (parseFloat(a.price) - parseFloat(b.price)))
+                   : this.props.price.sort((a,b) => (parseFloat(b.price) - parseFloat(a.price)))
     } )
  }
 const HomeSearch = props => {
@@ -59,6 +59,8 @@ const HomeSearch = props => {
                             value={location}
                             onChange={event => setLocation(event.target.value)} />
                     </div>
+                    <button type="button" class="btn btn-secondary" onClick={() => this.handleSort(true)}>Price: Low to High </button>
+                    <button type="button" class="btn btn-secondary"onClick={() => this.handleSort(false)}>Price: High to Low </button>
                     </div>
                     <button className="btn btn-primary"
                     type="button"
@@ -67,6 +69,7 @@ const HomeSearch = props => {
                         Cancel
                     </button>
                     </Link>
+                    
                 </div>
             </div>
             <div>
