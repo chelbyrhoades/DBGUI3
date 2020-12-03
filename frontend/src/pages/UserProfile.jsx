@@ -33,7 +33,7 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
       //.then(data => console.log({data})
     componentDidMount(){
         const id = this.props.match.params.id;
-        this.repo.getAccountInfo(id)
+        this.repo.getAccountInfo(199)
         .then(userData => this.setState({data: userData[0]})
         
         );

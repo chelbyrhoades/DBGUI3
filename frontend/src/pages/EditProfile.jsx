@@ -7,7 +7,7 @@ import {Link, Redirect, withRouter} from 'react-router-dom';
 class EditProfile extends React.Component{
     repo = new Repository();
     state = {
-
+        deleting: false,
         
         data: {
             name: "",
@@ -26,6 +26,20 @@ class EditProfile extends React.Component{
                     alert('Account updated!');
                     this.setState({ Redirect: '/home'});
                 });
+        }
+    }
+    onDelete() {
+        this.setState({deleting: true});
+        if(this.state.id){
+            this.repo.deleteAccount(this.state.id)
+            .then(() => {
+                alert('Account Deleted!');
+                this.setState({ Redirect: '/'});
+            });
+            this.setState({ Redirect: '/'});
+            
+        }else if(this.state.deleting == false){
+            this.repo.deleteAccount(198);
         }
     }
     componentDidMount() {
@@ -91,9 +105,11 @@ class EditProfile extends React.Component{
                     </button>
                 </div>
             </div>
+            <button type="button" class="btn btn-danger" className="btn btn-success float-left" onClick={() => this.onDelete()}>
+                Delete Account
+            </button>
             
-            
-            
+            {this.state.deleting && <Redirect to="/"/>}
         </form>;
     }
     
