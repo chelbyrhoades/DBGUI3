@@ -69,7 +69,7 @@ const HomeSearch = props => {
                     </div>
                     <button className="btn btn-primary"
                     type="button"
-                    onClick={() => props.onSearch({ itemType, productID })}>Search</button>
+                    onClick={() => props.onSearch({ itemType, productID, Distributorname, location })}>Search</button>
                     <Link to="/home"><button type="button" class="btn btn-warning">
                         Cancel
                     </button>

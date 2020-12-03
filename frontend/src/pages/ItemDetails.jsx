@@ -12,9 +12,11 @@ function checkType(pid) {
       }else if(pid <10 && pid > 5){
           var itemType = "Gloves";
       }else{
-          var itemType = "HeadGear";
+          var itemType = "Face Shields";
       }
+      //props.item.productID = itemType;
       return itemType;
+      
 }
 function checkDist(di){
     var dists = ['PPEazy', 'Carolina Glove Co.', 'Internation Plastics Co.']
@@ -33,6 +35,23 @@ function checkLocation(loc){
     }
     return loc;
 }
+function checkURL(leType){
+    if (leType < 5) {
+        var itemType = "Masks";
+        var leUrl = "https://cdn11.bigcommerce.com/s-ixwpuc55v/images/stencil/1280x1280/products/10410/16660/FaceMask_2__62168.1591128381.jpg?c=1";
+
+      }else if(leType <10 && leType > 5){
+          var itemType = "Gloves";
+          var leUrl= "https://images-na.ssl-images-amazon.com/images/I/41SQkv0Q0IL._AC_SY400_.jpg";
+      }else{
+          var itemType = "Face Shields";
+          var leUrl = "https://bjs.scene7.com/is/image/bjs/250902?$bjs-Zoom$";
+      }
+      return leUrl;
+      
+}
+
+
 function ItemDetails(props) {
 
     let cartService = new CartService();
@@ -55,8 +74,8 @@ function ItemDetails(props) {
                 
             </div>
             <div className="col-3">
-                <p>IMAGE GOES HERE </p>
-            </div>
+                        <img src={checkURL(`${props.item.productID}`)} className="prod-img"/>
+                    </div>
             <div className="card-body">
                 <div className="row">
                     <div className="col-8">
