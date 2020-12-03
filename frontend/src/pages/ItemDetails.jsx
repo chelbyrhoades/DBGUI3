@@ -8,9 +8,9 @@ import Button from 'react-bootstrap/Button';
 
 function checkType(pid) {
     if (pid < 5) {
-        var itemType = "Masks";
+        var itemType = "Disposable Face Masks";
       }else if(pid <10 && pid > 5){
-          var itemType = "Gloves";
+          var itemType = "Disposable Gloves";
       }else{
           var itemType = "Face Shields";
       }
@@ -94,7 +94,7 @@ function ItemDetails(props) {
     );
 
 }
-
+//{checkType(`${props.item.productID}`)}
 
 
 export default ItemDetails;
