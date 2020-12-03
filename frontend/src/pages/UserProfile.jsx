@@ -42,36 +42,33 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
     }
   
     render() {
-        return <div className="container">
-            <h1>User Profile</h1>
-            <div class="pull-right"> 
-                    <div class="btn-group"> 
-                    <Link to="/home"><button class="btn btn-success">
-              Go Back
-            </button>
-                </Link>
+        return (
+            <div className="container">
+                <div className="card">
+                    <div className="card-body">
+                        <h5 className="card-title">{this.state.data.name}</h5>
                     </div>
-              </div>
-            <div class="card">
-          <p><strong>Name: {this.state.data.name}</strong></p>
-          <p><strong>Email: {this.state.data.email}</strong></p>
-          <p><strong>Address: {this.state.data.address}</strong></p>
-          <p><strong>Phone Number: {this.state.data.phone}</strong></p>
-          <p><strong>Country: {this.state.data.country}</strong></p>
-        </div>
-        <Link to="/EditProfile"><button type="button" class="btn btn-dark">
-              Edit Profile
-            </button>
-            </Link> 
-            <div>
-            <Link to="/orders"> <button type="button" class="btn btn-dark">
-              Order History
-            </button>
-            </Link> 
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item">{`Email: ${this.state.data.email}`}</li>
+                        <li className="list-group-item">{`Address: ${this.state.data.address}`}</li>
+                        <li className="list-group-item">{`Phone number: ${this.state.data.phone}`}</li>
+                        <li className="list-group-item">{`Country: ${this.state.data.country}`}</li>
+                    </ul>
+                    <div className="card-body">
+                        <div className="row">
+                            <div className="col">
+                                <Link to="/home">Return to homepage</Link>
+                            </div>
+                            <div className="col">
+                                <Link to={`/user/edit/${this.props.match.params.userId}`} className="btn btn-primary float-right">Edit profile</Link>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
-            <div class="clearfix"></div> 
-
-</div>;
+            
+        );
     }//end render
     
 }//end userProfile class

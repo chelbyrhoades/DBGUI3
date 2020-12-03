@@ -17,10 +17,13 @@ export class MyCart extends React.Component {
     }
 
     handleOrder = () => {
+        if (this.state.cart.items.legnth === 0)
+            return;
         this.setState({complete: true});
         this.state.cart.items.map(x => {
-
+            this.repo.postOrder(x);
         })
+        this.cartService.clearCart();
     }
 
     render() {
@@ -58,13 +61,12 @@ export class MyCart extends React.Component {
                         <Link to="/home">Return to homepage</Link>
                     </div>
                     <div className="col">
-                        <button type="button" className="btn btn-success float-right">Complete Order</button>
+                        <button type="button" className="btn btn-success float-right" onClick={this.handleOrder}>Complete Order</button>
                     </div>
                 </div>}
                 {this.state.complete &&
-                    <span>The distributor(s) have been notified of your request. 
-                        <Link to="/home">Return to homepage</Link>
-                    </span>
+                    <div className="alert alert-success">The distributor(s) have been notified of your request. <Link to="/home">Return to homepage</Link>
+                    </div>
                 }
                
             </div>
