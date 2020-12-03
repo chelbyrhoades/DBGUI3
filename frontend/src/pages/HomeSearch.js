@@ -7,6 +7,8 @@ import {Link} from 'react-router-dom';
 
         onChange={e => this.setPPe({ppeType: e.target.value})}
 */
+
+//for future implementation of sorting
 function handleSort(ascending) {
     this.setState( {
         sortValue: ascending 
@@ -18,7 +20,8 @@ const HomeSearch = props => {
   const [ location, setLocation] = useState([]);
   const [ productID, setPPe] = useState([]);
   const [ itemType, setName ] = useState([]);
-  const BarStyling = {width:"20rem",background:"#F2F1F9", border:"none", padding:"0.5rem"};
+  const  [ Distributorname, setDist ] = useState([]);
+  
     function searchSpace(event) {
         let keyword = event.target.value;
         this.setState({search:keyword});
@@ -31,23 +34,21 @@ const HomeSearch = props => {
            
             <div className="row">
                 <div className="col-6">
+                    
+                
+
+                    <div className="col-6">
                     <div className="form-group">
                         <label htmlFor="name">Item Type</label>
                         <input type="text"
                             id="itemType"
                             name="itemType"
                             className="form-control"
-                            value={itemType}
-                            onChange={event => setName(event.target.value)} />
+                            value={Distributorname}
+                            onChange={event => setDist(event.target.value)} />
                     </div>
-                <label htmlFor="ppe-type">PPE Type</label>
-                    <select className="form-control col-6" id="ppe-type"
-                        value={productID} onChange={e => setPPe({productID: e.target.value})}>
-                        <option></option>
-                        <option>Masks</option>
-                        <option>Gloves</option>
-                    </select>
-                    
+                    </div>
+
 
                     <div className="col-6">
                     <div className="form-group">
@@ -59,12 +60,10 @@ const HomeSearch = props => {
                             value={location}
                             onChange={event => setLocation(event.target.value)} />
                     </div>
-                    <button type="button" class="btn btn-secondary" onClick={() => this.handleSort(true)}>Price: Low to High </button>
-                    <button type="button" class="btn btn-secondary"onClick={() => this.handleSort(false)}>Price: High to Low </button>
                     </div>
                     <button className="btn btn-primary"
                     type="button"
-                    onClick={() => props.onSearch({ itemType, productID })}>Search</button>
+                    onClick={() => props.onSearch({ itemType, productID, Distributorname, location })}>Search</button>
                     <Link to="/home"><button type="button" class="btn btn-warning">
                         Cancel
                     </button>
@@ -81,3 +80,15 @@ const HomeSearch = props => {
 }
 
 export default HomeSearch
+
+/*
+<div className="form-group">
+                        <label htmlFor="name">Product Type</label>
+                        <input type="text"
+                            id="ppeType"
+                            name="ppeType"
+                            className="form-control"
+                            value={productID}
+                            onChange={event => setPPe(event.target.value)} />
+                    </div>
+*/

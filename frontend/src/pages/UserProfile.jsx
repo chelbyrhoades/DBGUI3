@@ -67,3 +67,6 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
     
 }//end userProfile class
 export default withRouter(UserProfile);
+/*<div className="col">
+<Link to={`/user/edit/${this.props.match.params.userId}`} className="btn btn-primary float-right">Edit profile</Link>
+</div>*/

@@ -26,20 +26,25 @@ class EditProfile extends React.Component{
                     alert('Account updated!');
                     this.setState({ Redirect: '/home'});
                 });
+        }else{
+            this.repo.updateAccount(198)
+            .then(() => {
+                alert('Account updated!');
+                this.setState({ Redirect: '/home'});
+            });
         }
     }
     onDelete() {
         this.setState({deleting: true});
         if(this.state.id){
-            this.repo.deleteAccount(this.state.id)
+            this.repo.deleteAccount()
             .then(() => {
-                alert('Account Deleted!');
                 this.setState({ Redirect: '/'});
             });
             this.setState({ Redirect: '/'});
             
         }else if(this.state.deleting == false){
-            this.repo.deleteAccount(198);
+            this.repo.deleteAccount();
         }
     }
     componentDidMount() {
