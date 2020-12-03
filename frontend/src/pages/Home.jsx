@@ -48,16 +48,7 @@ export class Home extends React.Component {
             <div className="container pt-3">
                 <h1>PPE Home</h1>
             <div className="clearfix"></div>
-            <div className="pb-3">
-                <Router>
-                    <Route path="/home" exact render={ () =>
-                        <Link to="/search">
-                            <button className="btn btn-secondary btn-lg">Filter Products...</button>
-                            </Link> } />
-                    <Route path="/search" render={ props => 
-                        <HomeSearch onSearch={ params => this.onSearch(params) } { ...props } /> } />
-                </Router>
-            </div>    
+            
             <div className="col-8">
                 
             </div>
@@ -95,4 +86,17 @@ new Item(
             new Item(
                 "PPeasy Distributor","Box of masks",500,9.99,"Dallas,TX","https://images-na.ssl-images-amazon.com/images/I/61u2LVt1C0L._AC_SL1200_.jpg"
             )
+
+
+
+            <div className="pb-3">
+                <Router>
+                    <Route path="/home" exact render={ () =>
+                        <Link to="/search">
+                            <button className="btn btn-secondary btn-lg">Filter Products...</button>
+                            </Link> } />
+                    <Route path="/search" render={ props => 
+                        <HomeSearch onSearch={ params => this.onSearch(params) } { ...props } /> } />
+                </Router>
+            </div>    
 */
