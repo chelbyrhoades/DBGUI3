@@ -7,18 +7,26 @@ import CartService from '../services/cartService';
 import Button from 'react-bootstrap/Button';
 
 function checkType(pid) {
-    if (pid == 0) {
-        var itemType = "Box of Masks";
-      }else if(pid == 1){
-          var itemType = "Box of Gloves";
+    if (pid < 5) {
+        var itemType = "Masks";
+      }else if(pid <10 && pid > 5){
+          var itemType = "Gloves";
       }else{
-          var itemType = "Unknown";
+          var itemType = "HeadGear";
       }
       return itemType;
 }
-
+function checkDist(di){
+    var dists = ['PPEazy', 'Carolina Glove Co.', 'Internation Plastics Co.']
+    var dist = dists[Math.floor(Math.random() * dists.length)];
+    if(di == undefined || di == "undefined"){
+        return dist;
+    }
+    return di;
+}
 function checkLocation(loc){
     var items = ['Denton', 'Fort Worth', 'Dallas', "Amarillo"];
+
     var item = items[Math.floor(Math.random() * items.length)];
     if(loc == undefined || loc == "undefined"){
         return item;
@@ -32,7 +40,7 @@ function ItemDetails(props) {
     return (
     <div className="card">
         <div className="card-header">
-            <p>Distributor Name</p>
+        <p className="card-text">{checkDist(`${props.item.Distributorname}`)}</p>
         </div>
         <div className="card-body">
             <div className="row">
@@ -40,8 +48,8 @@ function ItemDetails(props) {
                 <h5 className="card-title">{checkType(`${props.item.productID}`)}</h5>  
                 <span className="card-text tag badge badge-pill badge-primary">{`$${props.item.price}`}</span>
                 <p className="card-text">{`In stock: ${props.item.quantity}`}</p>
-                <p className="card-text">{`ListingID: ${props.item.listingID}`}</p>
-                <p className="card-text">{`Email: ${props.item.email}`}</p>
+                <p className="card-text">{`Store ID: ${props.item.listingID}`}</p>
+                <p className="card-text">{`Contact: ${props.item.email}`}</p>
                 <h5 className="card-title">{props.item.name}</h5>
                 <p className="card-text">{checkLocation(`${props.item.location}`)}</p>
                 
