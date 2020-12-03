@@ -66,6 +66,7 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
                         
                     </div>
                 </div>
+                <Link to={`/listings/${this.props.match.params.userId}`}className="btn btn-primary">Show listings</Link>
             </div>
             
         );

@@ -19,8 +19,6 @@ function checkType(pid) {
 
 
 function ItemDetails(props) {
-    
-    //product id for product name - needs to update based on what productID returns
 
     let cartService = new CartService();
     
@@ -37,18 +35,32 @@ function ItemDetails(props) {
                 <p className="card-text">{`In stock: ${props.item.quantity}`}</p>
                 <p className="card-text">{`ListingID: ${props.item.listingID}`}</p>
                 <p className="card-text">{`Email: ${props.item.email}`}</p>
-                <Button onClick={ () => this.cartService.addToCart(`${props.item.productID}`) }> Add to cart</Button>
-                <Link to="/orders" className="card-link">Order</Link>
+                <h5 className="card-title">{props.item.name}</h5>
+                <p className="card-text">{`Location: ${props.item.location}`}</p>
+                
             </div>
             <div className="col-3">
                 <p>IMAGE GOES HERE </p>
             </div>
+            <div className="card-body">
+                <div className="row">
+                    <div className="col-8">
+                        
+                        <Link to="/cart" className="card-link" onClick={() => cartService.addToCart(props.item)}>Order</Link>
+                    </div>
+                    <div className="col-3">
+                        <img src={props.item.imgurl} className="prod-img"/>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>
-    
-);
+    </div>
+    );
 
 }
+
+
 
 export default ItemDetails;
