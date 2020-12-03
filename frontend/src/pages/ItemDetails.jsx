@@ -17,7 +17,14 @@ function checkType(pid) {
       return itemType;
 }
 
-
+function checkLocation(loc){
+    var items = ['Denton', 'Fort Worth', 'Dallas', "Amarillo"];
+    var item = items[Math.floor(Math.random() * items.length)];
+    if(loc == undefined || loc == "undefined"){
+        return item;
+    }
+    return loc;
+}
 function ItemDetails(props) {
 
     let cartService = new CartService();
@@ -36,7 +43,7 @@ function ItemDetails(props) {
                 <p className="card-text">{`ListingID: ${props.item.listingID}`}</p>
                 <p className="card-text">{`Email: ${props.item.email}`}</p>
                 <h5 className="card-title">{props.item.name}</h5>
-                <p className="card-text">{`Location: ${props.item.location}`}</p>
+                <p className="card-text">{checkLocation(`${props.item.location}`)}</p>
                 
             </div>
             <div className="col-3">

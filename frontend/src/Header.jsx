@@ -13,7 +13,10 @@ function Header(props) {
                         <Link type="button" className="btn btn-primary" to={`/user/${props.user.userId}`}>Account</Link>
                     </div>
                     <div className="col btn-col">
-                        <button type="button" className="btn btn-primary">Logout</button>
+                        <Link to = "/"> 
+                            <button type="button" className="btn btn-primary">Logout</button>
+                        </Link>
+                       
                     </div>
                 </div>}
             </h1>

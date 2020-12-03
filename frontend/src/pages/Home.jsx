@@ -59,7 +59,9 @@ export class Home extends React.Component {
                         <HomeSearch onSearch={ params => this.onSearch(params) } { ...props } /> } />
                 </Router>
             </div>    
-            
+            <div className="col-8">
+                
+            </div>
             <div className="container items-grid">
                 {//this.state.data.address}
                     this.state.items.map((x, i) => 
