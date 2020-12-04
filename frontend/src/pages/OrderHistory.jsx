@@ -51,7 +51,7 @@ export class OrderHistory extends React.Component{
         return (
             <div className="container">
                 <div >
-            <p>Checking if this user is a distributor</p>
+                <Link to="/home">Return Home</Link>
             {this.checkIfDist()}
             </div>
             <div className="card">
@@ -61,7 +61,7 @@ export class OrderHistory extends React.Component{
                 
                 
                 <div className = "card-body">
-                    <Link to="/home">Return Home</Link>
+                    
                 </div>
                 </div>
             </div>
@@ -77,23 +77,17 @@ export class OrderHistory extends React.Component{
                     
 //}this.state.orders.map( x => <Order order={x}/> )
     componentDidMount() {
-        const id = this.props.match.params.uid;
+        const id = this.props.match.params.orderId;
         console.log(id);
-        this.repo.getAccountInfo(198)
+        this.repo.getAccountInfo(id)
         .then(userData => this.setState({data: userData[0]})
         
         );
         console.log("user profile mounted");
-        //this.repo.getOrders()
-       // .then(data => {
-      //      this.setState({orders: data});
-      //  })
-      /*
         this.repo.getOrders(window.cookie)
         .then(data => {
             this.setState({orders: data});
         })
-        */
 }
 
 }
