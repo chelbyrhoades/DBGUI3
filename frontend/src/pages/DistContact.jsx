@@ -88,7 +88,7 @@ class DistContact extends React.Component{
     }
     componentDidMount(){
         const id = this.props.match.params.listingID;
-        this.repo.getListing(this.props.match.params.listingID)
+        this.repo.getListing(9996)
         .then(data => {
             this.setState({
                 productNameL: data.productName,

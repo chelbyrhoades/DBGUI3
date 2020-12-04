@@ -40,11 +40,67 @@ export class OrderHistory extends React.Component{
                 quantity: 0,
                 buyerID: "",
                 datetime: "",
-                productID: 0
+                productID: 0,
+                ppeType: "Gloves",
+                location: "France"
             }
         ],  //stores either all the user's previous orders or all user's orders
         items: [],
-        orders: []
+        dummyData: [{
+                transID: 1,
+                sellerID: "4",
+                orderStatus: "pending",
+                quantity: 300,
+                buyerID: "12",
+                datetime: "2020-12-12",
+                productID: 1,
+                ppeType: "Mask",
+                location: "US"
+          },
+          {
+            transID: 2,
+            sellerID: "3",
+                orderStatus: "pending",
+                quantity: 0,
+                buyerID: "",
+                datetime: "2020-12-12",
+                productID: 1,
+                ppeType: "Face Shield",
+                location: "Canada"
+          },
+          {
+            transID: 3,
+            sellerID: "1",
+                orderStatus: "shipped",
+                quantity: 400,
+                buyerID: "",
+                datetime: "2020-12-12",
+                productID: 2,
+                ppeType: "Mask",
+                location: "US"
+          },
+          {
+            transID: 4,
+            sellerID: "3",
+                orderStatus: "delivered",
+                quantity: 400,
+                buyerID: "",
+                datetime: "2020-12-12",
+                productID: 3,
+                ppeType: "Thermometer",
+                location: "UK"
+          },
+          {
+            transID: 5,
+            sellerID: "2",
+                orderStatus: "pending",
+                quantity: 300,
+                buyerID: "",
+                datetime: "2020-12-12",
+                productID: 1,
+                ppeType: "Mask",
+                location: "US"
+          }]
     }
     //making the date look visually pleasing
     getOrderDate(){
@@ -127,18 +183,29 @@ export class OrderHistory extends React.Component{
 
         }
     }
-
     render() {
         return(
-            <div className="container">
-                
+            <div>
+                <Link to="/home">Return</Link>
+                <div className = "container">
+                <h1>What Customers are Ordering</h1>
+                {this.state.dummyData.map(d => 
+                    <div key={d.transID}>
+                        <div className = "card">
+                            <h2><strong>{d.ppeType} </strong> </h2>
+                        <p><strong>Transaction Number: {d.transID}</strong></p>
 
+                        <p><strong>Status: </strong>{d.orderStatus}</p>
+                        <p><strong>Date: </strong>{d.datetime}</p>
+                        <p><strong>User Number: </strong>{d.buyerID}</p>
+                        <p><strong>User Location: </strong> {d.location}</p>
 
-                <h3>Order History</h3>
-                {
-                    this.state.orders.map( x => <Order order={x}/> )
-                }
-                <Link to="/home">Return Home</Link>
+                        </div>
+                        </div>
+                    )}
+                </div>
+
+            <Link to="/home">Return Home</Link>
             </div>
         )
         
@@ -148,6 +215,18 @@ export class OrderHistory extends React.Component{
         this.repo.getAllOrders()
         .then(productData => this.setState({items: productData})  //[0]
         );
+    }
+
+    userDummyView(){
+        return(
+            <div>
+                <div className="card>">
+                <h1>Customer Orders</h1>
+                
+                </div>
+            </div>
+            
+        )
     }
 
     userView(){
