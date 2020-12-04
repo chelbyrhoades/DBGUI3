@@ -5,9 +5,11 @@ import {  Link } from 'react-router-dom';
 import "./ItemDetails.css";
 import {CartService} from '../services/cartService';
 
-export const ItemDetails = props=>
+function ItemDetails(props) {
     
     //plural in the table
+        let cartService = new CartService();
+        return (
         <div>
             {props.items.map(item => 
             <div key={item.listingID}>
@@ -26,21 +28,18 @@ export const ItemDetails = props=>
                                 <div className="col-3">
                                     <img src={item.imageURL} className="prod-img"/>
                                 </div>
-                                <button type="button"
+                                <Link to="/cart"
                                     className="btn btn-primary btn-lg"
-                                    onClick={ () => props.onAdd(item) }>
+                                    onClick={ () =>  cartService.addToCart(item)}>
                                         Add to Cart
-                                    </button>
-                                    <Link to={`/distInfo/${item.listingID}`} className="card-link">
-                                        <button className="btn btn-secondary btn-lg">More info...
-                                        </button>
-                                    </Link>
+                                </Link>
+                                <Link to={`/distInfo/${item.listingID}`} className="btn btn-secondary btn-lg">More info</Link>
                             </div>
                         </div>
                     </div>
                 </div>
             )}
-        </div>
+        </div>);
     /*
     return (
     <div className="card"
@@ -91,3 +90,5 @@ export const ItemDetails = props=>
                 }
             </div>
 */
+}
+export default ItemDetails;

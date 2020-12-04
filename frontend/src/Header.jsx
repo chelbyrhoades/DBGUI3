@@ -10,11 +10,8 @@ function Header(props) {
             <h1 className="page-header">MaskerAid
                 {props.loggedIn && <div className="row float-right">
                 <div className="col btn-col">
-                        <Link type="button" className="btn btn-primary" to={`/user/edit/${props.uid}`}>Add Profile Details</Link>
-                    </div>
-                <div className="col btn-col">
-                        <Link type="button" className="btn btn-primary" to={`/orders/${props.uid}`}>Orders</Link>
-                    </div>
+                        <Link type="button" className="btn btn-primary" to="/cart">Cart</Link>
+                </div>
                     <div className="col btn-col">
                         <Link type="button" className="btn btn-primary" to={`/user/${props.uid}`}>Account</Link>
                     </div>
