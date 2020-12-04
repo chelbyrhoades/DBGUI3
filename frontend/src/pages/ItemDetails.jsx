@@ -3,86 +3,72 @@ import { Item } from '../models/Item';
 import "./Home.css";
 import {  Link } from 'react-router-dom';
 import "./ItemDetails.css";
-import CartService from '../services/cartService';
+import {CartService} from '../services/cartService';
 
-function checkType(pid) {
-    if (pid < 5) {
-        var itemType = "Face Masks";
-      }else if(pid <10 && pid > 5){
-          var itemType = "Gloves";
-      }else{
-          var itemType = "Shields";
-      }
-      //props.item.productID = itemType;
-      return itemType;
-      
-}
-function checkDist(di){
-    var dists = ['PPEazy', 'Carols', 'DistriPPE']
-    var dist = dists[Math.floor(Math.random() * dists.length)];
-    if(di == undefined || di == "undefined"){
-        return dist;
-    }
-    return di;
-}
-function checkLocation(loc){
-    var items = ['Denton', 'Fort Worth', 'Dallas', "Amarillo"];
-
-    var item = items[Math.floor(Math.random() * items.length)];
-    if(loc == undefined || loc == "undefined"){
-        return item;
-    }
-    return loc;
-}
-function checkURL(leType){
-    if (leType < 5) {
-        var itemType = "Masks";
-        var leUrl = "https://cdn11.bigcommerce.com/s-ixwpuc55v/images/stencil/1280x1280/products/10410/16660/FaceMask_2__62168.1591128381.jpg?c=1";
-
-      }else if(leType <10 && leType > 5){
-          var itemType = "Gloves";
-          var leUrl= "https://images-na.ssl-images-amazon.com/images/I/41SQkv0Q0IL._AC_SY400_.jpg";
-      }else{
-          var itemType = "Face Shields";
-          var leUrl = "https://bjs.scene7.com/is/image/bjs/250902?$bjs-Zoom$";
-      }
-      return leUrl;
-      
-}
-
-
-function ItemDetails(props) {
-
-    let cartService = new CartService();
+export const ItemDetails = props=>
     
+    //plural in the table
+        <div>
+            {props.items.map(item => 
+            <div key={item.listingID}>
+                <div className="card">
+                    <div className="card-header">
+                        <h5 className="card-title"><strong>{item.productName}</strong></h5>
+                    </div>
+                        <div className="card-body">
+                            <div className="row">
+                                <div className="col-8">
+                                    <span className="card-text badge badge-pill badge-primary"><h3><strong>{item.price}.00</strong></h3></span>
+                                    <p className="card-text"><strong>Stock:</strong> {item.quantity}</p>
+                                     <p className="card-text"><strong>Location: </strong>{item.country}</p>
+                                     <br/>
+                                </div>
+                                <div className="col-3">
+                                    <img src={item.imageURL} className="prod-img"/>
+                                </div>
+                                <button type="button"
+                                    className="btn btn-primary btn-lg"
+                                    onClick={ () => props.onAdd(item) }>
+                                        Add to Cart
+                                    </button>
+                                    <Link to={`/distInfo/${item.listingID}`} className="card-link">
+                                        <button className="btn btn-secondary btn-lg">More info...
+                                        </button>
+                                    </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
+    /*
     return (
-    <div className="card">
+    <div className="card"
+    {item.name}>
         <div className="card-header">
-        <p className="card-text">{checkDist(`${props.item.Distributorname}`)}</p>
+        <h5 className="card-title"><strong>{`${props.item.productName}`}</strong></h5>
         </div>
         <div className="card-body">
             <div className="row">
             <div className="col-8">
-                <h5 className="card-title">{checkType(`${props.item.productID}`)}</h5>  
-                <span className="card-text tag badge badge-pill badge-primary">{`$${props.item.price}`}</span>
-                <p className="card-text">{`In stock: ${props.item.quantity}`}</p>
-                <p className="card-text">{`Store ID: ${props.item.listingID}`}</p>
-                <p className="card-text">{`Contact: ${props.item.email}`}</p>
-                <h5 className="card-title">{props.item.name}</h5>
-                <p className="card-text">Location: {checkLocation(`${props.item.location}`)}</p>
+                <span className="card-text badge badge-pill badge-primary"><h3><strong>{`$${props.item.price}`}.00</strong></h3></span>
+                <p className="card-text">{`In stock: ${props.item.quantity} items`}</p>
+                <p className="card-text">Location: {`${props.item.country}`}</p>
+                <p className="card-text">ListingID: {`${props.item.listingID}`}</p>
                 
             </div>
             <div className="col-3">
-                        <img src={checkURL(`${props.item.productID}`)} className="prod-img"/>
+                        <img src={`${props.item.imageURL}`} className="prod-img"/>
                     </div>
             <div className="card-body">
                 <div className="row">
                     <div className="col-8">
                         
-                        <Link to="/cart" className="card-link" onClick={() => cartService.addToCart(props.item)}>Order</Link>
-                    </div>
+                        <Link to="/cart" className="card-link" onClick={() => cartService.addToCart(props.item)}><button className="btn btn-primary btn-lg">Order</button></Link>
+                        <Link to={`/distInfo/${props.item.listingID}`} className="card-link"><button className="btn btn-secondary btn-lg">More info...</button></Link>
+                        </div>
                     <div className="col-3">
-                        <img src={props.item.imgurl} className="prod-img"/>
+                        <img src={props.item.imgURL} className="prod-img"/>
                     </div>
                     
                 </div>
@@ -90,10 +76,18 @@ function ItemDetails(props) {
         </div>
     </div>
     </div>
-    );
+    );*/
 
-}
+
 //{checkType(`${props.item.productID}`)}
-
-
-export default ItemDetails;
+/*
+<div className="container items-grid">
+                {//this.state.data.address}
+                    this.state.items.map((x, i) => 
+                        (<div key={i}>
+                            <ItemDetails item={x}/>
+                        </div>)
+                    )
+                }
+            </div>
+*/

@@ -48,9 +48,10 @@ export class CreateAccount extends React.Component {
             type: this.typeToInt(this.state.accountType),
             phone: this.state.phoneNumber,
             country: this.state.country,
-            address: "",
+            address: this.state.country,
             territory: "",
-            postalcode: 0
+            postalcode: 0,
+            name: this.state.name
         }
         this.repo.addAccount(json);
         

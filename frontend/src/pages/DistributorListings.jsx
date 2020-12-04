@@ -7,9 +7,7 @@ export class DistributorListings extends React.Component {
     repo = new Repository();
 
     state = {
-        listings: [
-            
-        ]
+        listings: []
     }
 
     render() {
@@ -27,7 +25,10 @@ export class DistributorListings extends React.Component {
     }
 
     componentDidMount() {
-        this.repo.getListings(this.props.match.params.id);
+        this.repo.getDistListings(this.props.match.params.id)
+        .then(data => {
+            this.setState({listings: data});
+        });
     }
 
 }
