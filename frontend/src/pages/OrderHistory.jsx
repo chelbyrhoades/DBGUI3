@@ -23,12 +23,13 @@ export class OrderHistory extends React.Component{
                 {
                     this.state.orders.map( x => <Order order={x}/> )
                 }
+                <Link to="/home">Return to homepage</Link>
             </div>
         
         )}
 
     componentDidMount() {
-        this.repo.getOrders()
+        this.repo.getOrders(window.cookie)
         .then(data => {
             this.setState({orders: data});
         })

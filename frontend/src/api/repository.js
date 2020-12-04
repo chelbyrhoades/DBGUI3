@@ -77,9 +77,9 @@ export class Repository {
 
 
     //posting a listing - used in PostListing.jsx
-    postNewListing(id, listing){
+    postNewListing(body){
         return new Promise((resolve, reject) => {
-            axios.post(`${this.url}/listings/${id}`, listing, this.config)
+            axios.post(`${this.url}/listings/`, body, this.config)
         })
     }
 
@@ -110,7 +110,7 @@ export class Repository {
 
     getDistListings(id) {
         return new Promise((resolve, reject) => {
-            axios.get(`${this.url}/listings/${id}`, this.config)
+            axios.get(`${this.url}/distributors/${id}`, this.config)
             .then(x => resolve(x.data))
             .catch(e => {
                 alert(e);

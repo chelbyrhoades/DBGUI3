@@ -4,7 +4,7 @@ import { Item } from "../models/Item";
 
 export class ListingEditor extends React.Component {
 
-    repo = new Repository;
+    repo = new Repository();
 
     state = {
         
@@ -18,12 +18,13 @@ export class ListingEditor extends React.Component {
 
     handleEdit = () => {
         let json = {
-            productID: this.props.match.param.id,
             cookie: window.cookie,
             price: this.state.price,
-            quantity: this.state.quantity
+            quantity: this.state.quantity,
+            name: this.state.name,
+            imageURL: this.state.imgurl
         }
-        this.repository.editListing(this.props.match.params.id, json);
+        this.repo.editListing(this.props.match.params.id, json);
     }
 
     render() {
@@ -53,14 +54,6 @@ export class ListingEditor extends React.Component {
                     id="prod-price"
                     value={this.state.price}
                     onChange={e => this.setState({price: e.target.value})}
-                />
-                <label htmlFor="prod-loc">Location</label>
-                <input className="form-control"
-                    type="text" 
-                    name="location" 
-                    id="prod-loc"
-                    value={this.state.location}
-                    onChange={e => this.setState({location: e.target.value})}
                 />
                 <label htmlFor="prod-img">Product image URL</label>
                 <input className="form-control"
