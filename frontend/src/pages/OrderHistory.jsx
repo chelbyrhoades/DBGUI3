@@ -1,62 +1,37 @@
 import React from 'react';
 import './OrderHistory.css';
 import { Link } from 'react-router-dom';
+import { Repository } from '../api/repository';
+import Order from './Order';
 
 export class OrderHistory extends React.Component{
 //pulls up any orders that the user has made
 
-    orders = [
-        //dummy data until we pull actual data from api
-        //transactionId, name, country, productId, quantity, userId, distributorId
-        {id: 1,
-        name: "Masks",
-        country: "US",
-        productId: "2",
-        quantity: 500,
-        userId: 1,
-        distributorId: 1
-        },
-        {id: 2,
-            name: "Gloves",
-            country: "UK",
-            productId: "3",
-            quantity: 250,
-            userId: 1,
-            distributorId: 1
-        }
-    ]
+    repo = new Repository();
+
+    state = {
+        orders: [
+            
+        ]
+    }
     
 //cards for each individual order  
     render() {
         return (
-            <div>
-                <h1>Order History</h1>
-            <li><div class="card" 
-            style={{
-                width: "500%",
-                border: "solid 3px #d3d3d3",
-                margin: "10px auto"
-                }}>
-                    
-                <div data-role="page" class="pages" >
-                {this.orders.map((order, index) => (
-          <div key={index}>
-            <h1>Product: {order.name} {order.productId}</h1>
-            <p>Country: {order.country}</p>
-            <p>Quantity: {order.quantity}</p>
-            <p>Distributor ID: {order.distributorId}</p>
-          </div>
-        ))}
-                  
-       </div>
-        </div>
-        </li>
-        <span>Go back </span>
-          <Link className="btn btn-link back-button" to="/home">
-             Back
-          </Link>
-        </div>
+            <div className="container">
+                <h3>Order History</h3>
+                {
+                    this.state.orders.map( x => <Order order={x}/> )
+                }
+            </div>
         
         )}
+
+    componentDidMount() {
+        this.repo.getOrders()
+        .then(data => {
+            this.setState({orders: data});
+        })
+    }
 
 }

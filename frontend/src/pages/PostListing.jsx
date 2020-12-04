@@ -59,7 +59,79 @@ export class PostListing extends React.Component{
 
     render() {
         return (
-            <div>
+          <div className="container">
+                <h3>Create Listing</h3>
+                <label htmlFor="prod-name">Product Name</label>
+                <input className="form-control"
+                    type="text" 
+                    name="name" 
+                    id="prod-name"
+                    value={this.state.name}
+                    onChange={e => this.setState({name: e.target.value})}
+                />
+                <label htmlFor="prod-quantity">Price</label>
+                <input className="form-control"
+                    type="text" 
+                    name="quantity" 
+                    id="prod-quantity"
+                    value={this.state.quantity}
+                    onChange={e => this.setState({quantity: e.target.value})}
+                />
+                <label htmlFor="typeId">Type</label>
+                <select id="typeId"
+                    className="form-control"
+                    name="typeId"
+                    size="1"
+                    value={this.state.typeId}
+                    onChange={event => this.setState({ typeId: event.target.value })}>
+                    <option></option>
+                    {
+                        this.types.map(x => <option key={x.id} value={x.id}>{x.name}</option>)
+                    }
+                </select>
+                <label htmlFor="prod-loc">Location</label>
+                <input className="form-control"
+                    type="text" 
+                    name="location" 
+                    id="prod-loc"
+                    value={this.state.location}
+                    onChange={e => this.setState({location: e.target.value})}
+                />
+                <label htmlFor="prod-img">Product image URL</label>
+                <input className="form-control"
+                    type="text" 
+                    name="imgurl" 
+                    id="prod-img"
+                    value={this.state.imgurl}
+                    onChange={e => this.setState({imgurl: e.target.value})}
+                />
+                <label>Confirm with your Distributor Name</label>
+                <input type="text"
+                        className="form-control"
+                        id="distName"
+                        name="distName"
+                        size="50"
+                        value={this.state.Distributorname}
+                        onChange={event => this.setState({Distributorname: event.target.value })} />
+                <div className="row">
+                  <div className="col">
+                    <button type="button"
+                          className="btn btn-success btn-block"
+                          onClick={() => this.onSave()}>
+                          Save
+                    </button>
+                  </div>
+                  <Link className="btn btn-link back-button col" to="/home">
+                    Return Home
+                  </Link>
+                </div>
+                
+                
+            </div>
+            
+        
+        )}
+        /*<div className="container">
             <h1>Create a Product Listing</h1>
             <div className="form-group">
                 <label htmlFor="name">Product Name</label>
@@ -136,7 +208,5 @@ export class PostListing extends React.Component{
                 <Link className="btn btn-link back-button" to="/home">
                 Return Home
                 </Link>
-        </div>
-        
-        )}
+        </div>*/
 }

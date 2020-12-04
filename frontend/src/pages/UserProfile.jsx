@@ -32,8 +32,8 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
       }
       //.then(data => console.log({data})
     componentDidMount(){
-        const id = this.props.match.params.id;
-        this.repo.getAccountInfo(198)
+        const id = this.props.match.params.userId;
+        this.repo.getAccountInfo(id)
         .then(userData => this.setState({data: userData[0]})
         
         );
@@ -42,21 +42,31 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
     }
   
     render() {
-        return <form className="container">
-            <h1>User Profile</h1>
-            <div className="info">
-          <div>Name: {this.state.data.name}</div>
-          <div>Email: {this.state.data.email}</div>
-          <div>Address: {this.state.data.address}</div>
-          <div>Phone Number: {this.state.data.phone}</div>
-          <div>Country: {this.state.data.country}</div>
-        </div>
-        <Link to="/EditProfile"><button>
-              Edit Profile
-            </button>
-            </Link>     
-</form>;
+        return (
+            <div className="container">
+                <div className="card">
+                    <div className="card-body">
+                        <h5 className="card-title">{this.state.data.name}</h5>
+                    </div>
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item">{`Email: ${this.state.data.email}`}</li>
+                        <li className="list-group-item">{`Address: ${this.state.data.address}`}</li>
+                        <li className="list-group-item">{`Phone number: ${this.state.data.phone}`}</li>
+                        <li className="list-group-item">{`Country: ${this.state.data.country}`}</li>
+                    </ul>
+                    <div className="card-body">
+                        <Link to="/home">Return to homepage</Link>
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+        );
     }//end render
     
 }//end userProfile class
 export default withRouter(UserProfile);
+/*<div className="col">
+<Link to={`/user/edit/${this.props.match.params.userId}`} className="btn btn-primary float-right">Edit profile</Link>
+</div>*/

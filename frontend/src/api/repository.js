@@ -13,9 +13,9 @@ export class Repository {
 
     //Account stuff    path = /account
     //POST /account on DB side
-    addAccount(email, password){
+    addAccount(state){
         return new Promise((resolve, reject) => {
-            axios.post(`${this.url}/account`, {email: email, password: password}, this.config).then(resp => {
+            axios.post(`${this.url}/account`, state, this.config).then(resp => {
                 if(resp.data == "L")
                 {
                     return alert("Email already in use");
@@ -29,10 +29,13 @@ export class Repository {
     //logging in 
     login(email, password){
         return new Promise((resolve, reject) => {
-            axios.post(`${this.url}/login`, {email: email, password: password}, this.config).then(response => {
+            axios.post(`${this.url}/login`, {email: email, password: password}, this.config)
+            .then(response => {
                 resolve(response);
+                
             })
             .catch(e => {
+                console.log("error");
                 console.log(e);
             });
         })
@@ -53,9 +56,13 @@ export class Repository {
 
     //deleting account - app.delete
     deleteAccount(){
-        return new Promise((resolve, rejecct) =>
-        axios.delete(`${this.url}/account`))
-    }
+        return new Promise((resolve, reject) => {
+        axios.delete(`${this.url}/account`)
+        .catch(e => {
+            reject();
+        });
+    })
+}
 
     editListing(id, listing) {
         return new Promise((resolve, reject) => {
@@ -88,6 +95,29 @@ export class Repository {
             });
         })
     }
+    //might need to add params later for searching
+
+    getListing(id) {
+        return new Promise((resolve, reject) => {
+            axios.get(`${this.url}/listings/${id}`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        });
+    }
+
+    getDistListings(id) {
+        return new Promise((resolve, reject) => {
+            axios.get(`${this.url}/listings/${id}`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        });
+    }
 
     getListings() {
         return new Promise((resolve, reject) => {
@@ -98,6 +128,28 @@ export class Repository {
                 reject();
             });
         });
+    }
+
+    getOrders(uid) {
+        return new Promise((resolve, reject) => {
+            axios.get(`${this.url}/orders/${uid}`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        });
+    }
+
+    postOrder(listingId, json) {
+        return new Promise((resolve, reject) => {
+            axios.post(`${this.url}/listings/${listingId}`, json, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        })
     }
 
     

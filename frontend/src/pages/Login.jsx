@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React from 'react';
-import { CreateAccount } from './CreateAccount';
 import {Link, Redirect} from 'react-router-dom';
 import './Login.css';
 import {Repository} from '../api/repository';
@@ -14,16 +13,44 @@ import {Repository} from '../api/repository';
       email: "",
       password: "",
       accountType: "",
-      success: false
+      success: false,
+      error: false,
+      errorMsg: "",
+      uid: -1
 
     }
 
+
     handleLogin = () => {
 
-      this.repo.login(this.state.email, this.state.password);
-      this.props.onLogin();
-      this.setState({success: true});
+      this.checkError();
+      if (!this.state.error) {
+        this.repo.login(this.state.email, this.state.password).then(data => {
+          if (data == "invalid") {
+            this.setState({error: true, errorMsg: "Invalid username or password"});
+            return;
+          }
+          this.setState({uid: data.data.split(":")[0]});
+          window.cookie = data.data;
+          setTimeout(() => {
+            this.props.onLogin(this.state.uid);
+            this.setState({success: true});
+          }, 1000);
+        })
+        .catch( e => {
+          this.setState({error: true, errorMsg: "Invalid username or password"});
+        });
+        
+        
+      }
+    }
 
+    checkError = () => {
+      if (this.state.username == "")
+        this.setState({errorMsg: "Username is required", error: true})
+      if (this.state.password == "")
+        this.setState({errorMsg: "Password is required", error: true})
+      //Fill in errors from post request
     }
 
     render() {
@@ -47,7 +74,7 @@ import {Repository} from '../api/repository';
             value={this.state.password}
             onChange={e => this.setState({password: e.target.value})}
           />
-          <div className="alert alert-danger" role="alert">Sample error -- for user doesnt exist or wrong password</div>
+          {this.state.error && <div className="alert alert-danger" role="alert">Sample error -- for user doesnt exist or wrong password</div>}
           <button className="btn btn-primary btn-block" onClick={this.handleLogin}>Login</button>
           <span>Don't have an account? </span>
           <Link to="/create">

@@ -7,7 +7,7 @@ import {Link, Redirect, withRouter} from 'react-router-dom';
 class EditProfile extends React.Component{
     repo = new Repository();
     state = {
-
+        deleting: false,
         
         data: {
             name: "",
@@ -26,6 +26,25 @@ class EditProfile extends React.Component{
                     alert('Account updated!');
                     this.setState({ Redirect: '/home'});
                 });
+        }else{
+            this.repo.updateAccount(198)
+            .then(() => {
+                alert('Account updated!');
+                this.setState({ Redirect: '/home'});
+            });
+        }
+    }
+    onDelete() {
+        this.setState({deleting: true});
+        if(this.state.id){
+            this.repo.deleteAccount()
+            .then(() => {
+                this.setState({ Redirect: '/'});
+            });
+            this.setState({ Redirect: '/'});
+            
+        }else if(this.state.deleting == false){
+            this.repo.deleteAccount();
         }
     }
     componentDidMount() {
@@ -79,13 +98,23 @@ class EditProfile extends React.Component{
                     value={this.state.data.country}
                     onChange={ event => this.setState({ country: event.target.value }) } />
             </div>
-            <button type="button"
-                    className="btn btn-success"
-                    onClick={() => this.onSave()}>
-                    Save
+            <div className="row">
+                <div className="col">
+                    <Link to={`/user/${this.props.match.params.userId}`}>Return to profile</Link>
+                </div>
+                <div className="col">
+                    <button type="button"
+                        className="btn btn-success float-right"
+                        onClick={() => this.onSave()}>
+                        Save
+                    </button>
+                </div>
+            </div>
+            <button type="button" class="btn btn-danger" className="btn btn-success float-left" onClick={() => this.onDelete()}>
+                Delete Account
             </button>
             
-            
+            {this.state.deleting && <Redirect to="/"/>}
         </form>;
     }
     

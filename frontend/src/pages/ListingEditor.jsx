@@ -17,7 +17,13 @@ export class ListingEditor extends React.Component {
     }
 
     handleEdit = () => {
-        this.repository.editListing(this.props.match.params.id, this.state);
+        let json = {
+            productID: this.props.match.param.id,
+            cookie: window.cookie,
+            price: this.state.price,
+            quantity: this.state.quantity
+        }
+        this.repository.editListing(this.props.match.params.id, json);
     }
 
     render() {
