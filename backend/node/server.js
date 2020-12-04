@@ -473,6 +473,19 @@ app.get('/listings/:id', (req, res) => {
 	});
 });
 
+//GET /distributors/{id}   returns the listings from a specific distributor with given id
+app.get('/distributors/:id', (req, res) => {
+	connection.query(`SELECT * FROM listing WHERE userID = ${req.params.id}`, 
+	(err, rows, fields) => {
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
+		if (rows.length === 0) res.status(404).send();
+		else res.status(200).send(JSON.stringify(rows[0]));
+	});
+});
+
 //POST /listings/{listingID}
 app.post('/listings/:id', (req, res) => {
 	verifyCookie(req.body.cookie, valid => {

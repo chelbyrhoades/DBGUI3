@@ -30,6 +30,21 @@ export class MyCart extends React.Component {
         this.cartService.clearCart();
     }
 
+    increaseQuantity = (prod) => {
+        this.cartService.addToCart(prod);
+        this.setState({cart: this.cartService.getCart()})
+    }
+
+    decreaseQuantity = (prod) => {
+        this.cartService.removeFromCart(prod);
+        this.setState({cart: this.cartService.getCart()});
+    }
+
+    clear = () => {
+        this.cartService.clearCart();
+        this.setState({cart: this.cartService.getCart()})
+    }
+
     render() {
         return (
             <div className="container"> 
@@ -47,8 +62,21 @@ export class MyCart extends React.Component {
                     {
                         this.state.cart.items.map((item, i) =>
                             <tr key={i}>
-                                <td>{item.quantity}</td>
-                                <td>{`${item.product.name} - `} <span className="price">{`$${item.product.price}/each`}</span> </td>
+                                <td>
+                                    <div className="row">
+                                        <div className="col-1">
+                                            <button type="button" className="btn btn-danger btn-sm" onClick={() => this.decreaseQuantity(item)}>-</button>
+                                        </div>
+                                        <div className="col-1">
+                                            {item.quantity}
+                                        </div>
+                                        <div className="col-1 plus-btn">
+                                            <button type="button" className="btn btn-success btn-sm" onClick={() => this.increaseQuantity(item)}>+</button>
+                                        </div>
+                                    </div>
+                                    
+                                </td>
+                                <td>{`${item.product.productName} - `} <span className="price">{`$${item.product.price}/each`}</span> </td>
                                 <td>{`$${item.totalPrice}`}</td>
                             </tr>
                         )
@@ -64,6 +92,10 @@ export class MyCart extends React.Component {
                     <div className="col">
                         <Link to="/home">Return to homepage</Link>
                     </div>
+                    <div className="col">
+                        <button type="button" className="btn btn-danger" onClick={this.clear}>Clear cart</button>
+                    </div>    
+                    
                     <div className="col">
                         <button type="button" className="btn btn-success float-right" onClick={this.handleOrder}>Complete Order</button>
                     </div>

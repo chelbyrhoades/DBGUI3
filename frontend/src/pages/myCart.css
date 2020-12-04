@@ -5,3 +5,7 @@
 .price {
     opacity: 50%;
 }
+
+.col-1.plus-btn {
+    padding-left: 0em;
+}

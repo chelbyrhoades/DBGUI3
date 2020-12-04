@@ -25,9 +25,23 @@ export class CartService {
             return window.cart.items;
     }
 
+    removeFromCart(product) {
+        let cart = window.cart || new Cart();
+        let existing = cart.items.find(x => x.product.id == product.id);
+        if (existing) {
+            existing.quantity -= 1;
+            existing.totalPrice = existing.product.price * existing.quantity;
+        }
+        cart.total = cart.items.map(x => x.totalPrice).reduce((x, y) => x + y);
+        window.cart = cart;
+    }
+
     clearCart() {
-        if (window.cart)
+        if (window.cart) {
             window.cart.items = [];
+            window.cart.items.totalPrice = 0;
+            window.cart.total = 0;
+        }
     }
 }
 
