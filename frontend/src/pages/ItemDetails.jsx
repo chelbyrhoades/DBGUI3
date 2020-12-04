@@ -36,7 +36,7 @@ function ItemDetails(props) {
                                     onClick={ () =>  cartService.addToCart(item)}>
                                         Add to Cart
                                 </Link>
-                                <Link to={`/distInfo/${item.listingID}`} className="btn btn-secondary btn-lg">More info</Link>
+                                
                             </div>
                         </div>
                     </div>
@@ -45,6 +45,7 @@ function ItemDetails(props) {
         </div>);
     /*
     return (
+        <Link to={`/distInfo/${item.listingID}`} className="btn btn-secondary btn-lg">More info</Link>
     <div className="card"
     {item.name}>
         <div className="card-header">
