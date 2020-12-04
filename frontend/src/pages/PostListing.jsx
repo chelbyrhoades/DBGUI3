@@ -29,7 +29,7 @@ export class PostListing extends React.Component{
           quantity: '',
           imageUrl: '',
           price: '',
-          location: '',
+          country: '',
         }
       };
     
@@ -92,17 +92,17 @@ export class PostListing extends React.Component{
                 <label htmlFor="prod-loc">Location</label>
                 <input className="form-control"
                     type="text" 
-                    name="location" 
+                    name="country" 
                     id="prod-loc"
-                    value={this.state.location}
-                    onChange={e => this.setState({location: e.target.value})}
+                    value={this.state.country}
+                    onChange={e => this.setState({country: e.target.value})}
                 />
                 <label htmlFor="prod-img">Product image URL</label>
                 <input className="form-control"
                     type="text" 
                     name="imgurl" 
                     id="prod-img"
-                    value={this.state.imgurl}
+                    value={this.state.imgURL}
                     onChange={e => this.setState({imgurl: e.target.value})}
                 />
                 <label>Confirm with your Distributor Name</label>

@@ -36,7 +36,15 @@ const HomeSearch = props => {
                 <div className="col-6">
                     
                 
-
+                <div className="form-group">
+                        <label htmlFor="name">Product Type</label>
+                        <input type="text"
+                            id="ppeType"
+                            name="ppeType"
+                            className="form-control"
+                            value={productID}
+                            onChange={event => setPPe(event.target.value)} />
+                    </div>
                     <div className="col-6">
                     <div className="form-group">
                         <label htmlFor="name">Item Type</label>
