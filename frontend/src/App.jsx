@@ -53,6 +53,7 @@ function App() {
             <Route path="/user/edit/:userId" component={EditProfile}/>
             <Route path="/user/:userId" component={UserProfile}/>
             <Route path="/orders/:userId" component={OrderHistory}/>
+            <Route path="/distributors/:userId" component={DistributorListings}/>
             <Route path="/cart" component={MyCart}/>
             <Route path="/" render={() => <Login onLogin={onLogin}/>}/>
         </Switch>

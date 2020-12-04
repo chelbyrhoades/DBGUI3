@@ -17,12 +17,13 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
         
         data: {
             name: "",
-        email: "",
-        typeName: "",
-        phone: "",
-        country: "",
-        streetAddress: ""
+            email: "",
+            typeName: "",
+            phone: "",
+            country: "",
+            streetAddress: ""
         }
+
     };
     handleNameChange(e){
         this.setState({name:e.target.value})
@@ -55,9 +56,24 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
                         <li className="list-group-item">{`Country: ${this.state.data.country}`}</li>
                     </ul>
                     <div className="card-body">
-                    <Link to={`/user/edit/${this.props.match.params.userId}`} className="btn btn-primary float-right">Edit profile</Link>
-                    <Link type="button" className="btn btn-primary" to={`/orders/${this.props.match.params.userId}`}>Prev Order</Link>
-                        <Link to="/home">Return to homepage</Link>
+                        <div className="row">
+                            <div className="col">
+                                <Link to="/home">Return to homepage</Link>
+                            </div>
+                            <div className="col">
+                                <Link to={`/orders/${this.props.match.params.userId}`} className="btn btn-primary">My orders</Link>
+                            </div>
+                            {this.state.data.typeName === "distributor" && 
+                            <>
+                                <div className="col">
+                                    <Link to={`/distributors/${this.props.match.params.userId}`} className="btn btn-primary">My listings</Link>
+                                </div>
+                                <div className="col">
+                                    <Link to={"/createListing"} className="btn btn-primary float-right">Create a listing</Link>
+                                </div>
+                            </>
+                            }
+                        </div>
                         
                     </div>
                 </div>

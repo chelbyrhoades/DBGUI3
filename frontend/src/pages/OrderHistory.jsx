@@ -68,6 +68,12 @@ export class OrderHistory extends React.Component{
         
         )}
 //{
+    /*
+    <h3>Order History</h3>
+                {
+                    this.state.orders.map( x => <Order order={x}/> )
+                }
+    */
                     
 //}this.state.orders.map( x => <Order order={x}/> )
     componentDidMount() {
@@ -82,7 +88,13 @@ export class OrderHistory extends React.Component{
        // .then(data => {
       //      this.setState({orders: data});
       //  })
-    }
+      /*
+        this.repo.getOrders(window.cookie)
+        .then(data => {
+            this.setState({orders: data});
+        })
+        */
+}
 
 }
 export default withRouter(OrderHistory);

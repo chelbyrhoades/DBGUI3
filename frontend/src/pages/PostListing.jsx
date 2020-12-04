@@ -29,29 +29,25 @@ export class PostListing extends React.Component{
           quantity: '',
           imageUrl: '',
           price: '',
-          country: '',
         }
       };
     
       //function that calls on axios to push a new listing
       onSave(product){
-        this.repository.postNewListing(this.state)
+        let body = {
+          name: this.state.name,
+          quantity: this.state.quantity,
+          imageURL: this.state.imageUrl,
+          price: this.state.price,
+          cookie: window.cookie
+        }
+        this.repository.postNewListing(body)
                 .then(() => {
                     alert('Listing added!');
-                    this.setState({ redirect: '/home' });
                 
                 })
                 .catch(err => alert(err));
                 
-        }
-      goHome(){
-
-      }
-
-
-
-      componentDidMount = () => {   //NEED TO EDIT AND ADD A CALL METHOD TO EDIT ITEMS WITHIN SYSTEM - move to repository API
-        //put axios call here
       }
 
     //need method that returns all the products from the selected distributor ID
@@ -115,11 +111,12 @@ export class PostListing extends React.Component{
                         onChange={event => this.setState({Distributorname: event.target.value })} />
                 <div className="row">
                   <div className="col">
-                    <button type="button"
+                    <Link type="button"
                           className="btn btn-success btn-block"
+                          to="/home"
                           onClick={() => this.onSave()}>
                           Save
-                    </button>
+                    </Link>
                   </div>
                   <Link className="btn btn-link back-button col" to="/home">
                     Return Home

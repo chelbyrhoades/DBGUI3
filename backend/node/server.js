@@ -449,7 +449,7 @@ app.post('/listings', (req, res) => {
 			return;
 		};
 
-		connection.query(`INSERT INTO listing (price, quantity, user_userID, imageURL, location, cookie) VALUES (${req.body.price},${req.body.quantity},${idFromCookie(req.body.cookie)})`,
+		connection.query(`INSERT INTO listing (price, quantity, user_userID, productName, imageURL, cookie) VALUES (${req.body.price},${req.body.quantity},${idFromCookie(req.body.cookie)})`,
 		(err, rows, fields) => {
 			if (err) {
 				res.status(500).send(err);
@@ -462,7 +462,20 @@ app.post('/listings', (req, res) => {
 
 //GET /listings/{listingID}
 app.get('/listings/:id', (req, res) => {
-	connection.query(`SELECT listingID, productName, productID, price, quantity, imageURL, email, name, phone, country FROM listing WHERE listingID = ${req.params.id} INNER JOIN user ON listing.user_userID = user.userID`, 
+	connection.query(`SELECT listingID, productName, productID, price, quantity, imageURL FROM listing WHERE listingID = ${req.params.id} INNER JOIN user ON listing.user_userID = user.userID`, 
+	(err, rows, fields) => {
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
+		if (rows.length === 0) res.status(404).send();
+		else res.status(200).send(JSON.stringify(rows[0]));
+	});
+});
+
+//GET /distributors/{id}   returns the listings from a specific distributor with given id
+app.get('/distributors/:id', (req, res) => {
+	connection.query(`SELECT * FROM listing WHERE userID = ${req.params.id}`, 
 	(err, rows, fields) => {
 		if (err) {
 			res.status(500).send(err);
