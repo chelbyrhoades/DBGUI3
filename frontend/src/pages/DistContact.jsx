@@ -17,7 +17,11 @@ class DistContact extends React.Component{
     repo = new Repository();
     cartService = new CartService();
     state = {
-
+        productNameL: '',
+        nameL: '',
+        items: [{
+            
+                listingID: 0,//address /distribut
                 phone: "",
                 imageURL: "",
                 productName: "",
@@ -28,8 +32,39 @@ class DistContact extends React.Component{
                 price: 0,
                 quantity: 0
             
+        }],
+        foundIt: [{
+            listingID: 0,//address /distribut
+                phone: "",
+                imageURL: "",
+                productName: "",
+                name: "",           //distributor's personal name
+                listingID: 0,
+                email: "",
+                productID: 0,
+                price: 0,
+                quantity: 0
+        }]
+        ,
+                phone: "",
+                imageURL: "",
+                productName: "",
+                name: "",           //distributor's personal name
+                listingID: 0,
+                email: "",
+                productID: 0,
+                price: 0,
+                quantity: 0,
+            
         
     };
+    
+    b(idToSearch) {
+        return this.state.items.filter(item => {
+          return item.listingID === idToSearch
+        })
+      };
+      
     
     render() {
     return (
@@ -40,9 +75,9 @@ class DistContact extends React.Component{
             </div>
             <div className="card-body">
             <h2>Contact Info</h2>
-            <h3><strong>Distributor: {this.state.name}</strong></h3>
-            <p>Phone:  {this.state.phone}</p>
-            <p>Email: {this.state.email} </p>
+            <h3><strong>Distributor: {this.state.foundIt.name}</strong></h3>
+            <p>Phone:  {this.state.foundIt.phone}</p>
+            <p>Email: {this.state.foundIt.email} </p>
 
             </div>
             </div>
@@ -53,19 +88,23 @@ class DistContact extends React.Component{
     }
     componentDidMount(){
         const id = this.props.match.params.listingID;
-        this.repo.getListing(id)
+        this.repo.getListing(this.props.match.params.listingID)
         .then(data => {
             this.setState({
-                phone: data.phone,
-                name: data.name,
-                productName: data.productName,
-                price: data.price,
-                quantity: data.quantity,
-                imageURL: data.imageURL
-
+                productNameL: data.productName,
+                nameL: data.name
             })
         })
+        console.log(this.productNameL);
+        console.log(this.nameL);
+        console.log(this.listingID);
         console.log("distributor contact mounted");
+        this.repo.getListings()
+        .then(productData => this.setState({items: productData})  //[0]
+        );
+        this.state.foundIt = this.b(this.id);
+        
+        
     }
 }
 

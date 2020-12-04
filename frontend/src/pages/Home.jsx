@@ -4,7 +4,7 @@ import {ItemDetails} from "./ItemDetails";
 import {Item} from "../models/Item"
 import {Repository} from '../api/repository';
 import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
-import HomeSearch from './HomeSearch.js';
+import { PollList} from './HomeSearch.js';
 import CartService from '../services/cartService';
 
 
@@ -38,17 +38,46 @@ export class Home extends React.Component {
                 imageURL: "",
                 productName: "",
                 name: "",           //distributor's personal name
-                listingID: 0,
                 email: "",
                 productID: 0,
                 price: 0,
-                quantity: 0
+                quantity: 0,
+                ppeType: ""
             }
         ]
             
     
     }
 
+    checkProductName(){
+        for (var i = 0; i < this.state.items.length; i++) {
+            if(this.state.items[i].productName.includes('Mask')){
+                this.state.items[i].ppeType = "Mask";
+                console.log(this.state.items[i].ppeType);
+            }else if(this.state.items[i].productName.includes('Face Shield') || this.state.items[i].productName.includes('Face Protector')){
+                this.state.items[i].ppeType = "Face Shield";
+                console.log(this.state.items[i].ppeType);
+            }else if(this.state.items[i].productName.includes('Gloves')){
+                this.state.items[i].ppeType = "Gloves";
+                console.log(this.state.items[i].ppeType);
+            
+            }else if(this.state.items[i].productName.includes('Thermometer')){
+                this.state.items[i].ppeType = "Thermometer";
+                console.log(this.state.items[i].ppeType);
+
+            }else{
+                this.state.items[i].ppeType = "Into the Unknown";
+                console.log(this.state.items[i].ppeType);
+                console.log(this.state.items[i].productName);
+            }
+          }
+        
+        }
+
+    getAllListings(){
+        return this.state.items;
+    }
+    
 
     onAddToCart(item){
         if(window.confirm("Would you like to add this item to your cart?")){
@@ -60,6 +89,7 @@ export class Home extends React.Component {
         .then(productData => this.setState({items: productData})  //[0]
         );
         console.log("products are mounted");
+        
     }
 
     onSearch(params) {//getListingParams(params){
@@ -72,8 +102,9 @@ export class Home extends React.Component {
         return (
             <div className="container pt-3">
                 <h1>PPE Home</h1>
+                {this.checkProductName()}
             <div className="clearfix"></div>
-                <Link to="/cart">Cart </Link>
+                <Link to="/cart"><button className="btn btn-primary btn-lg">Cart</button></Link>
             <div className="col-8">
             <div className="pb-3">
                 <Router>
@@ -81,18 +112,18 @@ export class Home extends React.Component {
                         <Link to="/search">
                             <button className="btn btn-secondary btn-lg">Filter Products...</button>
                             </Link> } />
-                    <Route path="/search" render={ props => 
-                        <HomeSearch onSearch={ params => this.onSearch(params) } { ...props } /> } />
+                    
+                        
                 </Router>
-            </div>    
-            <ItemDetails items={ this.state.items } onAdd={item => this.onAddToCart(item) }></ItemDetails>
             </div>
             
+            <ItemDetails items={ this.state.items }   onAdd={item => this.onAddToCart(item) }></ItemDetails>
             </div>
+        </div>
 
         
         );
     }
 
 }
-
+//<Route path="/search" render={ props => <PollList /> <PollList getListSearch= {this.getAllListings()} onSearch={ params => this.onSearch(params) } { ...props } /> } /></div>

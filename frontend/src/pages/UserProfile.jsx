@@ -56,6 +56,7 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
                     </ul>
                     <div className="card-body">
                     <Link to={`/user/edit/${this.props.match.params.userId}`} className="btn btn-primary float-right">Edit profile</Link>
+                    <Link type="button" className="btn btn-primary" to={`/orders/${this.props.match.params.userId}`}>Prev Order</Link>
                         <Link to="/home">Return to homepage</Link>
                         
                     </div>
@@ -65,6 +66,7 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
             
         );
     }//end render
+    //${props.uid}
     
 }//end userProfile class
 export default withRouter(UserProfile);
