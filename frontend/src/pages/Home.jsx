@@ -4,7 +4,7 @@ import {ItemDetails} from "./ItemDetails";
 import {Item} from "../models/Item"
 import {Repository} from '../api/repository';
 import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
-import { PollList} from './HomeSearch.js';
+import  HomeSearch from './HomeSearch.js';
 import CartService from '../services/cartService';
 
 
@@ -107,17 +107,20 @@ export class Home extends React.Component {
                 <Link to="/cart"><button className="btn btn-primary btn-lg">Cart</button></Link>
             <div className="col-8">
             <div className="pb-3">
+            <div className="pb-3">
+                <HomeSearch onSearch={ params => this.onSearch(params) }/>
+            </div>
                 <Router>
                     <Route path="/home" exact render={ () =>
                         <Link to="/search">
                             <button className="btn btn-secondary btn-lg">Filter Products...</button>
                             </Link> } />
-                    
+                            <ItemDetails items={ this.state.items }   onAdd={item => this.onAddToCart(item) }></ItemDetails>
                         
                 </Router>
             </div>
             
-            <ItemDetails items={ this.state.items }   onAdd={item => this.onAddToCart(item) }></ItemDetails>
+            
             </div>
         </div>
 

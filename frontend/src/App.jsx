@@ -13,7 +13,7 @@ import  EditProfile  from './pages/EditProfile.jsx';
 import  UserProfile  from './pages/UserProfile.jsx';
 import { User } from "./models/User";
 import { MyCart } from './pages/myCart';
-import {PollList} from './pages/HomeSearch';
+import {HomeSearch} from './pages/HomeSearch';
 import { DistributorListings } from './pages/DistributorListings';
 import DistContact from './pages/DistContact';
 
@@ -22,6 +22,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [uid, setUid] = useState(-1);
   const [cookie, setCookie] = useState("");
+
 
   function onLogin(id) {
     setUid(id);

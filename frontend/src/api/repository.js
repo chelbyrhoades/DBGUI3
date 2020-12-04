@@ -41,6 +41,8 @@ export class Repository {
         })
     }
 
+
+
     getAccount(id) {
         return new Promise((resolve, reject) => {
             axios.get(`${this.url}/account/${id}`)
@@ -149,6 +151,17 @@ export class Repository {
     getOrders(uid) {
         return new Promise((resolve, reject) => {
             axios.get(`${this.url}/orders/${uid}`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        });
+    }
+
+    getAllOrders(){
+        return new Promise((resolve, reject) => {
+            axios.get(`${this.url}/orders/all`, this.config)
             .then(x => resolve(x.data))
             .catch(e => {
                 alert(e);
