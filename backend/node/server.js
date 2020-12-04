@@ -207,16 +207,6 @@ function updateUserAddress(id, args, r) {
 
 };
 
-app.get('/command/:comm', (req, res) => {
-	//DO NOT forget to delete this before submitting
-	connection.query(req.params.comm, 
-	function (err, rows, fields) {
-		if (err) res.status(400).send( err );
-		else res.status(200).send(JSON.stringify(rows));
-	});
-
-});
-
 //POST /login
 app.post('/login', (req, res) => {
 	//Check if the username and password are valid
@@ -404,7 +394,7 @@ app.get('/listings', (req, res) => {
 	const isNum = v => !isNaN(Number(v));
 
 	let where = false;
-	let query = 'SELECT listingID, email, productID, price, quantity FROM listing INNER JOIN user ON listing.user_userID = user.userID';
+	let query = 'SELECT listingID, email, productName, productID, price, quantity, imageURL FROM listing INNER JOIN user ON listing.user_userID = user.userID';
 	if (!empty(req.body.country)) {
 		query = query + (!where ? " WHERE " :" AND ") + `country = '${req.body.country}'`;
 		where = true; 
@@ -459,7 +449,7 @@ app.post('/listings', (req, res) => {
 			return;
 		};
 
-		connection.query(`INSERT INTO listing (productID, price, quantity, user_userID) VALUES (${req.body.productID},${req.body.price},${req.body.quantity},${idFromCookie(req.body.cookie)})`,
+		connection.query(`INSERT INTO listing (price, quantity, user_userID, productName, imageURL, cookie) VALUES (${req.body.price},${req.body.quantity},${idFromCookie(req.body.cookie)})`,
 		(err, rows, fields) => {
 			if (err) {
 				res.status(500).send(err);
@@ -472,7 +462,7 @@ app.post('/listings', (req, res) => {
 
 //GET /listings/{listingID}
 app.get('/listings/:id', (req, res) => {
-	connection.query(`SELECT * FROM listing WHERE listingID = ${req.params.id}`, 
+	connection.query(`SELECT listingID, productName, productID, price, quantity, imageURL FROM listing WHERE listingID = ${req.params.id} INNER JOIN user ON listing.user_userID = user.userID`, 
 	(err, rows, fields) => {
 		if (err) {
 			res.status(500).send(err);
@@ -514,7 +504,7 @@ app.post('/listings/:id', (req, res) => {
 			}
 			if (rows.length === 0) res.status(400).send("id or quantity invalid");
 			else {
-				connection.query(`INSERT INTO orders (datetime, country, productID, quantity, buyerID, sellerID, addressID, orderStatus) VALUES (now(), (SELECT country FROM user WHERE userID = ${id} LIMIT 1), (SELECT productID FROM listing WHERE listingID = ${req.params.id} LIMIT 1), ${req.body.quantity}, (SELECT user_userID FROM listing WHERE listingID = ${req.params.id} LIMIT 1), ${id}, (SELECT id FROM address WHERE user_userID = ${id} ORDER BY id DESC LIMIT 1), "Pending")`,
+				connection.query(`INSERT INTO orders (datetime, productID, quantity, buyerID, sellerID, addressID, orderStatus) VALUES (now(), (SELECT productID FROM listing WHERE listingID = ${req.params.id} LIMIT 1), ${req.body.quantity}, (SELECT user_userID FROM listing WHERE listingID = ${req.params.id} LIMIT 1), ${id}, (SELECT id FROM address WHERE user_userID = ${id} ORDER BY id DESC LIMIT 1), "Pending")`,
 				(err, rows, fields) => {
 					if (err) {
 						res.status(500).send(err);
