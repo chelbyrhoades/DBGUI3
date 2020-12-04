@@ -109,15 +109,8 @@ export class Home extends React.Component {
             <div className="pb-3">
             <div className="pb-3">
                 <HomeSearch onSearch={ params => this.onSearch(params) }/>
+                <ItemDetails items={ this.state.items }   onAdd={item => this.onAddToCart(item) }></ItemDetails>
             </div>
-                <Router>
-                    <Route path="/home" exact render={ () =>
-                        <Link to="/search">
-                            <button className="btn btn-secondary btn-lg">Filter Products...</button>
-                            </Link> } />
-                            <ItemDetails items={ this.state.items }   onAdd={item => this.onAddToCart(item) }></ItemDetails>
-                        
-                </Router>
             </div>
             
             
