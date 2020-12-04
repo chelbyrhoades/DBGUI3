@@ -80,6 +80,7 @@ export function PollList(props) {
             <h3 className="card-body">
                 Search for a Product
             </h3>
+            <div className= "row">
             <div className="polls">
         <button onClick={() => showShields()}>Shields</button>
 
@@ -87,6 +88,7 @@ export function PollList(props) {
         <button onClick={() => showMasks()}>Masks</button>
         <button onClick={() => showGloves()}>Gloves</button>
         <button onClick={() => removeFiter()}>Reset Filter</button>
+        </div>
 
         {
           filteredPolls && filteredPolls.map((poll) => (

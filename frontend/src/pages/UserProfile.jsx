@@ -60,9 +60,6 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
                             <div className="col">
                                 <Link to="/home">Return to homepage</Link>
                             </div>
-                            <div className="col">
-                                <Link to={`/orders/${this.props.match.params.userId}`} className="btn btn-primary">My orders</Link>
-                            </div>
                             {this.state.data.typeName === "distributor" && 
                             <>
                                 <div className="col">

@@ -49,11 +49,13 @@ class EditProfile extends React.Component{
     }
     componentDidMount() {
         //getting current user details so that they can update them
-        const id = this.props.match.params.id;
+        const id = this.props.match.params.userId;
         this.repo.getAccountInfo(id)
         .then(userData => this.setState({data: userData[0]})
         
         );
+        console.log("user profile mounted");
+        
     }
     render() {
         return <form className="container">
