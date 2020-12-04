@@ -20,7 +20,7 @@ function ItemDetails(props) {
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-8">
-                                    <span className="card-text badge badge-pill badge-primary"><h3><strong>{item.price}.00</strong></h3></span>
+                                    <span className="card-text badge badge-pill badge-primary"><h3><strong>{`$${item.price}.00`}</strong></h3></span>
                                     <p className="card-text"><strong>Type:</strong> {item.PpeType}</p>
                                     <p className="card-text"><strong>Stock:</strong> {item.quantity}</p>
                                      <p className="card-text"><strong>Location: </strong>{item.country}</p>
@@ -36,7 +36,7 @@ function ItemDetails(props) {
                                     onClick={ () =>  cartService.addToCart(item)}>
                                         Add to Cart
                                 </Link>
-                                <Link to={`/distInfo/${item.listingID}`} className="btn btn-secondary btn-lg">More info</Link>
+                                
                             </div>
                         </div>
                     </div>
@@ -45,6 +45,7 @@ function ItemDetails(props) {
         </div>);
     /*
     return (
+        <Link to={`/distInfo/${item.listingID}`} className="btn btn-secondary btn-lg">More info</Link>
     <div className="card"
     {item.name}>
         <div className="card-header">
