@@ -188,7 +188,7 @@ export class OrderHistory extends React.Component{
             <div>
                 <Link to="/home">Return</Link>
                 <div className = "container">
-                <h1>What Customers are Ordering</h1>
+                <h1>My Orders</h1>
                 {this.state.dummyData.map(d => 
                     <div key={d.transID}>
                         <div className = "card">

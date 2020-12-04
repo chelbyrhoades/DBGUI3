@@ -104,8 +104,6 @@ class DistContact extends React.Component{
         );
         this.state.foundIt = this.b(this.id);
         
-        this.repo.getAccount(this.props.match.params)
-        
     }
 }
 

@@ -7,7 +7,23 @@ export class DistributorListings extends React.Component {
     repo = new Repository();
 
     state = {
-        listings: []
+        listings: [
+            {name: "Super masks",
+            price: 15,
+            quantity: 500,
+            location: "Dallas",
+            id: 1,
+            imgurl: "https://m.media-amazon.com/images/I/71Uq8Az+tYL._AC_UL320_.jpg",
+            distributorName: "PPE Co."},
+            {name: "Super masks",
+            price: 15,
+            quantity: 500,
+            location: "Dallas",
+            id: 2,
+            imgurl: "https://m.media-amazon.com/images/I/71Uq8Az+tYL._AC_UL320_.jpg",
+            distributorName: "PPE Co."},
+
+        ]
     }
 
     render() {
