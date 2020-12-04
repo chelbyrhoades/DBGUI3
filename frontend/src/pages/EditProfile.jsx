@@ -58,7 +58,73 @@ class EditProfile extends React.Component{
         
     }
     render() {
-        return <form className="container">
+        return( 
+            <form className="container">
+                <div className="form-group">
+                <div className= "card">
+                <div className= "card-title">
+                    <h1>Account Details Editor</h1>
+                </div>
+                <label>
+                    <strong>Name: </strong>{this.state.data.name}
+                <input type="text"
+                    id="name"
+                    name="name"
+                    className="form-control"
+                    onChange={ event => this.setState({ name: event.target.value }) } />
+                </label>
+
+                <label>
+                    <strong>Email: </strong>{this.state.data.email}
+                <input type="text"
+                    id="email"
+                    name="email"
+                    className="form-control"
+                    onChange={ event => this.setState({ email: event.target.value }) } />
+                </label>
+
+                
+                <label>
+                    <strong>Address: </strong>{this.state.data.streetAddress}
+                <input type="text"
+                    id="addr"
+                    name="addr"
+                    className="form-control"
+                    onChange={ event => this.setState({ streetAddress: event.target.value }) } />
+                </label>
+
+                <label>
+                    <strong>Country: </strong>{this.state.data.country}
+                <input type="text"
+                    id="addr"
+                    name="addr"
+                    className="form-control"
+                    onChange={ event => this.setState({ country: event.target.value }) } />
+                </label>
+
+
+                <label>
+                    <strong>Phone Number: </strong>{this.state.data.phone}
+                <input type="text"
+                    id="addr"
+                    name="addr"
+                    className="form-control"
+                    onChange={ event => this.setState({phone: event.target.value }) } />
+                </label>
+
+                    <input type="submit" value="Submit" />
+                    </div>
+                    </div>
+                </form>
+        
+        
+        )}
+    
+}
+export default withRouter(EditProfile);
+/*
+
+        <form className="container">
             <h1>Edit Profile</h1>
             <div className="form-group">
                 <label htmlFor="name">Name</label>
@@ -118,7 +184,4 @@ class EditProfile extends React.Component{
             
             {this.state.deleting && <Redirect to="/"/>}
         </form>;
-    }
-    
-}
-export default withRouter(EditProfile);
+*/
