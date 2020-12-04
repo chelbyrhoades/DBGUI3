@@ -1,15 +1,17 @@
 import React from 'react';
 import './Home.css';
-import ItemDetails from "./ItemDetails";
+import {ItemDetails} from "./ItemDetails";
 import {Item} from "../models/Item"
 import {Repository} from '../api/repository';
 import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import HomeSearch from './HomeSearch.js';
+import CartService from '../services/cartService';
 
 
 
 export class Home extends React.Component {
     repo = new Repository;
+    cartService = new CartService();
     /*{"listingID":1,"productID":1,
     "price":15,
     "quantity":250,
@@ -31,6 +33,7 @@ export class Home extends React.Component {
     state = {
         items: [
             {
+                listingID: 0,//address /distribut
                 phone: "",
                 imageURL: "",
                 productName: "",
@@ -43,7 +46,14 @@ export class Home extends React.Component {
             }
         ]
             
-        
+    
+    }
+
+
+    onAddToCart(item){
+        if(window.confirm("Would you like to add this item to your cart?")){
+            this.cartService.addToCart(item)
+        }
     }
     componentDidMount() {
         this.repo.getListings()
@@ -52,11 +62,10 @@ export class Home extends React.Component {
         console.log("products are mounted");
     }
 
-    onSearch(params) {
-        this.repo.getListings(params)
-        .then(productData => this.setState({items: productData}));
+    onSearch(params) {//getListingParams(params){
+        this.repo.getListingParams(params)
+        .then(productData => this.setState({productData}));
     }
-
 
     render() {
 
@@ -64,7 +73,7 @@ export class Home extends React.Component {
             <div className="container pt-3">
                 <h1>PPE Home</h1>
             <div className="clearfix"></div>
-            
+                <Link to="/cart">Cart </Link>
             <div className="col-8">
             <div className="pb-3">
                 <Router>
@@ -76,17 +85,9 @@ export class Home extends React.Component {
                         <HomeSearch onSearch={ params => this.onSearch(params) } { ...props } /> } />
                 </Router>
             </div>    
-                
+            <ItemDetails items={ this.state.items } onAdd={item => this.onAddToCart(item) }></ItemDetails>
             </div>
-            <div className="container items-grid">
-                {//this.state.data.address}
-                    this.state.items.map((x, i) => 
-                        (<div key={i}>
-                            <ItemDetails item={x}/>
-                        </div>)
-                    )
-                }
-            </div>
+            
             </div>
 
         

@@ -55,6 +55,7 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
                         <li className="list-group-item">{`Country: ${this.state.data.country}`}</li>
                     </ul>
                     <div className="card-body">
+                    <Link to={`/user/edit/${this.props.match.params.userId}`} className="btn btn-primary float-right">Edit profile</Link>
                         <Link to="/home">Return to homepage</Link>
                         
                     </div>
@@ -68,5 +69,5 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
 }//end userProfile class
 export default withRouter(UserProfile);
 /*<div className="col">
-<Link to={`/user/edit/${this.props.match.params.userId}`} className="btn btn-primary float-right">Edit profile</Link>
+
 </div>*/

@@ -17,10 +17,7 @@ function handleSort(ascending) {
     } )
  }
 const HomeSearch = props => {
-  const [ location, setLocation] = useState([]);
-  const [ productID, setPPe] = useState([]);
-  const [ itemType, setName ] = useState([]);
-  const  [ Distributorname, setDist ] = useState([]);
+  const [productName, setProductName] = useState([]);
   
     function searchSpace(event) {
         let keyword = event.target.value;
@@ -31,47 +28,25 @@ const HomeSearch = props => {
             <h3 className="card-body">
                 Search for a Product
             </h3>
+            
            
             <div className="row">
                 <div className="col-6">
                     
                 
                 <div className="form-group">
-                        <label htmlFor="name">Product Type</label>
+                        <label htmlFor="name">Product Name</label>
                         <input type="text"
-                            id="ppeType"
-                            name="ppeType"
+                            id="pName"
+                            name="pName"
                             className="form-control"
-                            value={productID}
-                            onChange={event => setPPe(event.target.value)} />
+                            value={productName}
+                            onChange={event => setProductName(event.target.value)} />
                     </div>
-                    <div className="col-6">
-                    <div className="form-group">
-                        <label htmlFor="name">Item Type</label>
-                        <input type="text"
-                            id="itemType"
-                            name="itemType"
-                            className="form-control"
-                            value={Distributorname}
-                            onChange={event => setDist(event.target.value)} />
-                    </div>
-                    </div>
-
-
-                    <div className="col-6">
-                    <div className="form-group">
-                        <label htmlFor="name">Location</label>
-                        <input type="text"
-                            id="itemType"
-                            name="itemType"
-                            className="form-control"
-                            value={location}
-                            onChange={event => setLocation(event.target.value)} />
-                    </div>
-                    </div>
+                    
                     <button className="btn btn-primary"
                     type="button"
-                    onClick={() => props.onSearch({ itemType, productID, Distributorname, location })}>Search</button>
+                    onClick={() => props.onSearch({ productName })}>Search</button>
                     <Link to="/home"><button type="button" class="btn btn-warning">
                         Cancel
                     </button>

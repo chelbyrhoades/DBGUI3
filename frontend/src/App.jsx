@@ -45,7 +45,7 @@ function App() {
         <Switch>
             <Route path="/create" component={CreateAccount}/>
             <Route path="/search" component={HomeSearch}/>
-            <Route path= "/distInfo" component = {DistContact}/>
+            <Route path= "/distInfo/:listingID" component = {DistContact}/>
             <Route path="/orders/:orderId" component={OrderHistory}/>
             <Route path="/home" component={Home}/>
             <Route path="/listings/:id" component={DistributorListings}/>
