@@ -459,7 +459,7 @@ app.post('/listings', (req, res) => {
 			return;
 		};
 
-		connection.query(`INSERT INTO listing (price, quantity, user_userID) VALUES (${req.body.price},${req.body.quantity},${idFromCookie(req.body.cookie)})`,
+		connection.query(`INSERT INTO listing (price, quantity, user_userID, imageURL, location, cookie) VALUES (${req.body.price},${req.body.quantity},${idFromCookie(req.body.cookie)})`,
 		(err, rows, fields) => {
 			if (err) {
 				res.status(500).send(err);
