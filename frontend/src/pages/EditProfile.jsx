@@ -19,6 +19,7 @@ class EditProfile extends React.Component{
         }
     };
     //edit profile - updates current info and sends to POST
+    /*
     onSave() {
         if (this.state.id) {
             this.repo.updateAccount(this.state.id, this.state)
@@ -33,7 +34,7 @@ class EditProfile extends React.Component{
                 this.setState({ Redirect: '/home'});
             });
         }
-    }
+    }*/
     onDelete() {
         this.setState({deleting: true});
         if(this.state.id){
@@ -46,6 +47,29 @@ class EditProfile extends React.Component{
         }else if(this.state.deleting == false){
             this.repo.deleteAccount();
         }
+    }
+    changeAcc(){
+
+        //Test if fields are filled correctly
+        this.setState({error: this.evalErrors()});
+
+        if (this.evalErrors() == "") {
+            this.setState({success: true});
+        }
+        else
+            return;
+        //addAccount(state)
+        let json = {
+            name: this.state.data.name,
+            email: this.state.data.email,
+            phone: this.state.data.phone,
+            country: this.state.data.country,
+            streetAddress: this.state.data.streetAddress,
+        }
+        this.repo.addAccount(json);
+        console.log('updated account');
+        
+        //calls on the backend to update the account
     }
     componentDidMount() {
         //getting current user details so that they can update them
@@ -111,10 +135,23 @@ class EditProfile extends React.Component{
                     className="form-control"
                     onChange={ event => this.setState({phone: event.target.value }) } />
                 </label>
+                <div className="col">
+                    <button type="button"
+                        className="btn btn-success float-right" 
+                        onClick={() => this.changeAcc()}>
+                        Save
+                    </button>
+                    <button type="button" className="btn btn-danger float-left " onClick={() => this.onDelete()}>
+                Delete Account
+            </button>
+                </div>
+                    </div>
+                    
+                    </div>
+                    
+                    {this.state.deleting && <Redirect to="/"/>}
+                    <Link to="/home">Return to homepage</Link>
 
-                    <input type="submit" value="Submit" />
-                    </div>
-                    </div>
                 </form>
         
         
@@ -173,7 +210,6 @@ export default withRouter(EditProfile);
                 <div className="col">
                     <button type="button"
                         className="btn btn-success float-right"
-                        onClick={() => this.onSave()}>
                         Save
                     </button>
                 </div>

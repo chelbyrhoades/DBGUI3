@@ -42,7 +42,8 @@ export class OrderHistory extends React.Component{
                 datetime: "",
                 productID: 0
             }
-        ]  //stores either all the user's previous orders or all user's orders
+        ],  //stores either all the user's previous orders or all user's orders
+        items: []
     }
     //making the date look visually pleasing
     getOrderDate(){
@@ -126,15 +127,27 @@ export class OrderHistory extends React.Component{
         }
     }
 
-//cards for each individual order  
     render() {
-        return (
-            <div className="container">
-                <div >
-                <Link to="/home">Return Home</Link>
-            {this.checkIfDist()}
-            <h1>Order History for {this.state.data.name}</h1>
+        return(
+            <div>
+                {this.userView()}
+            <Link to="/home">Return Home</Link>
             </div>
+        )
+        
+    }
+    
+    allOrders(){
+        this.repo.getAllOrders()
+        .then(productData => this.setState({items: productData})  //[0]
+        );
+    }
+
+    userView(){
+        if(this.dist == false){
+        return(
+            <div>
+            <h1>Order History for {this.state.data.name}</h1>
             <div className="card">
                 <div className = "card-title">
                     <h2>{`Product ID: ${this.state.orderData[0].productID}`}</h2>
@@ -151,10 +164,35 @@ export class OrderHistory extends React.Component{
                 </div>
                 </div>
             </div>
+        )}else{
+            return(
+                <div>
+                    <div className="card>">
+                    <h1>Customer Orders</h1>
+                    {this.allOrders()}
+                    {this.items.map(item => 
+                        <div key={item.transID}>
+                            </div>
+                        )}
+                    </div>
+                </div>
+                
+            )
+        }
+}
+//cards for each individual order  
+    
         
-        )}
-//{
+
     /*
+div>
+            <div className="container">
+                
+                
+                <div >
+            </div>
+
+
     <h3>Order History</h3>
                 {
                     this.state.orders.map( x => <Order order={x}/> )
@@ -170,12 +208,20 @@ export class OrderHistory extends React.Component{
         
         );
         console.log("user profile mounted");
+        this.checkIfDist()
+        if(this.dist == false){
+            //show user function
+            // this.repo.getOrders(id)
+        //.then(data => {
+        //   this.setState({orderData: data});
+        //})
+        //console.log("got the user's orders!");
+        }else {
+
+        }
+
         //var subS = window.cookie.substr(0,window.cookie.indexOf(':'));
-        this.repo.getOrders(id)
-        .then(data => {
-           this.setState({orderData: data});
-        })
-        console.log("got the user's orders!");
+       
 }
 
 }
