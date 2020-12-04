@@ -406,7 +406,7 @@ app.get('/listings', (req, res) => {
 	const isNum = v => !isNaN(Number(v));
 
 	let where = false;
-	let query = 'SELECT listingID, email, productName, productID, price, quantity, imageURL FROM listing INNER JOIN user ON listing.user_userID = user.userID';
+	let query = 'SELECT user_userID, listingID, email, productName, productID, price, quantity, imageURL FROM listing INNER JOIN user ON listing.user_userID = user.userID';
 	if (!empty(req.body.country)) {
 		query = query + (!where ? " WHERE " :" AND ") + `country = '${req.body.country}'`;
 		where = true; 
@@ -474,7 +474,7 @@ app.post('/listings', (req, res) => {
 
 //GET /listings/{listingID}
 app.get('/listings/:id', (req, res) => {
-	connection.query(`SELECT listingID, productName, productID, price, quantity, imageURL FROM listing WHERE listingID = ${req.params.id} INNER JOIN user ON listing.user_userID = user.userID`, 
+	connection.query(`SELECT user_userID, listingID, productName, productID, price, quantity, imageURL FROM listing WHERE listingID = ${req.params.id} INNER JOIN user ON listing.user_userID = user.userID`, 
 	(err, rows, fields) => {
 		if (err) {
 			res.status(500).send(err);
