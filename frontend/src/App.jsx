@@ -13,8 +13,9 @@ import  EditProfile  from './pages/EditProfile.jsx';
 import  UserProfile  from './pages/UserProfile.jsx';
 import { User } from "./models/User";
 import { MyCart } from './pages/myCart';
-import HomeSearch from './pages/HomeSearch';
+import {PollList} from './pages/HomeSearch';
 import { DistributorListings } from './pages/DistributorListings';
+import DistContact from './pages/DistContact';
 
 function App() {
 
@@ -36,14 +37,14 @@ function App() {
     return uid;
   }
   //<Route path= "/search">
-  //<HomeSearch/>
   return (
     <div>
       <Router>
         <Header loggedIn={loggedIn} uid={uid} onLogout={onLogout}/>
         <Switch>
             <Route path="/create" component={CreateAccount}/>
-            <Route path="/search" component={HomeSearch}/>
+            
+            <Route path= "/distInfo/:listingID" component = {DistContact}/>
             <Route path="/orders/:orderId" component={OrderHistory}/>
             <Route path="/home" component={Home}/>
             <Route path="/listings/:id" component={DistributorListings}/>

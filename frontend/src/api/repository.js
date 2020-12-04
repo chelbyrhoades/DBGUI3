@@ -99,7 +99,23 @@ export class Repository {
 
     getListing(id) {
         return new Promise((resolve, reject) => {
+            
             axios.get(`${this.url}/listings/${id}`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        });
+    }
+
+    getListingParams(params){
+        return new Promise((resolve, reject) => {
+            if (params) {
+                let config = this.config;
+                config.params = params;
+            }
+            axios.get(`${this.url}/listings/`, this.config)
             .then(x => resolve(x.data))
             .catch(e => {
                 alert(e);
