@@ -103,20 +103,12 @@ export class Home extends React.Component {
             <div className="container">
                 <h1>PPE Home</h1>
                 {this.checkProductName()}
-            <div className="clearfix"></div>
-            <div className="col-8">
-            <div className="pb-3">
-            <div className="pb-3">
+
             {this.state.searching && <HomeSearch onSearch={ params => this.onSearch(params) }/> }
-            </div>
 
             {!this.state.searching && <button className="btn btn-secondary btn-lg" onClick={() => this.setState({searching: true})}>Filter Products...</button>}
             <ItemDetails items={ this.state.items }/>
             </div>
-            
-            
-            </div>
-        </div>
 
         
         );

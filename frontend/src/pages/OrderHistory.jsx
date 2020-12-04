@@ -43,7 +43,8 @@ export class OrderHistory extends React.Component{
                 productID: 0
             }
         ],  //stores either all the user's previous orders or all user's orders
-        items: []
+        items: [],
+        orders: []
     }
     //making the date look visually pleasing
     getOrderDate(){
@@ -129,9 +130,15 @@ export class OrderHistory extends React.Component{
 
     render() {
         return(
-            <div>
-                {this.userView()}
-            <Link to="/home">Return Home</Link>
+            <div className="container">
+                
+
+
+                <h3>Order History</h3>
+                {
+                    this.state.orders.map( x => <Order order={x}/> )
+                }
+                <Link to="/home">Return Home</Link>
             </div>
         )
         
@@ -172,7 +179,8 @@ export class OrderHistory extends React.Component{
                     {this.allOrders()}
                     {this.items.map(item => 
                         <div key={item.transID}>
-                            </div>
+
+                        </div>
                         )}
                     </div>
                 </div>
@@ -201,8 +209,7 @@ div>
                     
 //}this.state.orders.map( x => <Order order={x}/> )
     componentDidMount() {
-        const id = this.props.match.params.orderId;
-        console.log(id);
+        /*console.log(id);
         this.repo.getAccountInfo(id)
         .then(userData => this.setState({data: userData[0]})
         
@@ -218,7 +225,11 @@ div>
         //console.log("got the user's orders!");
         }else {
 
-        }
+        }*/
+        this.repo.getOrders(window.cookie)
+        .then(orderData => {
+            this.setState({orders: orderData});
+        })
 
         //var subS = window.cookie.substr(0,window.cookie.indexOf(':'));
        
