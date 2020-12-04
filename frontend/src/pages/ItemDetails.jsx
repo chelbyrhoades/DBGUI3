@@ -20,7 +20,7 @@ function ItemDetails(props) {
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-8">
-                                    <span className="card-text badge badge-pill badge-primary"><h3><strong>{item.price}.00</strong></h3></span>
+                                    <span className="card-text badge badge-pill badge-primary"><h3><strong>{`$${item.price}.00`}</strong></h3></span>
                                     <p className="card-text"><strong>Type:</strong> {item.PpeType}</p>
                                     <p className="card-text"><strong>Stock:</strong> {item.quantity}</p>
                                      <p className="card-text"><strong>Location: </strong>{item.country}</p>
