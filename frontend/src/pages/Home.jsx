@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';
-import {ItemDetails} from "./ItemDetails";
+import ItemDetails from "./ItemDetails";
 import {Item} from "../models/Item"
 import {Repository} from '../api/repository';
 import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
@@ -44,8 +44,8 @@ export class Home extends React.Component {
                 quantity: 0,
                 ppeType: ""
             }
-        ]
-            
+        ],
+        searching: false
     
     }
 
@@ -100,17 +100,18 @@ export class Home extends React.Component {
     render() {
 
         return (
-            <div className="container pt-3">
+            <div className="container">
                 <h1>PPE Home</h1>
                 {this.checkProductName()}
             <div className="clearfix"></div>
-                <Link to="/cart"><button className="btn btn-primary btn-lg">Cart</button></Link>
             <div className="col-8">
             <div className="pb-3">
             <div className="pb-3">
-                <HomeSearch onSearch={ params => this.onSearch(params) }/>
-                <ItemDetails items={ this.state.items }   onAdd={item => this.onAddToCart(item) }></ItemDetails>
+            {this.state.searching && <HomeSearch onSearch={ params => this.onSearch(params) }/> }
             </div>
+
+            {!this.state.searching && <button className="btn btn-secondary btn-lg" onClick={() => this.setState({searching: true})}>Filter Products...</button>}
+            <ItemDetails items={ this.state.items }/>
             </div>
             
             
