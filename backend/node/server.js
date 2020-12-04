@@ -360,6 +360,18 @@ app.get('/orders/:id', (req, res) => {
 	});
 });
 
+//GET /orders/all
+app.get('/orders/all', (res) => {
+	connection.query(`SELECT * FROM orders WHERE transID is not null`, 
+	(err, rows, fields) => {
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
+		res.status(200).send(JSON.stringify(rows));
+	});
+});
+
 //PUT /orders/{orderID}
 app.put('/orders/:id', (req, res) => {
 	const empty = v => typeof v === "undefined" || v === "";
