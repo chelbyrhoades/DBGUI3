@@ -104,7 +104,6 @@ class DistContact extends React.Component{
         );
         this.state.foundIt = this.b(this.id);
         
-        
     }
 }
 

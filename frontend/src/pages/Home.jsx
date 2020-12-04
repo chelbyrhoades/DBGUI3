@@ -154,26 +154,17 @@ export class Home extends React.Component {
             <div className="container">
                 <h1>PPE Home</h1>
                 {this.checkProductName()}
-            <div className="clearfix"></div>
-            <div className="col-8">
-            <div className="pb-3">
                 <button className="btn btn-primary btn-lg" onClick = {this.onlyShowMasks}> Masks</button>
                 <button className="btn btn-primary btn-lg" onClick = {this.onlyShowGloves}>Gloves</button>
                 <button className="btn btn-primary btn-lg" onClick = {this.onlyShowShield}>Face Shields</button>
                 <button className="btn btn-primary btn-lg" onClick = {this.onlyShowTherm}>Thermometers</button>
                 <button className="btn btn-secondary btn-lg" onClick = {this.resetListing}>Rest Filter</button>
-            <div className="pb-3">
-                
             {this.state.searching && <HomeSearch onSearch={ params => this.onSearch(params) }/> }
-            </div>
+
 
             {!this.state.searching && <button className="btn btn-secondary btn-lg" onClick={() => this.setState({searching: true})}>Filter Products...</button>}
             <ItemDetails items={ this.state.items }/>
             </div>
-            
-            
-            </div>
-        </div>
 
         
         );

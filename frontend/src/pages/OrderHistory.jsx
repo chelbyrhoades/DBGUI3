@@ -188,7 +188,7 @@ export class OrderHistory extends React.Component{
             <div>
                 <Link to="/home">Return</Link>
                 <div className = "container">
-                <h1>What Customers are Ordering</h1>
+                <h1>My Orders</h1>
                 {this.state.dummyData.map(d => 
                     <div key={d.transID}>
                         <div className = "card">
@@ -258,7 +258,8 @@ export class OrderHistory extends React.Component{
                     {this.allOrders()}
                     {this.items.map(item => 
                         <div key={item.transID}>
-                            </div>
+
+                        </div>
                         )}
                     </div>
                 </div>
@@ -287,8 +288,7 @@ div>
                     
 //}this.state.orders.map( x => <Order order={x}/> )
     componentDidMount() {
-        const id = this.props.match.params.orderId;
-        console.log(id);
+        /*console.log(id);
         this.repo.getAccountInfo(id)
         .then(userData => this.setState({data: userData[0]})
         
@@ -304,7 +304,11 @@ div>
         //console.log("got the user's orders!");
         }else {
 
-        }
+        }*/
+        this.repo.getOrders(window.cookie)
+        .then(orderData => {
+            this.setState({orders: orderData});
+        })
 
         //var subS = window.cookie.substr(0,window.cookie.indexOf(':'));
        

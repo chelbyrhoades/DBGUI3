@@ -148,9 +148,9 @@ export class Repository {
         });
     }
 
-    getOrders(uid) {
+    getOrders(cookie) {
         return new Promise((resolve, reject) => {
-            axios.get(`${this.url}/orders/${uid}`, this.config)
+            axios.get(`${this.url}/orders`, {params: {cookie: cookie}, Authorization: "*"})
             .then(x => resolve(x.data))
             .catch(e => {
                 alert(e);
