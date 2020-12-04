@@ -21,8 +21,11 @@ function ItemDetails(props) {
                             <div className="row">
                                 <div className="col-8">
                                     <span className="card-text badge badge-pill badge-primary"><h3><strong>{item.price}.00</strong></h3></span>
+                                    <p className="card-text"><strong>Type:</strong> {item.PpeType}</p>
                                     <p className="card-text"><strong>Stock:</strong> {item.quantity}</p>
                                      <p className="card-text"><strong>Location: </strong>{item.country}</p>
+                                     <p className="card-text"><strong>Contact Information: </strong>{item.email}</p>
+                                     
                                      <br/>
                                 </div>
                                 <div className="col-3">

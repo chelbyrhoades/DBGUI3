@@ -4,6 +4,7 @@ import React, { useState } from 'react';
         search by distributor name, city, item type, price hightolow/lowtohigh
 */
 const HomeSearch = props => {
+   // results = {};
   const [ productName, setPName ] = useState([]);
     const [ ppeType, setPPeType ] = useState([]);
   const BarStyling = {width:"20rem",background:"#F2F1F9", border:"none", padding:"0.5rem"};

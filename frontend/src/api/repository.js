@@ -79,9 +79,9 @@ export class Repository {
 
 
     //posting a listing - used in PostListing.jsx
-    postNewListing(body){
+    postNewListing(state){
         return new Promise((resolve, reject) => {
-            axios.post(`${this.url}/listings/`, body, this.config)
+            axios.post(`${this.url}/listings/`, state, this.config)
         })
     }
 

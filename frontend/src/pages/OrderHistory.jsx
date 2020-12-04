@@ -183,11 +183,10 @@ export class OrderHistory extends React.Component{
 
         }
     }
-//                {this.userDummyView()}
     render() {
         return(
             <div>
-                
+                <Link to="/home">Return</Link>
                 <div className = "container">
                 <h1>What Customers are Ordering</h1>
                 {this.state.dummyData.map(d => 

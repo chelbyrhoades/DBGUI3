@@ -94,7 +94,7 @@ export class Home extends React.Component {
 
     onSearch(params) {//getListingParams(params){
         this.repo.getListingParams(params)
-        .then(productData => this.setState({productData}));
+        .then(items => this.setState({items}));
     }
 
     render() {
