@@ -6,7 +6,7 @@ import "./ItemDetails.css";
 import {CartService} from '../services/cartService';
 
 function ItemDetails(props) {
-    
+    console.log(props.items);
     //plural in the table
         let cartService = new CartService();
         return (
@@ -20,8 +20,8 @@ function ItemDetails(props) {
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-8">
-                                    <span className="card-text badge badge-pill badge-primary"><h3><strong>{`$${item.price}.00`}</strong></h3></span>
-                                    <p className="card-text"><strong>Type:</strong> {item.PpeType}</p>
+                                    <span className="card-text badge badge-pill badge-primary"><h3><strong>{item.price}.00</strong></h3></span>
+                                    <p className="card-text"><strong>Type:</strong> {item.ppeType}</p>
                                     <p className="card-text"><strong>Stock:</strong> {item.quantity}</p>
                                      <p className="card-text"><strong>Location: </strong>{item.country}</p>
                                      <p className="card-text"><strong>Contact Information: </strong>{item.email}</p>
@@ -36,7 +36,7 @@ function ItemDetails(props) {
                                     onClick={ () =>  cartService.addToCart(item)}>
                                         Add to Cart
                                 </Link>
-                                
+                                <Link to={`/distInfo/${item.listingID}`} className="btn btn-secondary btn-lg">More info</Link>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,6 @@ function ItemDetails(props) {
         </div>);
     /*
     return (
-        <Link to={`/distInfo/${item.listingID}`} className="btn btn-secondary btn-lg">More info</Link>
     <div className="card"
     {item.name}>
         <div className="card-header">

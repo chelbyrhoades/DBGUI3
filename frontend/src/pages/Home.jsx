@@ -46,49 +46,63 @@ export class Home extends React.Component {
             },
             
         ],
-        filteredItems: 
-        [],
+        filteredItems: [
+
+        ],
         searching: false
     
     }
-    onlyShowMasks = () =>{
-        for(var i = 0; i < this.state.items.length; i++){
+    onlyShowMasks= () => {
+        console.log('in masks');
+        //var filItems = [];
+        let array = []
+        this.state.items.map(x => {
+            if (x.ppeType == "Mask") {
+                array.push(x);
+            }
+        })
+        this.setState({items: array});
+    }
+    /**for(var i = 0; i < this.state.items[0].length; i++){
+            console.log(this.state.items[i]);
             if(this.state.items[i].ppeType = "Mask"){
                 this.state.filteredItems[i] = this.state.items[i];
             }
             this.state.items = this.state.filteredItems.slice();
-        }
-    }
+            
+
+        }console.log(this.state.filteredItems);/ */
 
     onlyShowShield = () =>{
-        for(var i = 0; i < this.state.items.length; i++){
-            if(this.state.items[i].ppeType = "Face Shield"){
-                this.state.filteredItems[i] = this.state.items[i];
+        let array = []
+        this.state.items.map(x => {
+            if (x.ppeType == "Face Shield") {
+                array.push(x);
             }
-            this.state.items = this.state.filteredItems.slice();
-        }
+        })
+        this.setState({items: array});
     }
 
 
     onlyShowGloves = () =>{
-        for(var i = 0; i < this.state.items.length; i++){
-            if(this.state.items[i].ppeType = "Gloves"){
-                this.state.filteredItems[i] = this.state.items[i];
+        let array = []
+        this.state.items.map(x => {
+            if (x.ppeType == "Gloves") {
+                array.push(x);
             }
-            this.state.items = this.state.filteredItems.slice();
-        }
+        })
+        this.setState({items: array});
     }
 
 
     onlyShowTherm = () =>{
-        console.log("clicked therm");
-        for(var i = 0; i < this.state.items.length; i++){
-            if(this.state.items[i].ppeType = "Thermometer"){
-                this.state.filteredItems[i] = this.state.items[i];
+        let array = []
+        this.state.items.map(x => {
+            if (x.ppeType == "Thermometer") {
+                array.push(x);
             }
-            this.state.items = this.state.filteredItems.slice();
-            console.log("clicked therm in");
-        }
+        })
+        this.setState({items: array});
     }
 
 
@@ -136,9 +150,7 @@ export class Home extends React.Component {
     }
     componentDidMount() {
         this.repo.getListings()
-        .then(productData => this.setState({items: productData})  //[0]
-        );
-        console.log("products are mounted");
+        .then(productData => this.setState({items: productData})) //, () => {console.log(this.state.items)})//
         
     }
 
@@ -148,17 +160,18 @@ export class Home extends React.Component {
 
     }
 //<button className="btn btn-secondary btn-lg" onClick = {this.onlyShowMasks()}>Masks</button>
+//() => onlyShowMasks()
     render() {
 
         return (
             <div className="container">
                 <h1>PPE Home</h1>
                 {this.checkProductName()}
-                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowMasks}> Masks</button>
+                <button className="btn btn-primary btn-lg" onClick =  {this.onlyShowMasks}> Masks</button>
                 <button className="btn btn-primary btn-lg" onClick = {this.onlyShowGloves}>Gloves</button>
                 <button className="btn btn-primary btn-lg" onClick = {this.onlyShowShield}>Face Shields</button>
                 <button className="btn btn-primary btn-lg" onClick = {this.onlyShowTherm}>Thermometers</button>
-                <button className="btn btn-secondary btn-lg" onClick = {this.resetListing}>Rest Filter</button>
+                <button className="btn btn-secondary btn-lg" onClick = {this.resetListing}>Reset Filter</button>
             {this.state.searching && <HomeSearch onSearch={ params => this.onSearch(params) }/> }
 
 
