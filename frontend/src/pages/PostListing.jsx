@@ -65,7 +65,7 @@ export class PostListing extends React.Component{
                     value={this.state.name}
                     onChange={e => this.setState({name: e.target.value})}
                 />
-                <label htmlFor="prod-quantity">Price</label>
+                <label htmlFor="prod-quantity">Quantity available</label>
                 <input className="form-control"
                     type="text" 
                     name="quantity" 
@@ -73,6 +73,13 @@ export class PostListing extends React.Component{
                     value={this.state.quantity}
                     onChange={e => this.setState({quantity: e.target.value})}
                 />
+                <label htmlFor="price">Price</label>
+                <input type="text"
+                        className="form-control"
+                        id="price"
+                        name="price"
+                        value={this.state.price}
+                        onChange={event => this.setState({Distributorname: event.target.value })} />
                 <label htmlFor="typeId">Type</label>
                 <select id="typeId"
                     className="form-control"
@@ -101,14 +108,6 @@ export class PostListing extends React.Component{
                     value={this.state.imgURL}
                     onChange={e => this.setState({imgurl: e.target.value})}
                 />
-                <label>Confirm with your Distributor Name</label>
-                <input type="text"
-                        className="form-control"
-                        id="distName"
-                        name="distName"
-                        size="50"
-                        value={this.state.Distributorname}
-                        onChange={event => this.setState({Distributorname: event.target.value })} />
                 <div className="row">
                   <div className="col">
                     <Link type="button"

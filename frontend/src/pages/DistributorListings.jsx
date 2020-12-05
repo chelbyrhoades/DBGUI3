@@ -29,6 +29,7 @@ export class DistributorListings extends React.Component {
     render() {
         return (
         <div className="container">
+            <h3>{`Distributor: ${this.state.listings[0].distributorName}`}</h3>
                 {//this.state.data.address}
                     this.state.listings.map((x, i) => 
                         (<div key={i}>
