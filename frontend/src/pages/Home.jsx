@@ -63,7 +63,7 @@ export class Home extends React.Component {
                 array.push(x);
             }
         })
-        this.setState({displayItems: array});
+        this.setState({displaytems: array});
     }
 
     onlyShowShield = () =>{
@@ -159,34 +159,16 @@ export class Home extends React.Component {
             <div className="container">
                 <h1>PPE Home</h1>
                 {this.checkProductName()}
-                <div className="row">
-                    <div className="col">
-                        <button className="btn btn-primary btn-lg" onClick = {this.onlyShowMasks}> Masks</button>
-                    </div>
-                    <div className="col">
-                        <button className="btn btn-primary btn-lg" onClick = {this.onlyShowGloves}>Gloves</button>
-                    </div>
-                    <div className="col">
-                        <button className="btn btn-primary btn-lg" onClick = {this.onlyShowShield}>Face Shields</button>
-                    </div>
-                    <div className="col">
-                        <button className="btn btn-primary btn-lg" onClick = {this.onlyShowTherm}>Thermometers</button>
-                    </div>
-                    <div className="col">
-                        <button className="btn btn-secondary btn-lg" onClick = {this.resetListing}>Rest Filter</button>
-                    </div>
-                </div>
-                
-                
-                
-                
-                
-                
+                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowMasks}> Masks</button>
+                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowGloves}>Gloves</button>
+                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowShield}>Face Shields</button>
+                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowTherm}>Thermometers</button>
+                <button className="btn btn-secondary btn-lg" onClick = {this.resetListing}>Rest Filter</button>
             {this.state.searching && <HomeSearch onSearch={ params => this.onSearch(params) }/> }
 
 
             {!this.state.searching && <button className="btn btn-secondary btn-lg" onClick={() => this.setState({searching: true})}>Filter Products...</button>}
-            <ItemDetails items={ this.state.displayItems }/>
+            <ItemDetails items={ this.state.items }/>
             </div>
 
         
