@@ -49,10 +49,12 @@ export class Home extends React.Component {
         filteredItems: [
 
         ],
+        displayItems: [],
         searching: false
     
     }
     onlyShowMasks= () => {
+        this.resetListing();
         console.log('in masks');
         //var filItems = [];
         let array = []
@@ -61,7 +63,7 @@ export class Home extends React.Component {
                 array.push(x);
             }
         })
-        this.setState({items: array});
+        this.setState({displayItems: array});
     }
     /**for(var i = 0; i < this.state.items[0].length; i++){
             console.log(this.state.items[i]);
@@ -74,43 +76,44 @@ export class Home extends React.Component {
         }console.log(this.state.filteredItems);/ */
 
     onlyShowShield = () =>{
+        this.resetListing();
         let array = []
         this.state.items.map(x => {
             if (x.ppeType == "Face Shield") {
                 array.push(x);
             }
         })
-        this.setState({items: array});
+        this.setState({displayItems: array});
     }
 
 
     onlyShowGloves = () =>{
+        this.resetListing();
         let array = []
         this.state.items.map(x => {
             if (x.ppeType == "Gloves") {
                 array.push(x);
             }
         })
-        this.setState({items: array});
+        this.setState({displayItems: array});
     }
 
 
     onlyShowTherm = () =>{
+        this.resetListing();
         let array = []
         this.state.items.map(x => {
             if (x.ppeType == "Thermometer") {
                 array.push(x);
             }
         })
-        this.setState({items: array});
+        this.setState({displayItems: array});
     }
 
 
 
     resetListing = () =>{
-        this.repo.getListings()
-        .then(productData => this.setState({items: productData})  //[0]
-        );
+        this.setState({displayItems: this.state.items});
     }
 
     checkProductName(){
@@ -150,8 +153,9 @@ export class Home extends React.Component {
     }
     componentDidMount() {
         this.repo.getListings()
-        .then(productData => this.setState({items: productData})) //, () => {console.log(this.state.items)})//
+        .then(productData => this.setState({items: productData, displayItems: productData}) ) //, () => {console.log(this.state.items)})//
         
+        //.then (this.setState({displayItems: this.state.items}));
     }
 
     onSearch(params) {//getListingParams(params){
@@ -167,16 +171,28 @@ export class Home extends React.Component {
             <div className="container">
                 <h1>PPE Home</h1>
                 {this.checkProductName()}
-                <button className="btn btn-primary btn-lg" onClick =  {this.onlyShowMasks}> Masks</button>
-                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowGloves}>Gloves</button>
-                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowShield}>Face Shields</button>
-                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowTherm}>Thermometers</button>
-                <button className="btn btn-secondary btn-lg" onClick = {this.resetListing}>Reset Filter</button>
+                <div className = "row">
+                    <div className = "col">
+                <button className="btn btn-block btn-warning btn-lg" onClick =  {this.onlyShowMasks}> Masks</button>
+                </div>
+                <div className = "col">
+                <button className="btn btn-block btn-warning btn-lg" onClick = {this.onlyShowGloves}>Gloves</button>
+                </div>
+                <div className = "col">
+                <button className="btn btn-block btn-warning btn-lg" onClick = {this.onlyShowShield}>Face Shields</button>
+                </div>
+                <div className = "col">
+                <button className="btn btn-block btn-warning btn-lg" onClick = {this.onlyShowTherm}>Thermometers</button>
+                </div>
+                <div className = "col">
+                <button className="btn btn-block btn-primary" onClick = {this.resetListing}>Reset Filter</button>
+                </div>
+                </div>
             {this.state.searching && <HomeSearch onSearch={ params => this.onSearch(params) }/> }
 
 
             {!this.state.searching && <button className="btn btn-secondary btn-lg" onClick={() => this.setState({searching: true})}>Filter Products...</button>}
-            <ItemDetails items={ this.state.items }/>
+            <ItemDetails items={ this.state.displayItems }/>
             </div>
 
         

@@ -3,7 +3,12 @@
     height: 40px;
     width: 100px;
 }
-
+.btn-col{
+    margin: 2px;
+}
+.btn-special{
+    margin: 20px;
+}
 .Container{
     height: 60em;
     background-color: aquamarine;
