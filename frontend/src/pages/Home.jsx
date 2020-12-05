@@ -158,10 +158,9 @@ export class Home extends React.Component {
         //.then (this.setState({displayItems: this.state.items}));
     }
 
-    onSearch(params) {//getListingParams(params){
+    onSearch(params) {//getListingParams(params)
         this.repo.getListingParams(params)
         .then(items => this.setState({items}));
-
     }
 //<button className="btn btn-secondary btn-lg" onClick = {this.onlyShowMasks()}>Masks</button>
 //() => onlyShowMasks()
@@ -185,13 +184,10 @@ export class Home extends React.Component {
                 <button className="btn btn-block btn-warning btn-lg" onClick = {this.onlyShowTherm}>Thermometers</button>
                 </div>
                 <div className = "col">
-                <button className="btn btn-block btn-primary" onClick = {this.resetListing}>Reset Filter</button>
+                <button className="btn btn-block btn-primary btn-lg" onClick = {this.resetListing}>Reset Filter</button>
                 </div>
                 </div>
             {this.state.searching && <HomeSearch onSearch={ params => this.onSearch(params) }/> }
-
-
-            {!this.state.searching && <button className="btn btn-secondary btn-lg" onClick={() => this.setState({searching: true})}>Filter Products...</button>}
             <ItemDetails items={ this.state.displayItems }/>
             </div>
 

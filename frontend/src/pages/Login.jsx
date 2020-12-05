@@ -75,7 +75,7 @@ import {Repository} from '../api/repository';
             onChange={e => this.setState({password: e.target.value})}
           />
           {this.state.error && <div className="alert alert-danger" role="alert">Sample error -- for user doesnt exist or wrong password</div>}
-          <button className="btn btn-primary btn-block" onClick={this.handleLogin}>Login</button>
+          <button className="btn btn-primary btn-block btn-login" onClick={this.handleLogin}>Login</button>
           <span>Don't have an account? </span>
           <Link to="/create">
             Create Account
