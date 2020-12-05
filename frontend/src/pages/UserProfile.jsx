@@ -61,18 +61,18 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
                                 <Link to="/home">Return to homepage</Link>
                             </div>
                             <div className="col">
-                                <Link to={`/orders/${this.props.match.params.userId}`} className="btn btn-primary">My orders</Link>
+                                <Link to={`/orders/${this.props.match.params.userId}`} className="btn btn-primary btn-block">My orders</Link>
                             </div>
                             <div className="col">
-                                <Link to={`/user/edit/${this.props.match.params.userId}`} className="btn btn-primary">Edit my profile</Link>
+                                <Link to={`/user/edit/${this.props.match.params.userId}`} className="btn btn-primary btn-block">Edit my profile</Link>
                             </div>
                             {this.state.data.typeName === "distributor" && 
                             <>
                                 <div className="col">
-                                    <Link to={`/distributors/${this.props.match.params.userId}`} className="btn btn-primary">My listings</Link>
+                                    <Link to={`/distributors/${this.props.match.params.userId}`} className="btn btn-primary btn-block">My listings</Link>
                                 </div>
                                 <div className="col">
-                                    <Link to={"/createListing"} className="btn btn-primary float-right">Create a listing</Link>
+                                    <Link to={"/createListing"} className="btn btn-primary btn-block">Create a listing</Link>
                                 </div>
                             </>
                             }
