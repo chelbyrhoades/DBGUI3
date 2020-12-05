@@ -47,7 +47,6 @@ function App() {
             <Route path= "/distInfo/:listingID" component={DistContact}/>
             <Route path="/orders/:orderId" component={OrderHistory}/>
             <Route path="/home" component={Home}/>
-            <Route path="/listings/:id" component={DistributorListings}/>
             <Route path="/listing/:id" component={ListingEditor}/>
             <Route path="/createListing" component={PostListing}/>
             <Route path="/user/edit/:userId" component={EditProfile}/>

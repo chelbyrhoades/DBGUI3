@@ -170,7 +170,7 @@ export class Home extends React.Component {
             <div className="container">
                 <h1>PPE Home</h1>
                 {this.checkProductName()}
-                <div className = "row">
+                <div className = "row filters">
                     <div className = "col">
                 <button className="btn btn-block btn-warning btn-lg" onClick =  {this.onlyShowMasks}> Masks</button>
                 </div>

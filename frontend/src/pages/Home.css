@@ -9,6 +9,11 @@
 .btn-special{
     margin: 20px;
 }
+
+.filters {
+    margin-bottom: 1em;
+}
+
 .Container{
     height: 60em;
     background-color: aquamarine;
