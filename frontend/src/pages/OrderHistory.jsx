@@ -4,18 +4,7 @@ import { Link,  withRouter } from 'react-router-dom';
 import { Repository } from '../api/repository';
 import Order from './Order';
 /*
-    Idea: check current user type, compare to see if distributor - reutrn all 
-
-
-
-    [{"transID":1,
-    "datetime":"2020-08-04T00:00:00.000Z",
-    "productID":1,
-    "quantity":30,
-    "buyerID":2,
-    "addressID":2,
-    "sellerID":1,
-    "orderStatus":"pending"}]
+    Idea: being able to see trends based on what users are ordering
 */
 export class OrderHistory extends React.Component{
 //pulls up any orders that the user has made

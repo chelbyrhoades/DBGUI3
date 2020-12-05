@@ -7,11 +7,6 @@ import { EditProfile } from './EditProfile';
 class UserProfile extends React.Component{
     //need get user info call
     repo = new Repository();
-/*sample:
-[{"email":"mallory99@example.net","typeName":"user","name":"Lisandro
-Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"country":"Mali","zip":null}]
-*/
-//https://stackoverflow.com/questions/54780789/reactjs-how-to-pass-particular-item-id-from-one-component-to-another-component
     state = {
 
         
@@ -85,10 +80,6 @@ Bartoletti","phone":"311-397-6544x46061","streetAddress":null,"state":null,"coun
             
         );
     }//end render
-    //${props.uid}
     
 }//end userProfile class
 export default withRouter(UserProfile);
-/*<div className="col">
-
-</div>*/

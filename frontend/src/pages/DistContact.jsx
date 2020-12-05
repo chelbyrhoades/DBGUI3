@@ -6,20 +6,15 @@ import {  Link } from 'react-router-dom';
 import "./ItemDetails.css";
 import CartService from '../services/cartService';
 /*
-Shows more card info on the distributor
-Contact info
-"name":"Tom Timms",
-"email":"testaccount1",
-"phone":"11111111",
+Shows more card info on the distributor - such as contact info
 */
-//`${props.item.productName}`}
 class DistContact extends React.Component{
     repo = new Repository();
     cartService = new CartService();
     state = {
         items: [{
             
-                listingID: 0,//address /distribut
+                listingID: 0,
                 phone: "",
                 imageURL: "",
                 productName: "",
@@ -46,7 +41,6 @@ class DistContact extends React.Component{
         this.state.disPhone = Math.floor(Math.random() * 1000000000);
 
     }
-    //<span className="card-text badge badge-pill badge-primary"><h3><strong>{this.state.items.price}.00</strong></h3></span>
     render() {
     return (
         <div className = "container">

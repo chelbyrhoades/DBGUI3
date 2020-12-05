@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 /*
-    Goals:
-        search by distributor name, city, item type, price hightolow/lowtohigh
+    Unused page - was going to implement text search, but searching by category via buttons on the Home.jsx page seemed more user-friendly
 */
 const HomeSearch = props => {
    // results = {};

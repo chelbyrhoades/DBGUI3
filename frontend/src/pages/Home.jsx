@@ -162,8 +162,6 @@ export class Home extends React.Component {
         this.repo.getListingParams(params)
         .then(items => this.setState({items}));
     }
-//<button className="btn btn-secondary btn-lg" onClick = {this.onlyShowMasks()}>Masks</button>
-//() => onlyShowMasks()
     render() {
 
         return (
@@ -196,4 +194,3 @@ export class Home extends React.Component {
     }
 
 }
-//<Route path="/search" render={ props => <PollList /> <PollList getListSearch= {this.getAllListings()} onSearch={ params => this.onSearch(params) } { ...props } /> } /></div>
