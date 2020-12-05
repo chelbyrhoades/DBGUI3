@@ -148,6 +148,17 @@ export class Repository {
         });
     }
 
+    getListingsById(id) {
+        return new Promise((resolve, reject) => {
+            axios.get(`${this.url}/listings/${id}`, this.config)
+            .then(x => resolve(x.data))
+            .catch(e => {
+                alert(e);
+                reject();
+            });
+        });
+    }
+
     getOrders(cookie) {
         return new Promise((resolve, reject) => {
             axios.get(`${this.url}/orders`, {params: {cookie: cookie}, Authorization: "*"})
