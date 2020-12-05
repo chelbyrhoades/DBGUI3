@@ -46,18 +46,24 @@ export class Home extends React.Component {
             },
             
         ],
-        filteredItems: 
-        [],
+        displayItems: [],
         searching: false
     
     }
     onlyShowMasks = () =>{
-        for(var i = 0; i < this.state.items.length; i++){
+        /*for(var i = 0; i < this.state.items.length; i++){
             if(this.state.items[i].ppeType = "Mask"){
                 this.state.filteredItems[i] = this.state.items[i];
             }
             this.state.items = this.state.filteredItems.slice();
-        }
+        }*/
+        let array = []
+        this.state.items.map(x => {
+            if (x.ppeType == "Mask") {
+                array.push(x);
+            }
+        })
+        this.setState({displayItems: array});
     }
 
     onlyShowShield = () =>{
@@ -142,10 +148,9 @@ export class Home extends React.Component {
         
     }
 
-    onSearch(params) {//getListingParams(params){
+    onSearch(params) {//getListingParams(params)
         this.repo.getListingParams(params)
         .then(items => this.setState({items}));
-
     }
 //<button className="btn btn-secondary btn-lg" onClick = {this.onlyShowMasks()}>Masks</button>
     render() {
@@ -154,16 +159,34 @@ export class Home extends React.Component {
             <div className="container">
                 <h1>PPE Home</h1>
                 {this.checkProductName()}
-                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowMasks}> Masks</button>
-                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowGloves}>Gloves</button>
-                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowShield}>Face Shields</button>
-                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowTherm}>Thermometers</button>
-                <button className="btn btn-secondary btn-lg" onClick = {this.resetListing}>Rest Filter</button>
+                <div className="row">
+                    <div className="col">
+                        <button className="btn btn-primary btn-lg" onClick = {this.onlyShowMasks}> Masks</button>
+                    </div>
+                    <div className="col">
+                        <button className="btn btn-primary btn-lg" onClick = {this.onlyShowGloves}>Gloves</button>
+                    </div>
+                    <div className="col">
+                        <button className="btn btn-primary btn-lg" onClick = {this.onlyShowShield}>Face Shields</button>
+                    </div>
+                    <div className="col">
+                        <button className="btn btn-primary btn-lg" onClick = {this.onlyShowTherm}>Thermometers</button>
+                    </div>
+                    <div className="col">
+                        <button className="btn btn-secondary btn-lg" onClick = {this.resetListing}>Rest Filter</button>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                
             {this.state.searching && <HomeSearch onSearch={ params => this.onSearch(params) }/> }
 
 
             {!this.state.searching && <button className="btn btn-secondary btn-lg" onClick={() => this.setState({searching: true})}>Filter Products...</button>}
-            <ItemDetails items={ this.state.items }/>
+            <ItemDetails items={ this.state.displayItems }/>
             </div>
 
         
