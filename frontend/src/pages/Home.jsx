@@ -169,25 +169,25 @@ export class Home extends React.Component {
         return (
             <div className="container">
                 <h1>PPE Home</h1>
-                {this.checkProductName()}
-                <div className = "row filters">
-                    <div className = "col">
-                <button className="btn btn-block btn-warning btn-lg" onClick =  {this.onlyShowMasks}> Masks</button>
-                </div>
-                <div className = "col">
-                <button className="btn btn-block btn-warning btn-lg" onClick = {this.onlyShowGloves}>Gloves</button>
-                </div>
-                <div className = "col">
-                <button className="btn btn-block btn-warning btn-lg" onClick = {this.onlyShowShield}>Face Shields</button>
-                </div>
-                <div className = "col">
-                <button className="btn btn-block btn-warning btn-lg" onClick = {this.onlyShowTherm}>Thermometers</button>
-                </div>
-                <div className = "col">
-                <button className="btn btn-block btn-primary btn-lg" onClick = {this.resetListing}>Reset Filter</button>
-                </div>
-                </div>
-            {this.state.searching && <HomeSearch onSearch={ params => this.onSearch(params) }/> }
+                    {this.checkProductName()}
+                        <div className = "row filters">
+                            <div className = "col">
+                                <button className="btn btn-block btn-warning btn-lg" onClick =  {this.onlyShowMasks}> Masks</button>
+                            </div>
+                        <div className = "col">
+                            <button className="btn btn-block btn-warning btn-lg" onClick = {this.onlyShowGloves}>Gloves</button>
+                        </div>
+                        <div className = "col">
+                            <button className="btn btn-block btn-warning btn-lg" onClick = {this.onlyShowShield}>Face Shields</button>
+                        </div>
+                        <div className = "col">
+                            <button className="btn btn-block btn-warning btn-lg" onClick = {this.onlyShowTherm}>Thermometers</button>
+                        </div>
+                        <div className = "col">
+                            <button className="btn btn-block btn-primary btn-lg" onClick = {this.resetListing}>Reset Filter</button>
+                        </div>
+                    </div>
+                {this.state.searching && <HomeSearch onSearch={ params => this.onSearch(params) }/> }
             <ItemDetails items={ this.state.displayItems }/>
             </div>
 

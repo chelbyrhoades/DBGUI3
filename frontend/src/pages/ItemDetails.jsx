@@ -23,20 +23,22 @@ function ItemDetails(props) {
                                     <span className="card-text badge badge-pill badge-primary"><h3><strong>{`$${item.price}.00`}</strong></h3></span>
                                     <p className="card-text"><strong>Type:</strong> {item.ppeType}</p>
                                     <p className="card-text"><strong>Stock:</strong> {item.quantity}</p>
-                                     <p className="card-text"><strong>Location: </strong>{item.country}</p>
-                                     <p className="card-text"><strong>Contact Information: </strong>{item.email}</p>
-                                     
-                                     <br/>
+                                    <p className="card-text"><strong>Location: </strong>{item.country}</p>
+                                    <p className="card-text"><strong>Contact Information: </strong>{item.email}</p> 
+                                    <br/>
                                 </div>
-                                <div className="col-3">
-                                    <img src={item.imageURL} className="prod-img"/>
-                                </div>
-                                <Link to="/cart"
-                                    className="btn btn-primary btn-lg"
-                                    onClick={ () =>  cartService.addToCart(item)}>
-                                        Add to Cart
-                                </Link>
-                                <Link to={`/distInfo/${item.listingID}`} className="btn btn-secondary btn-lg">More info</Link>
+                            <div className="col-3">
+                                <img src={item.imageURL} className="prod-img"/>
+                            </div>
+                            <Link to="/cart"
+                            className="btn btn-primary btn-lg"
+                            onClick={ () =>  cartService.addToCart(item)}>
+                                Add to Cart
+                            </Link>
+                            <Link to={`/distInfo/${item.listingID}`} 
+                            className="btn btn-secondary btn-lg">
+                                More info
+                            </Link>
                             </div>
                         </div>
                     </div>

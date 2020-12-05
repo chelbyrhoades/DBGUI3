@@ -63,20 +63,19 @@ class DistContact extends React.Component{
                 </div>
             <div className="card-body">
                 <div className = "row">
-            <div className="col-3">
-                <img src={this.state.items.imageURL} className="prod-img"/>
+                    <div className="col-3">
+                        <img src={this.state.items.imageURL} className="prod-img"/>
+                    </div>
+                        <div className = "col">
+                            <h4>Contact Info</h4>
+                            <p><strong>Distributor: {this.state.name}</strong></p>
+                            <p>Email: {this.state.items.email} </p>
+                            <p>Phone Number:  {this.state.disPhone}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className = "col">
-            <h4>Contact Info</h4>
-            <p><strong>Distributor: {this.state.name}</strong></p>
-            <p>Email: {this.state.items.email} </p>
-            <p>Phone Number:  {this.state.disPhone}</p>
-            </div>
-            </div>
-            
-            </div>
-            </div>
-            <div>
+        <div>
             <Link to="/cart" className="card-link" onClick={() => this.cartService.addToCart(this.state)}><button className="btn btn-primary btn-lg">Order</button></Link>
             <Link to ="/home"><button className="btn btn-secondary btn-lg">Go back</button></Link>
             </div>

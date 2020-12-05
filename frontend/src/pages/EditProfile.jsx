@@ -85,74 +85,66 @@ class EditProfile extends React.Component{
         return( 
             <form className="container">
                 <div className="form-group">
-                <div className= "card">
-                <div className= "card-title">
-                    <h1>Account Details Editor</h1>
-                </div>
-                <label>
-                    <strong>Name: </strong>{this.state.data.name}
-                <input type="text"
-                    id="name"
-                    name="name"
-                    className="form-control"
-                    onChange={ event => this.setState({ name: event.target.value }) } />
-                </label>
+                    <div className= "card">
+                        <div className= "card-title">
+                            <h1>Account Details Editor</h1>
+                        </div>
+                    <label>
+                        <strong>Name: </strong>{this.state.data.name}
+                            <input type="text"
+                            id="name"
+                            name="name"
+                            className="form-control"
+                            onChange={ event => this.setState({ name: event.target.value }) } />
+                    </label>
+                    <label>
+                        <strong>Email: </strong>{this.state.data.email}
+                            <input type="text"
+                            id="email"
+                            name="email"
+                            className="form-control"
+                            onChange={ event => this.setState({ email: event.target.value }) } />
+                    </label>
+                    <label>
+                        <strong>Address: </strong>{this.state.data.streetAddress}
+                            <input type="text"
+                            id="addr"
+                            name="addr"
+                            className="form-control"
+                            onChange={ event => this.setState({ streetAddress: event.target.value }) } />
+                    </label>
 
-                <label>
-                    <strong>Email: </strong>{this.state.data.email}
-                <input type="text"
-                    id="email"
-                    name="email"
-                    className="form-control"
-                    onChange={ event => this.setState({ email: event.target.value }) } />
-                </label>
-
-                
-                <label>
-                    <strong>Address: </strong>{this.state.data.streetAddress}
-                <input type="text"
-                    id="addr"
-                    name="addr"
-                    className="form-control"
-                    onChange={ event => this.setState({ streetAddress: event.target.value }) } />
-                </label>
-
-                <label>
-                    <strong>Country: </strong>{this.state.data.country}
-                <input type="text"
-                    id="addr"
-                    name="addr"
-                    className="form-control"
-                    onChange={ event => this.setState({ country: event.target.value }) } />
-                </label>
-
-
-                <label>
-                    <strong>Phone Number: </strong>{this.state.data.phone}
-                <input type="text"
-                    id="addr"
-                    name="addr"
-                    className="form-control"
-                    onChange={ event => this.setState({phone: event.target.value }) } />
-                </label>
-                <div className="col">
-                    <button type="button"
-                        className="btn btn-success float-right" 
-                        onClick={() => this.changeAcc()}>
-                        Save
-                    </button>
-                    <button type="button" className="btn btn-danger float-left " onClick={() => this.onDelete()}>
-                Delete Account
-            </button>
-                </div>
+                    <label>
+                        <strong>Country: </strong>{this.state.data.country}
+                            <input type="text"
+                            id="addr"
+                            name="addr"
+                            className="form-control"
+                            onChange={ event => this.setState({ country: event.target.value }) } />
+                    </label>
+                    <label>
+                        <strong>Phone Number: </strong>{this.state.data.phone}
+                            <input type="text"
+                            id="addr"
+                            name="addr"
+                            className="form-control"
+                            onChange={ event => this.setState({phone: event.target.value }) } />
+                    </label>
+                        <div className="col">
+                            <button type="button"
+                                className="btn btn-success float-right" 
+                                onClick={() => this.changeAcc()}>
+                                Save
+                            </button>
+                            <button type="button" className="btn btn-danger float-left " onClick={() => this.onDelete()}>
+                                Delete Account
+                            </button>
+                        </div>
                     </div>
-                    
-                    </div>
-                    
-                    {this.state.deleting && <Redirect to="/"/>}
-                    <Link to="/home">Return to homepage</Link>
-
-                </form>
+                </div>
+                {this.state.deleting && <Redirect to="/"/>}
+                <Link to="/home">Return to homepage</Link>
+            </form>
         
         
         )}
