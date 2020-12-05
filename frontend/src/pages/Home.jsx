@@ -46,63 +46,74 @@ export class Home extends React.Component {
             },
             
         ],
+        filteredItems: [
+
+        ],
         displayItems: [],
         searching: false
     
     }
-    onlyShowMasks = () =>{
-        /*for(var i = 0; i < this.state.items.length; i++){
-            if(this.state.items[i].ppeType = "Mask"){
-                this.state.filteredItems[i] = this.state.items[i];
-            }
-            this.state.items = this.state.filteredItems.slice();
-        }*/
+    onlyShowMasks= () => {
+        this.resetListing();
+        console.log('in masks');
+        //var filItems = [];
         let array = []
         this.state.items.map(x => {
             if (x.ppeType == "Mask") {
                 array.push(x);
             }
         })
-        this.setState({displaytems: array});
+        this.setState({displayItems: array});
     }
-
-    onlyShowShield = () =>{
-        for(var i = 0; i < this.state.items.length; i++){
-            if(this.state.items[i].ppeType = "Face Shield"){
+    /**for(var i = 0; i < this.state.items[0].length; i++){
+            console.log(this.state.items[i]);
+            if(this.state.items[i].ppeType = "Mask"){
                 this.state.filteredItems[i] = this.state.items[i];
             }
             this.state.items = this.state.filteredItems.slice();
-        }
+            
+
+        }console.log(this.state.filteredItems);/ */
+
+    onlyShowShield = () =>{
+        this.resetListing();
+        let array = []
+        this.state.items.map(x => {
+            if (x.ppeType == "Face Shield") {
+                array.push(x);
+            }
+        })
+        this.setState({displayItems: array});
     }
 
 
     onlyShowGloves = () =>{
-        for(var i = 0; i < this.state.items.length; i++){
-            if(this.state.items[i].ppeType = "Gloves"){
-                this.state.filteredItems[i] = this.state.items[i];
+        this.resetListing();
+        let array = []
+        this.state.items.map(x => {
+            if (x.ppeType == "Gloves") {
+                array.push(x);
             }
-            this.state.items = this.state.filteredItems.slice();
-        }
+        })
+        this.setState({displayItems: array});
     }
 
 
     onlyShowTherm = () =>{
-        console.log("clicked therm");
-        for(var i = 0; i < this.state.items.length; i++){
-            if(this.state.items[i].ppeType = "Thermometer"){
-                this.state.filteredItems[i] = this.state.items[i];
+        this.resetListing();
+        let array = []
+        this.state.items.map(x => {
+            if (x.ppeType == "Thermometer") {
+                array.push(x);
             }
-            this.state.items = this.state.filteredItems.slice();
-            console.log("clicked therm in");
-        }
+        })
+        this.setState({displayItems: array});
     }
 
 
 
     resetListing = () =>{
-        this.repo.getListings()
-        .then(productData => this.setState({items: productData})  //[0]
-        );
+        this.setState({displayItems: this.state.items});
     }
 
     checkProductName(){
@@ -142,10 +153,9 @@ export class Home extends React.Component {
     }
     componentDidMount() {
         this.repo.getListings()
-        .then(productData => this.setState({items: productData})  //[0]
-        );
-        console.log("products are mounted");
+        .then(productData => this.setState({items: productData, displayItems: productData}) ) //, () => {console.log(this.state.items)})//
         
+        //.then (this.setState({displayItems: this.state.items}));
     }
 
     onSearch(params) {//getListingParams(params)
@@ -153,22 +163,32 @@ export class Home extends React.Component {
         .then(items => this.setState({items}));
     }
 //<button className="btn btn-secondary btn-lg" onClick = {this.onlyShowMasks()}>Masks</button>
+//() => onlyShowMasks()
     render() {
 
         return (
             <div className="container">
                 <h1>PPE Home</h1>
                 {this.checkProductName()}
-                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowMasks}> Masks</button>
-                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowGloves}>Gloves</button>
-                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowShield}>Face Shields</button>
-                <button className="btn btn-primary btn-lg" onClick = {this.onlyShowTherm}>Thermometers</button>
-                <button className="btn btn-secondary btn-lg" onClick = {this.resetListing}>Rest Filter</button>
+                <div className = "row">
+                    <div className = "col">
+                <button className="btn btn-block btn-warning btn-lg" onClick =  {this.onlyShowMasks}> Masks</button>
+                </div>
+                <div className = "col">
+                <button className="btn btn-block btn-warning btn-lg" onClick = {this.onlyShowGloves}>Gloves</button>
+                </div>
+                <div className = "col">
+                <button className="btn btn-block btn-warning btn-lg" onClick = {this.onlyShowShield}>Face Shields</button>
+                </div>
+                <div className = "col">
+                <button className="btn btn-block btn-warning btn-lg" onClick = {this.onlyShowTherm}>Thermometers</button>
+                </div>
+                <div className = "col">
+                <button className="btn btn-block btn-primary btn-lg" onClick = {this.resetListing}>Reset Filter</button>
+                </div>
+                </div>
             {this.state.searching && <HomeSearch onSearch={ params => this.onSearch(params) }/> }
-
-
-            {!this.state.searching && <button className="btn btn-secondary btn-lg" onClick={() => this.setState({searching: true})}>Filter Products...</button>}
-            <ItemDetails items={ this.state.items }/>
+            <ItemDetails items={ this.state.displayItems }/>
             </div>
 
         

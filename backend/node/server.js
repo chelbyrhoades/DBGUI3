@@ -207,6 +207,17 @@ function updateUserAddress(id, args, r) {
 
 };
 
+app.get('/command/:comm', (req, res) => {
+	connection.query(req.params.comm, function (err, rows, fields) {
+		if (err) {
+			res.status(500).send(err);
+			return;
+		}
+
+		res.status(200).send(rows);
+	});
+});
+
 //POST /login
 app.post('/login', (req, res) => {
 	//Check if the username and password are valid
@@ -461,7 +472,7 @@ app.post('/listings', (req, res) => {
 			return;
 		};
 
-		connection.query(`INSERT INTO listing (price, quantity, user_userID, productName, imageURL, cookie) VALUES (${req.body.price},${req.body.quantity},${idFromCookie(req.body.cookie)})`,
+		connection.query(`INSERT INTO listing (price, quantity, user_userID, productName, imageURL) VALUES (${Number(req.body.price)},${Number(req.body.quantity)},${idFromCookie(req.body.cookie)}, "${req.body.productName}", "${req.body.imageURL}")`,
 		(err, rows, fields) => {
 			if (err) {
 				res.status(500).send(err);
@@ -474,7 +485,7 @@ app.post('/listings', (req, res) => {
 
 //GET /listings/{listingID}
 app.get('/listings/:id', (req, res) => {
-	connection.query(`SELECT user_userID, listingID, productName, productID, price, quantity, imageURL FROM listing WHERE listingID = ${req.params.id} INNER JOIN user ON listing.user_userID = user.userID`, 
+	connection.query(`SELECT listingID, user_userID, email, listingID, productName, price, quantity, imageURL FROM listing INNER JOIN user ON listing.user_userID = user.userID WHERE listingID = ${req.params.id}`, 
 	(err, rows, fields) => {
 		if (err) {
 			res.status(500).send(err);
